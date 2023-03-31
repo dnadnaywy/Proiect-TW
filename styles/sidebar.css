@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+body{
+    color: #333333;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.sidebar {
+    background-color: #333333;
+    color: white;
+    width: 20%;
+    height: 100%;
+    padding: 0 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar .sidebartop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 10px;
+    height: 80px;
+}
+
+.sidebar .sidebartop .pageTitle {
+    font-size: 35px;
+}
+
+.sidebar .sidebartop .logo {
+    width: 35%;
+}
+
+.sidebar .sidebartop .logo img {
+    height: auto;
+    width: 100%;
+}
+
+.sidebar .sidebartop .menu {
+    width: 20%;
+    text-align: end;
+    margin-top: 10px;
+}
+
+.sidebar .sidebartop .menu i {
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
+}
+
+.sidebar nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    display: block;
+    align-items: center;
+    padding: 20px 0;
+    position: relative; 
+    background-color: transparent;
+    transition: background-color .25s ease-in-out;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar nav ul li a i {
+    font-size: 20px;
+}
+
+.sidebar nav ul li a .text {
+    position: relative;
+    left: 15px;
+    top: -1px;
+}
+
+.main {
+    margin-left: calc(20% + 15px);
+    padding: 15px;
+}
