@@ -1,0 +1,54 @@
+footer {
+  height: auto;
+  
+}
+
+#footer {
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 10px;
+  display: flex;
+  background: #EEEEEF;
+  color: #000000;
+  justify-content: right;
+  text-align: center;
+}
+
+#footer .bold-footer {
+  width: 130px;
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.horizontal-line {
+  width: 120px;
+  background-color: black;
+  height: 1px;
+}
+
+.gmail-logo {
+  margin-left: 2px;
+  margin-right: 5px;
+  margin-top: 10px;
+  height: 22px;
+}
+
+.twitter-logo {
+  margin-left: 150px;
+  margin-right: 5px;
+  height: 22px;
+  margin-top: 10px;
+}
+
+.facebook-logo {
+  height: 22px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.instagram-logo {
+  height: 25px;
+  margin-right: 30px;
+  margin-top: 10px;
+}

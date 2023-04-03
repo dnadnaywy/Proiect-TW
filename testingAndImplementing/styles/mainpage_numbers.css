@@ -1,0 +1,36 @@
+#numbers {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: left;
+  text-align: left;
+  background: #fff;
+  background-color: #fff;
+  /*background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(157,157,190,1) 0%, rgba(201,201,219,1) 0%, rgba(255,255,255,1) 100%);
+  */
+}
+
+#numbers .nice-numbers{
+  font-family: Source Sans Pro, sans-serif;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 25px;
+  text-shadow: 1px 1px 0.5px black;
+}
+
+#numbers .nice-numbers:hover{
+  font-family: Source Sans Pro, sans-serif;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 27px;
+  text-shadow: 1px 1px 0.5px black;
+}
+
+.vertical-line {
+  border-left: 10px solid gray;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}
