@@ -1,18 +1,16 @@
 footer {
-  position: absolute;
+  height: auto;
   bottom: 0;
   left: 0;
   right: 0;
-  height: auto;
-  
 }
 
 #footer {
   font-family: Source Sans Pro, sans-serif;
   font-size: 10px;
   display: flex;
-  background: magenta;
-  color: pink;
+  background: #EEEEEF;
+  color: #000000;
   justify-content: right;
   text-align: center;
 }
@@ -55,8 +53,4 @@ footer {
   height: 25px;
   margin-right: 30px;
   margin-top: 10px;
-}
-
-img {
-  float: center;
 }
