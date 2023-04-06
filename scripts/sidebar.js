@@ -1,22 +1,27 @@
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
-let searchBtn = document.querySelector(".bx-search");
+let searchBtn = document.querySelector(".fa-magnifying-glass");
 
 closeBtn.addEventListener("click", () => {
   sidebar.classList.toggle("open");
-  menuBtnChange();//calling the function(optional)
 });
 
-searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+searchBtn.addEventListener("click", () => {
   sidebar.classList.toggle("open");
-  menuBtnChange(); //calling the function(optional)
+});
+
+let header = document.querySelector(".header");
+let mobileButton = document.querySelector("#mobile-btn");
+
+mobileButton.addEventListener("click", () => {
+  header.classList.toggle("open");
 });
 
 // following are the code to change sidebar button(optional)
-function menuBtnChange() {
+/*function menuBtnChange() {
   if (sidebar.classList.contains("open")) {
-    closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+    closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the icons class
   } else {
-    closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the iocns class
+    closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the icons class
   }
-}
+}*/

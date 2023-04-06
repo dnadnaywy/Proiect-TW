@@ -1,0 +1,47 @@
+.footer {
+  height: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 1fr;
+  background: #EEEEEF;
+
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 10px;
+  display: flex;
+  color: #000000;
+  justify-content: right;
+  text-align: center;
+
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.footer .bold-footer {
+  width: 100px;
+  margin-right: 3vw;
+}
+
+.horizontal-line {
+  display: flex;
+  margin-right: 0;
+  background-color: black;
+  height: 1px;
+  justify-content: center;
+}
+
+.icons {
+  display: flex;
+  width: 100px;
+  height: auto;
+  margin-right: 1%;
+
+  justify-content: flex-end;
+  align-items: center;
+  justify-self: flex-end;
+}
+
+.social-media-logos {
+  height: 2.25vw;
+}
