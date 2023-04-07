@@ -1,7 +1,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  background-color: #000;
+  background-color: #7048D5;
   padding: 20px;
   z-index: 20;
   font-family: Source Sans Pro, sans-serif;
@@ -26,6 +26,7 @@
   padding: 0;
   border: 0;
   color: #fff;
+  display: flex;
 }
 
 
