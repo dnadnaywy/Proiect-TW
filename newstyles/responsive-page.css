@@ -68,12 +68,12 @@
 }
 
 @media only screen and (max-width: 768px) {
- 
+
 
   body .header .menu-bars {
     visibility: visible;
     /* position: absolute; */
-    
+
   }
 
   body .header .header-board {
@@ -98,12 +98,4 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-  body .header {
-    justify-content: center;
-  }
-
-  div.title {
-    margin-left: 0;
-  }
-}
+@media only screen and (max-width: 768px) {}

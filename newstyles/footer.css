@@ -4,13 +4,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 1fr;
+  width: 100%;
   background: #EEEEEF;
 
   font-family: Source Sans Pro, sans-serif;
   font-size: 10px;
   display: flex;
-  color: #000000;
+  color: #000;
   justify-content: right;
   text-align: center;
 

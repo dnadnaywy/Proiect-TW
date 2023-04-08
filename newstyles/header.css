@@ -1,35 +1,35 @@
+.header-header{
+  top: 0;
+}
+
 .header {
   display: flex;
-  position: absolute;
-  width:100%;
+  position: fixed;
   background-color: #000;
   z-index: 999;
-  top: 0;
-  right: 0;
   left: 0;
+  right: 0;
   align-items:center;
   justify-content: space-between;
-  height: max-content;
+  height: auto;
 }
 
 .header-board {
-  font-size: 2vw;
+  font-size: 2vh;
   margin: 0;
   color: #fff; 
-  
 }
 
 /*begin of added after*/
 
 .title {
   position:relative;
-  font-size: 2vw;
+  font-size: 100%;
   padding: 0;
   border: 0;
   color: #fff;
   left: 0;
   display: flex;
-  width: 80%;
   align-items:center;
   height: max-content;
 }
@@ -46,7 +46,7 @@
 .header .menu-bars {
   color: #FFF;
   z-index: 1000;
-  font-size: 1.7vw;  
+  font-size: 100%;  
   /* margin-left: 2%; */
   /* padding: 0.5vw 0.75vw; */
   margin: 2vw;
@@ -141,4 +141,3 @@ button.header-button-right {
  
  
 }
-
