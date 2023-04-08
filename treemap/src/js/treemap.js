@@ -1,29 +1,29 @@
 // setup 
 const data = {
     datasets: [{
-        label: 'Countries where terrorist incidents happen often',
+        label: 'Number of Incidents by Country',
         tree: [
-            { country: 'Iraq', value: '24636' },
-            { country: 'Pakistan', value: '14368' },
-            { country: 'Afghanistan', value: '12731' },
-            { country: 'India', value: '11960' },
-            { country: 'Colombia', value: '8306' },
-            { country: 'Philippines', value: '6908' },
-            { country: 'Peru', value: '6096' },
-            { country: 'El Salvador', value: '5320' },
-            { country: 'United Kingdom', value: '5235' },
-            { country: 'Turkey', value: '4292' },
-            { country: 'Somalia', value: '4142' },
-            { country: 'Nigeria', value: '3907' },
-            { country: 'Thailand', value: '3849' },
-            { country: 'Yemen', value: '3347' },
-            { country: 'Spain', value: '3249' },
-            { country: 'Ethiopia', value: '190' },
-            { country: 'Tajikistan', value: '188' },
-            { country: 'Uruguay', value: '82' },
-            { country: 'Albania', value: '80' },
-            { country: 'Romania', value: '6' },
-            { country: 'Andorra', value: '1' },
+            { country: 'Iraq', numberOfIncidents: '24636' },
+            { country: 'Pakistan', numberOfIncidents: '14368' },
+            { country: 'Afghanistan', numberOfIncidents: '12731' },
+            { country: 'India', numberOfIncidents: '11960' },
+            { country: 'Colombia', numberOfIncidents: '8306' },
+            { country: 'Philippines', numberOfIncidents: '6908' },
+            { country: 'Peru', numberOfIncidents: '6096' },
+            { country: 'El Salvador', numberOfIncidents: '5320' },
+            { country: 'United Kingdom', numberOfIncidents: '5235' },
+            { country: 'Turkey', numberOfIncidents: '4292' },
+            { country: 'Somalia', numberOfIncidents: '4142' },
+            { country: 'Nigeria', numberOfIncidents: '3907' },
+            { country: 'Thailand', numberOfIncidents: '3849' },
+            { country: 'Yemen', numberOfIncidents: '3347' },
+            { country: 'Spain', numberOfIncidents: '3249' },
+            { country: 'Ethiopia', numberOfIncidents: '190' },
+            { country: 'Tajikistan', numberOfIncidents: '188' },
+            { country: 'Uruguay', numberOfIncidents: '82' },
+            { country: 'Albania', numberOfIncidents: '80' },
+            { country: 'Romania', numberOfIncidents: '6' },
+            { country: 'Andorra', numberOfIncidents: '3' },
         ],
         backgroundColor: (ctx) => colorFromRaw(ctx),
         borderColor: [
@@ -35,54 +35,18 @@ const data = {
         labels: {
             display: true,
             align: 'center',
+            color: 'white',
+            font: {
+                family: "'Source Sans Pro', sans-serif",
+                size: 12,
+            },
             formatter: (ctx) => {
                 console.log(ctx);
-                return `${ctx.raw._data.country}: ${ctx.raw._data.value}`;
+                return `${ctx.raw._data.country}`;
             },
         },
-        key: 'value',
+        key: 'numberOfIncidents',
     }]
-};
-
-// tooltip block
-const getOrCreateTooltip = (chart) => {
-    let tooltipEL = chart.canvas.parentNode.querySelector('div');
-    if (!tooltipEL) {
-        tooltipEL = document.createElement('div');
-        tooltipEL.classList.add('tooltipDesign');
-        tooltipUL = document.createElement('ul');
-        tooltipUL.classList.add('tooltipUL');
-        
-        //append to parent
-        tooltipEL.appendChild(tooltipUL);
-        chart.canvas.parentNode.appendChild(tooltipEL);
-        console.log(chart.canvas);
-
-        // structure:
-        // <canvas>
-        //     <div class="cssclass">
-        //         <ul class="abc">
-
-        //         </ul>
-        //     </div>
-        // </canvas>
-    }
-    return tooltipEL;
-};
-
-//trigger
-const externalTooltipHandler = (context) => {
-    const { chart, tooltip } = context;
-    console.log(chart);
-    const tooltipEL = getOrCreateTooltip(chart);
-
-    //hide if mouseout
-    if(tooltip.opacity === 0) {
-        tooltipEL.style.opacity = 0;
-        //opacity = 1 === 100% visible
-        //0 === 100% transparent
-        return;
-    };
 };
 
 // config 
@@ -92,9 +56,17 @@ const config = {
     options: {
         plugins: {
             tooltip: {
-                enabled: false,
-                position: 'nearest',
-                external: externalTooltipHandler
+                callbacks: {
+                    title: function(context) {
+                        return context[0].raw._data.country;
+                    },
+                    label: function(context) {
+                        return `Number of Incidents: ${context.raw._data.numberOfIncidents}`;
+                    },
+                    labelTextColor: function(context) {
+                        return 'white';
+                    }
+                }
             }
         }
     }
@@ -110,7 +82,7 @@ function colorFromRaw(ctx) {
     const value = ctx.raw.v;
     let alpha = (Math.log(value) / 9);
     console.log(alpha);
-    return `rgba(112, 72, 213, ${alpha})`;
+    return `rgba(76, 60, 116, ${alpha})`;
 }
 
 // render init block
@@ -119,6 +91,6 @@ const myChart = new Chart(
     config
 );
 
-// Instantly assign Chart.js version
+// assign Chart.js version
 const chartVersion = document.getElementById('chartVersion');
 chartVersion.innerText = Chart.version;
