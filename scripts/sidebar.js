@@ -10,13 +10,6 @@ searchBtn.addEventListener("click", () => {
   sidebar.classList.toggle("open");
 });
 
-let header = document.querySelector(".header");
-let mobileButton = document.querySelector("#mobile-btn");
-
-mobileButton.addEventListener("click", () => {
-  header.classList.toggle("open");
-});
-
 // following are the code to change sidebar button(optional)
 /*function menuBtnChange() {
   if (sidebar.classList.contains("open")) {
