@@ -8,14 +8,14 @@
   background: #EEEEEF;
 
   font-family: Source Sans Pro, sans-serif;
-  font-size: 10px;
+  font-size: 8px;
   display: flex;
   color: #000000;
   justify-content: right;
   text-align: center;
 
   padding-top: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 7px;
 }
 
 .footer .bold-footer {
@@ -35,7 +35,8 @@
   display: flex;
   width: 100px;
   height: auto;
-  margin-right: 1%;
+  margin-left: 2vw;
+  margin-right: 1vw;
 
   justify-content: flex-end;
   align-items: center;
@@ -43,5 +44,7 @@
 }
 
 .social-media-logos {
-  height: 2.25vw;
+  position: relative;
+  
+  height: 1.75vw;
 }
