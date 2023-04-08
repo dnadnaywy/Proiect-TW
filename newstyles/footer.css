@@ -1,10 +1,13 @@
+body{
+min-height: 100vh;
+}
+
 .footer {
   height: auto;
-  position: fixed;
+  position: static;
   bottom: 0;
   left: 0;
   right: 0;
-  width: 1fr;
   background: #EEEEEF;
 
   font-family: Source Sans Pro, sans-serif;
