@@ -41,7 +41,6 @@ const data = {
                 size: 12,
             },
             formatter: (ctx) => {
-                console.log(ctx);
                 return `${ctx.raw._data.country}`;
             },
         },
@@ -74,14 +73,11 @@ const config = {
 
 //color block
 function colorFromRaw(ctx) {
-    console.log(ctx);
     if (ctx.type != 'data') {
         return 'transparent';
     }
-    console.log(ctx.raw);
     const value = ctx.raw.v;
     let alpha = (Math.log(value) / 9);
-    console.log(alpha);
     return `rgba(76, 60, 116, ${alpha})`;
 }
 
