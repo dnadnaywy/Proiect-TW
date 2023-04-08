@@ -3,7 +3,7 @@
   position: absolute;
   width:100%;
   background-color: #000;
-  z-index: 99999;
+  z-index: 999;
   top: 0;
   right: 0;
   left: 0;
@@ -106,9 +106,39 @@ button.header-button-right {
 
 /*from down here, only mobile*/
 
-
-.empty {
-  width: 0;
+@media only screen and (max-width:768px) {
+  
+  .header-board {
+    margin-left: 5%;
+  }
+  
+  /*begin of added after*/
+  
+  .title {
+    font-size: 250%;
+    width: 100%;  
+    align-items: center; 
+  } 
+  
+  .header .logo {
+    width: 12%;
+    height: auto;
+    vertical-align: bottom;
+    margin: 2vw 1vw ;
+  }
+  
+  .header .menu-bars {
+    color: #FFF;
+    z-index: 1000;
+    font-size: 8vw;  
+    margin: 5vw;
+  }
+  nav ul{
+    display: none;
+  }
+  /*final of added after*/
+  
+ 
+ 
 }
-
 

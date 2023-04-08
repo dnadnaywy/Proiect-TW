@@ -68,16 +68,12 @@
 }
 
 @media only screen and (max-width: 768px) {
-  div.sidebar {
-    visibility: visible;
-    width: 100%;
-  }
-
+ 
 
   body .header .menu-bars {
     visibility: visible;
     /* position: absolute; */
-    left: 2vw;
+    
   }
 
   body .header .header-board {
