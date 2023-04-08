@@ -75,28 +75,6 @@ button.header-button-left {
   border-radius: 29px 0px 29px 29px;
 }
 
-button.header-button-right {
+button .header-button-right {
   border-radius: 29px 29px 29px 0;
-}
-
-/*from down here, only mobile*/
-
-.header .menu-bars {
-  background: #1d1b31;
-  color: #FFF;
-  z-index: 1000;
-  visibility: hidden;
-}
-
-.header .menu-bars:hover {
-  cursor: pointer;
-}
-
-.header.open .header-board  {
-  background-color: #1d1b31;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
 }

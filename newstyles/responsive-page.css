@@ -72,17 +72,6 @@
     display: none;
   }
 
-  body .header .menu-bars {
-    visibility: visible;
-    position: absolute;
-    left: 2vw;
-  }
-
-  body .header .header-board {
-    position: absolute;
-    right: 2vw;
-  }
-
   body .footer {
     font-size: 1vw;
     justify-content: center;
@@ -108,5 +97,18 @@
 
   div.title {
     margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body .header .menu-bars {
+    visibility: visible;
+    position: absolute;
+    left: 2vw;
+  }
+
+  body .header .header-board {
+    position: absolute;
+    right: 2vw;
   }
 }
