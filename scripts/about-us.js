@@ -1,4 +1,5 @@
-var textArray = ["We actually didn't know that much about designing, building or deploying a website before."
+var textArray = ["We actually didn't know that much about designing, building or deploying a website before.",
+                  "What helped us a lot is the VScode pets extension, give it a try, it is adorable."
 ];
 
 function changeText() {
