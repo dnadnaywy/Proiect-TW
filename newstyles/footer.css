@@ -1,12 +1,19 @@
-body{
-min-height: 100vh;
-background-image: linear-gradient(to right, #1b1b31,#2D2B35);
+
+a:link {
+  text-decoration: none;
 }
 
-a:link { text-decoration: none; }
-a:visited { text-decoration: none; }
-a:hover { text-decoration: none; }
-a:active { text-decoration: none; }
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
 
 .footer {
   height: auto;
@@ -54,10 +61,10 @@ a:active { text-decoration: none; }
 
 .social-media-logos {
   position: relative;
-  
+
   height: 1.75vw;
 }
 
-.footer .bold-footer .other-info-footer{
+.footer .bold-footer .other-info-footer {
   color: black;
 }
