@@ -11,6 +11,10 @@ const path = d3.geoPath(projection);
 
 const g = svg.append('g');
 
+svg.call(d3.zoom().on('zoom', () => {
+    g.attr('transform', d3.event.transform);
+}));
+
 d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
     .then(data => {
         const countries = topojson.feature(data, data.objects.countries);
@@ -20,6 +24,7 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
             .append('path')
             .attr('class', 'country')
             .attr("cursor", "pointer")
-            .attr('d', path);
-
+            .attr('d', path)
+            .append('title')
+            .text(d => d.properties.name);
     });

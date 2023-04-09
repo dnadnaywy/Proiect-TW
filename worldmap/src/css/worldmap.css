@@ -5,4 +5,9 @@
 .country {
     fill: #ccc;
     stroke: #999;
+    stroke-width: 0.5px;
+}
+
+.country:hover {
+    fill: #999;
 }
