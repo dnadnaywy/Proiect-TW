@@ -113,6 +113,7 @@
   div .logo{
     height: 4vw;
     width: auto;
+    margin-left:0;   
   }
 
   div button.header-button {

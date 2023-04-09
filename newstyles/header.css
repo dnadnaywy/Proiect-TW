@@ -1,3 +1,7 @@
+body{
+  height:100vh;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -6,7 +10,6 @@
   z-index: 20;
   align-items: center;
   height: 65px;
-
   position: fixed;
   top: 0;
   right: 0;
@@ -22,17 +25,19 @@
 /*begin of added after*/
 
 .title {
-  margin-left: 78px;
+  
   font-size: 2.5vw;
   padding: 0;
   border: 0;
   color: #fff;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  width: 2.25vw;
-  height: auto;
-  vertical-align: bottom;
+  margin-left: 5vw;
+  width: auto;
+  height: 2.25vw;
 }
 
 /*final of added after*/
@@ -40,16 +45,17 @@
 nav ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0; 
+  width: max-content;
 }
 
 nav li {
   display: inline-block;
-  margin-left: 4px;
+  margin-left: 0.25vw;
 }
 
-nav li:first-child {
-  margin-left: 0;
+nav li:second-child {
+  margin-right: 2vw;
 }
 
 button.header-button {
@@ -67,15 +73,15 @@ button.header-button {
 }
 
 button.header-button:hover {
-  border: none;
   background: linear-gradient(to bottom, #7048D5, #000);
   color: #f1f1f1;
+  border: none;
 }
 
 button.header-button-left {
   border-radius: 29px 0px 29px 29px;
 }
 
-button .header-button-right {
+button.header-button-right {
   border-radius: 29px 29px 29px 0;
 }
