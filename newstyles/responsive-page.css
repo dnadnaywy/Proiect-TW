@@ -137,3 +137,12 @@
     font-size: 3.5vw;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  body .content-in-page {
+    position: absolute;
+    left: 5%;
+    top: 70px;
+    width: 90%;
+  }
+}

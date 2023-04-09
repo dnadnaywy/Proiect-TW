@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terrorism</title>
+  <title>About-us</title>
   <link rel="website icon" type="png" href="images/logo.png">
 
   <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="newstyles/sidebar.css">
   <link rel="stylesheet" href="newstyles/responsive-text-box.css">
   <link rel="stylesheet" href="newstyles/responsive-page.css">
+  <link rel="stylesheet" href="newstyles/summary.css">
+  <link rel="stylesheet" href="newstyles/content-in-page.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
   </script>
@@ -29,23 +31,22 @@
   <div class="header">
 
     <div class="title">
-        <div class="menu-bars">
-          <i class='fa-solid fa-bars' id="btn"></i>
-        </div>
-        <img src="images/logo.png" class="logo">
-        <p>International <b>Terrorism</b> Database</p>
-        </div>
-  
-      <div class="header-board">
-        <nav>
-          <ul>
-            <li><button class="header-button header-button-left">Login</button></li>
-            <li><button class="header-button header-button-right">Sign up</button></li>
-          </ul>
-        </nav>
-      </div>
+      <img src="images/logo.png" class="logo">
+      International <b>Terrorism</b> Database
     </div>
+    <div class="header-board">
+      <nav>
+        <ul>
+          <li><button class="header-button header-button-left">Login</button></li>
+          <li><button class="header-button header-button-right">Sign up</button></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
+  <div class="logo-details">
+    <i class='fa-solid fa-bars' id="btn"></i>
+  </div>
 
   <div class="sidebar">
 
@@ -116,27 +117,32 @@
 
   <script src="scripts/sidebar.js"></script>
 
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-      summary
-    </div>
-    <div class="col-3"></div>
-  </div>
-  <div class="row">
-    <div class="col-3">
-      numbers
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-3">
-      harta
-    </div>
+  <div class="image-about-us">
+    <img src="images/globe-image.png" class="picture">
+    <div class="text-in-image">About this International<br>Terrorism Database</div>
   </div>
 
-  <canvas id="pieChart" style="width:100%;max-width:700px"></canvas>
-  <canvas id="doughnutChart" style="width:100%;max-width:700px"></canvas>
-  <script src="scripts/pieChart.js"></script>
+  <div class="content-in-page">
+    <!-- the code for the content begins here -->
+    
+
+    <div class="about-us about-us-order">
+      <span class="text"></span>
+    </div>
+
+    <div class="get-in-contact contact-order">
+      <p>Get in touch<br></p>
+      <p class="email-info">
+        Contact us here for any new content we add. You can also subscribe for our newsletter by signing up below with your email adress.
+      </p>
+    </div>
+
+    <script src="scripts/about-us.js"></script>
+
+    <!-- the code for the content ends here -->
+  </div>
+
+
 
 
 
