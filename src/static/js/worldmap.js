@@ -1,8 +1,8 @@
-const width = 300;
-const height = 300;
+const container = document.getElementById('div-map');
+const width = container.getBoundingClientRect().width;
+const height = container.getBoundingClientRect().height;
 
-const svg = d3.select('#div-map')
-    .append('svg')
+const svg = d3.select('#svg-map')
     .attr('width', width)
     .attr('height', height);
 

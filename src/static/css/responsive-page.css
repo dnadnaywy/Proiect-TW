@@ -94,17 +94,16 @@
 
   body .footer {
     font-size: 1vw;
-    justify-content: center;
+    justify-content:space-evenly;
+    display:flex
   }
 
   body .footer .bold-footer {
-    display: grid;
+    display: flex;
     margin-right: 0;
-    justify-content: end;
   }
 
   body .horizontal-line {
-    width: 10vw;
     display: flex;
     justify-self: center;
   }

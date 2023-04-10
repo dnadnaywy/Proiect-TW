@@ -14,50 +14,27 @@ a:active {
   text-decoration: none;
 }
 
-.footer1 {
-  height: auto;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #EEEEEF;
-
-  font-family: Source Sans Pro, sans-serif;
-  font-size: 8px;
-  display: flex;
-  color: #000000;
-  justify-content: right;
-  text-align: center;
-
-  padding-top: 10px;
-  padding-bottom: 7px;
-  margin-top: 4vh;
-}
-
 .footer {
   height: auto;
-  position: fixed;
+  position:relative;
   bottom: 0;
-  left: 0;
   right: 0;
   background: #EEEEEF;
-
+  padding: 80px;
   font-family: Source Sans Pro, sans-serif;
   font-size: 8px;
   display: flex;
   color: #000000;
-  justify-content: right;
+  justify-content: space-evenly;
   text-align: center;
-
   padding-top: 10px;
   padding-bottom: 7px;
-  margin-top: auto;
-
+ 
 }
 
+
 .footer .bold-footer {
-  width: 100px;
-  margin-right: 3vw;
+  flex-direction: column;
 }
 
 .horizontal-line {
@@ -70,11 +47,7 @@ a:active {
 
 .icons {
   display: flex;
-  width: 100px;
   height: auto;
-  margin-left: 2vw;
-  margin-right: 1vw;
-
   justify-content: flex-end;
   align-items: center;
   justify-self: flex-end;
