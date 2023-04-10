@@ -1,0 +1,49 @@
+.box {
+  position: absolute;
+  top: 70px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 29px;
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+.content {
+  margin-bottom: 20px;
+}
+
+.arrows {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.prev-arrow,
+.next-arrow {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.prev-arrow {
+  margin-right: 10px;
+}
+
+.next-arrow:hover,
+.prev-arrow:hover {
+  background-color: #666;
+}

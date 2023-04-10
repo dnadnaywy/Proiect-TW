@@ -1,0 +1,8 @@
+.tooltipDesign .tooltipUL {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+}
