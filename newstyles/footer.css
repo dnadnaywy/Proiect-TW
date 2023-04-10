@@ -1,12 +1,23 @@
 
-a:link { text-decoration: none; }
-a:visited { text-decoration: none; }
-a:hover { text-decoration: none; }
-a:active { text-decoration: none; }
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
 
 .footer {
   height: auto;
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
@@ -21,6 +32,8 @@ a:active { text-decoration: none; }
 
   padding-top: 10px;
   padding-bottom: 7px;
+  margin-top: auto;
+
 }
 
 .footer .bold-footer {
@@ -50,10 +63,10 @@ a:active { text-decoration: none; }
 
 .social-media-logos {
   position: relative;
-  
+
   height: 1.75vw;
 }
 
-.footer .bold-footer .other-info-footer{
+.footer .bold-footer .other-info-footer {
   color: black;
 }
