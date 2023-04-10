@@ -21,46 +21,23 @@ searchBtn.addEventListener("click", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const hHeader = document.querySelector('.header');
+  const hHeader = document.querySelector('.footer');
   const headerReact = hHeader.getBoundingClientRect();
 
   class getHeightHeader {
     constructor() {
-      this.height = `${headerReact.height}px`;
+      this.width = `${headerReact.width}px`;
     }
   }
 
   const heightHeader = new getHeightHeader();
 
   function getHeightH() {
-    console.log(heightHeader.height);
+    console.log(heightHeader.width);
   }
 
   getHeightH();
 
   const root=document.documentElement;
-  root.style.setProperty('--top', heightHeader.height);
+  root.style.setProperty('--top', heightHeader.width);
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hHeader = document.querySelector('.header-header');
-  const headerReact = hHeader.getBoundingClientRect();
-
-  class getHeightHeader {
-    constructor() {
-      this.height = `${headerReact.height}px`;
-    }
-  }
-
-  const heightHeader = new getHeightHeader();
-
-  function getHeightH() {
-    console.log(heightHeader.height);
-  }
-
-  getHeightH();
-
-  const root=document.documentElement;
-  root.style.setProperty('--top', heightHeader.height);
-});
-
