@@ -1,22 +1,34 @@
 body {
     min-height: 100vh;
+    position: relative;
     background: radial-gradient(ellipse at bottom, #26282b 0%, #02030c 100%);
-    background-size: 100% 100%;
-    height: 100vh;
+    background-size: cover;
+    flex-direction: column;
 }
 
 .content-in-page {
-    position: absolute;
+    position: relative;
     top: 80px;
-    left: 10%;
+    left: 11.5%;
     display: flex;
     height: 100%;
     width: 85%;
+    right: 0;
     /* background-color: magenta; */
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    font-size: 2vw;
+}
+
+.just-text {
+    display: flex;
+    width: 100%;
     justify-content: flex-start;
     flex-direction: column;
     align-items: stretch;
     font-size: 2vw;
+    color: black;
 }
 
 .about-us-order {
@@ -31,26 +43,13 @@ body {
     order: 1;
 }
 
-/*Briana
 div .image-about-us {
     width: 100%;
     height: auto;
-}*/
-
-.image-about-us {
-    display: flex;
 }
 
 .about-us {
-    /*Briana 
     height: 20%;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 29px;
-    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);*/
-    height: auto;
     border: 1px solid #ccc;
     background-color: #fff;
     padding: 20px;
@@ -60,7 +59,6 @@ div .image-about-us {
 }
 
 .get-in-contact {
-    /*Briana
     height: 40%;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -69,34 +67,17 @@ div .image-about-us {
     border-radius: 29px;
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
     font-size: 1.5vw;
-    padding-bottom: 20px;*/
-    height: auto;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 29px;
-    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
-    font-size: 1.5vw;
-    margin-bottom: 100px;
+    padding-bottom: 20px;
 }
 
 .email-info {
-    /* Briana
-    font-size: 1vw; */
-    font-size: 1.5vw;
+    font-size: 1vw;
 }
 
 .text-in-image {
-    /* Briana
     color: #fff;
     position: absolute;
     top: 30%;
-    left: 16px; */
-    font-size: 3.5vw;
-    color: #fff;
-    position: absolute;
-    top: 5%;
     left: 16px;
 }
 
@@ -167,6 +148,7 @@ htitle {
 
 .img-chart-icon {
     height: 65%;
+    padding-right: 10%;
 }
 
 .little-line {
@@ -175,7 +157,6 @@ htitle {
 
 .side1 {
     position: relative;
-    padding: 3rem;
 }
 
 .side1::before {
@@ -190,74 +171,107 @@ htitle {
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
 }
 
+
+
 .text-content-side {
-    font-size: 1.2rem;
+    font-size: 50%;
     color: #fff;
-    line-height: 1.5;
     text-align: justify;
     flex-wrap: wrap;
     padding: 10px;
+    text-align: center;
 }
 
-.side-right {
+.side {
     position: relative;
-    padding: 3rem;
 }
 
-.side-right::before,
-.side-right::before {
+.side::before {
     content: "";
     position: absolute;
-    left: 0;
     background-color: #454449;
     border-radius: 60%;
-    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.2);
-}
-
-.side-right::after {
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-}
-
-.side-right::before {
+    box-shadow: 4px 1px 0 rgba(0, 0, 0, 0.2);
+    left: 0;
     top: 0;
-    width: 1px;
+    width: 100%;
+    height: 0.01vw;
 }
 
 .image-info {
-    width: 70%;
-
+    width: 100%;
+    justify-content: center;
+    display: flex;
 }
 
-.just-text {
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: stretch;
-    font-size: 2vw;
-    color: black;
+.image-mask {
+    width: 12vw;
+    height: 12vw;
+    padding: 1%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.image-mask-border {
+    border: 1px solid #454449;
 }
 
 .picture {
     left: 0;
     width: 100%;
     height: auto;
-}
-
-#email {
+  }
+  
+  .about-us {
+    height: auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 29px;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
+  }
+  
+  .get-in-contact {
+    height: auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 29px;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
+    font-size: 1.5vw;
+    margin-bottom: 100px;
+  }
+  
+  .email-info {
+    font-size: 1.5vw;
+  }
+  
+  .text-in-image {
+    font-size: 3.5vw;
+    color: #fff;
+    position: absolute;
+    top: 5%;
+    left: 16px;
+  }
+  
+  .image-about-us {
+    display: flex;
+  }
+  
+  #email {
     border: 0;
     border-bottom: 1px solid black;
     margin-top: 2vw;
     font-size: 1.5vw;
-}
-
-.email-info {
+  }
+  
+  .email-info {
     margin-top: 5px;
-}
-
-#submit-newsletter {
+  }
+  
+  #submit-newsletter {
     border: 1px solid black;
     text-align: center;
     padding: 6px;
@@ -266,24 +280,24 @@ htitle {
     border-radius: 0;
     text-transform: uppercase;
     margin-right: 0;
-}
-
-#submit-newsletter:hover {
+  }
+  
+  #submit-newsletter:hover {
     background-color: #7048D5;
     color: #fff;
     border: 1px solid #7048D5;
-}
-
-.title-info-about-us {
+  }
+  
+  .title-info-about-us {
     color: #7048D5;
     font-weight: bold;
     font-style: oblique;
     font-size: 1.5vw;
-}
-
-.title-get-in-contact {
+  }
+  
+  .title-get-in-contact {
     color: #7048D5;
     font-weight: bold;
     font-style: oblique;
     font-size: 1.5vw;
-}
+  }

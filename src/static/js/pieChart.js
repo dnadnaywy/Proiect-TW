@@ -1,4 +1,4 @@
-var xValues = ["Iraq", "Pakistan", "USA", "Afghanistan", "Others"];
+var xValues = ["Bombing/Explosion", "Armed Assault", "Assassination", "Kidnapping", "Others"];
 var yValues = [55, 49, 44, 24, 15];
 var barColors = [
   "#23b5d3",
@@ -20,7 +20,7 @@ new Chart("pieChart", {
   options: {
     title: {
       display: true,
-      text: "Terrorism by Country"
+      text: "Terrorism by Method of Attack"
     }
   }
 });
@@ -37,7 +37,7 @@ new Chart("doughnutChart", {
   options: {
     title: {
       display: true,
-      text: "Terrorism by Country"
+      text: "Terrorism by Method of Attack"
     }
   }
 });

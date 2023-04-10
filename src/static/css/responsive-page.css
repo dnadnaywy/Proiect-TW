@@ -15,17 +15,9 @@
   flex-wrap: wrap;
   margin-top: 2vw;
   align-items: center;
+  height: max-content;
 }
 
-.all-elements {
-  margin-left: 100px;
-  margin-top: 100px;
-  margin-right: 5vw;
-  display: flex;
-  /**/
-  width: 100%;
-  /**/
-}
 
 /* For desktop: */
 .col-1 {
@@ -51,6 +43,7 @@
 .col-6 {
   width: 50%;
   box-sizing: border-box;
+  justify-content: center;
 }
 
 .col-7 {
@@ -138,6 +131,7 @@
   div button.header-button {
     font-size: 1.5vw;
   }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -157,14 +151,24 @@
   div .header {
     font-size: 3.5vw;
   }
+
+  nav ul {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 768px) {
   body .content-in-page {
-    position: absolute;
-    left: 5%;
-    top: 70px;
     width: 90%;
+    left: 5%;
+  }
+
+  div .side1::before {
+    background-color: transparent;
+  }
+
+  div .side::before {
+    background-color: transparent;
   }
 }
 
@@ -173,14 +177,21 @@
     width: 100%;
   }
 
-  .all-elements {
-    width: 80%;
-    margin-left: 5vw;
-    margin-right: 5vw;
-  }
-
   /* .main-content{
       display: flex;
       flex-direction: column;
     } */
+
+
+  .reverse-column {
+    flex-direction: column-reverse;
+    display: flex;
+  }
+
+  .image-mask-border {
+    width: 25vw;
+    height: 25vw;
+    padding: 2%;
+  }
+
 }
