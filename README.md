@@ -1,5 +1,5 @@
 # GloT (Global Terrorism Visualizer)
-https://bddsolutions-tw.netlify.app/
+https://bddsolutions-tw.netlify.app/src/view/index.html
 
 
 Nume echipa: BDD Solutions
