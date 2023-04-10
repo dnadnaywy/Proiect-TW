@@ -52,6 +52,8 @@
 
 .col-8 {
   width: 66.66%;
+  padding-left: 30vw;
+
 }
 
 .col-9 {
@@ -69,6 +71,7 @@
 .col-12 {
   width: 100%;
 }
+
 
 /* For mobile phones: */
 

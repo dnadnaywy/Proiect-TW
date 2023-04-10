@@ -1,5 +1,5 @@
-const width = 900;
-const height = 600;
+const width = 300;
+const height = 300;
 
 const svg = d3.select('#div-map')
     .append('svg')

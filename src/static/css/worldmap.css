@@ -7,3 +7,10 @@
 .country:hover {
     fill: #999;
 }
+
+
+#div-map{
+    justify-content: center;
+    position: relative;
+    
+  }
