@@ -93,8 +93,10 @@ div .image-about-us {
 }
 
 htitle {
+    position: inherit;
+
     color: #fff;
-    display: inline-block;
+    display: flex;
     text-align: center;
     width: max-content;
     font-size: 2vw;
