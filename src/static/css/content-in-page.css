@@ -75,13 +75,6 @@ div .image-about-us {
     font-size: 1vw;
 }
 
-.text-in-image {
-    color: #fff;
-    position: absolute;
-    top: 30%;
-    left: 16px;
-}
-
 /* images, text-side-for-the-images, title */
 
 .title-content {
@@ -221,9 +214,9 @@ htitle {
     left: 0;
     width: 100%;
     height: auto;
-  }
-  
-  .about-us {
+}
+
+.about-us {
     height: auto;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -231,9 +224,9 @@ htitle {
     margin: 20px;
     border-radius: 29px;
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
-  }
-  
-  .get-in-contact {
+}
+
+.get-in-contact {
     height: auto;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -243,63 +236,67 @@ htitle {
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
     font-size: 1.5vw;
     margin-bottom: 100px;
-  }
-  
-  .email-info {
+}
+
+.email-info {
     font-size: 1.5vw;
-  }
-  
-  .text-in-image {
+}
+
+.text-in-image {
     font-size: 3.5vw;
     color: #fff;
     position: absolute;
-    left: 16px;
-  }
-  
-  .image-about-us {
+    left: 8%;
+    top: 15%;
+}
+
+.image-about-us {
     display: flex;
     flex-direction: column;
 
-  }
-  
-  #email {
+}
+
+#email {
     border: 0;
     border-bottom: 1px solid black;
     margin-top: 2vw;
-    font-size: 1.5vw;
-  }
-  
-  .email-info {
+    font-size: 12px;
+}
+
+.email-info {
     margin-top: 5px;
-  }
-  
-  #submit-newsletter {
+}
+
+#submit-newsletter {
     border: 1px solid black;
     text-align: center;
     padding: 6px;
     background: transparent;
     font-size: 1vw;
-    border-radius: 0;
+    border-radius: 10%;
     text-transform: uppercase;
     margin-right: 0;
-  }
-  
-  #submit-newsletter:hover {
+    transition: all 0.5s;
+}
+
+#submit-newsletter:hover {
     background-color: #7048D5;
     color: #fff;
     border: 1px solid #7048D5;
-  }
-  
-  .title-info-about-us {
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.title-info-about-us {
     color: #7048D5;
     font-weight: bold;
     font-style: oblique;
     font-size: 1.5vw;
-  }
-  
-  .title-get-in-contact {
+}
+
+.title-get-in-contact {
     color: #7048D5;
-    font-weight: bold;
+    font-weight: bolder;
     font-style: oblique;
     font-size: 1.5vw;
-  }
+}
