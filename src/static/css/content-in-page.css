@@ -244,7 +244,7 @@ htitle {
     flex-direction: column;
 }
 
-.email{
+.email {
     width: 200px;
     margin-top: 2vw;
     margin-right: 18px;
@@ -323,4 +323,46 @@ htitle {
 
 .email-position-in-page {
     text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+
+    /*changing the font of all the page here, only for mobile version*/
+    .title-get-in-contact {
+        font-size: 18px;
+    }
+
+    .title-info-about-us {
+        font-size: 18px;
+    }
+
+    .text-info-about-us {
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .text-in-image {
+        left: 15px;
+        top: 8%;
+        font-size: 16px;
+        line-height: 6vw;
+    }
+
+    .email-info {
+        font-size: 14px;
+    }
+
+    .email {
+        margin-bottom: 10px;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .email:focus {
+        width: 100%;
+    }
+
+    #submit-newsletter {
+        font-size: 13px;
+    }
 }
