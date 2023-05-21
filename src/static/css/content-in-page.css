@@ -9,7 +9,7 @@ body {
 
 .content-in-page {
     position: relative;
-    padding-top: 80px;
+    padding-top: 40px;
     left: 11.5%;
     display: flex;
     height: 100%;
@@ -19,7 +19,6 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: stretch;
-    font-size: 2vw;
 }
 
 .just-text {
@@ -28,7 +27,6 @@ body {
     justify-content: flex-start;
     flex-direction: column;
     align-items: stretch;
-    font-size: 2vw;
     color: black;
 }
 
@@ -57,6 +55,7 @@ div .image-about-us {
     margin: 20px;
     border-radius: 29px;
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
+    line-height: 2;
 }
 
 .get-in-contact {
@@ -67,12 +66,8 @@ div .image-about-us {
     margin: 20px;
     border-radius: 29px;
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
-    font-size: 1.5vw;
     padding-bottom: 20px;
-}
-
-.email-info {
-    font-size: 1vw;
+    line-height: 2;
 }
 
 /* images, text-side-for-the-images, title */
@@ -137,7 +132,7 @@ htitle {
 }
 
 .text-icons-chart {
-    font-size: 80%;
+    font-size: 10px;
 }
 
 .img-chart-icon {
@@ -164,8 +159,6 @@ htitle {
     border-radius: 60%;
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .text-content-side {
     font-size: 50%;
@@ -234,55 +227,78 @@ htitle {
     margin: 20px;
     border-radius: 29px;
     box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
-    font-size: 1.5vw;
     margin-bottom: 100px;
 }
 
-.email-info {
-    font-size: 1.5vw;
-}
-
 .text-in-image {
-    font-size: 3.5vw;
     color: #fff;
     position: absolute;
     left: 8%;
-    top: 15%;
+    top: 10%;
+    font-size: 35px;
+    line-height: 3;
 }
 
 .image-about-us {
     display: flex;
     flex-direction: column;
-
 }
 
-#email {
-    border: 0;
-    border-bottom: 1px solid black;
+.email{
+    width: 200px;
     margin-top: 2vw;
-    font-size: 12px;
+    margin-right: 18px;
+    font-size: 18px;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid #000000;
+    padding: 12px 20px;
+    transition: all 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.email:focus {
+    outline: none;
+    transition: all 1s ease-in-out;
+    border: none;
+    border-radius: 29px;
+    background-color: #7048D5;
+    color: #ffffffe3;
+    width: 50%;
+}
+
+.email:focus::placeholder {
+    transition: all 1s ease-in-out;
+    color: #fff;
 }
 
 .email-info {
-    margin-top: 5px;
+    font-size: 18px;
 }
 
 #submit-newsletter {
-    border: 1px solid black;
     text-align: center;
-    padding: 6px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     background: transparent;
-    font-size: 1vw;
-    border-radius: 10%;
+    border-radius: 29px;
     text-transform: uppercase;
     margin-right: 0;
     transition: all 0.5s;
-}
 
-#submit-newsletter:hover {
     background-color: #7048D5;
     color: #fff;
     border: 1px solid #7048D5;
+
+    font-size: 15px;
+}
+
+#submit-newsletter:hover {
+    background-color: #7048d5e9;
+    color: #fff;
+    border: 1px solid #7048d5e4;
     transition: all 0.5s;
     cursor: pointer;
 }
@@ -291,12 +307,20 @@ htitle {
     color: #7048D5;
     font-weight: bold;
     font-style: oblique;
-    font-size: 1.5vw;
+    font-size: 30px;
 }
 
 .title-get-in-contact {
     color: #7048D5;
     font-weight: bolder;
     font-style: oblique;
-    font-size: 1.5vw;
+    font-size: 30px;
+}
+
+.text-info-about-us {
+    font-size: 18px;
+}
+
+.email-position-in-page {
+    text-align: center;
 }
