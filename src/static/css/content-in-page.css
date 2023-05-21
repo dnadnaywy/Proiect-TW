@@ -326,7 +326,6 @@ htitle {
 }
 
 @media only screen and (max-width: 768px) {
-
     /*changing the font of all the page here, only for mobile version*/
     .title-get-in-contact {
         font-size: 18px;
@@ -343,9 +342,9 @@ htitle {
 
     .text-in-image {
         left: 15px;
-        top: 8%;
+        top: 10%;
         font-size: 16px;
-        line-height: 6vw;
+        line-height: 1.8;
     }
 
     .email-info {

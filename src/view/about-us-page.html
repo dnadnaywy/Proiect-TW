@@ -119,7 +119,10 @@
 
 
     <div class="image-about-us">
-      <img src="../static/images/globe-image.png" class="picture">
+      <picture>
+        <source media="(max-width: 768px)" srcset="../static/images/globe-image-mobile.jpg" class="picture">
+        <img src="../static/images/globe-image.png" class="picture">
+      </picture>
       <div class="text-in-image">About this<b><br>International<br>Terrorism<br>Database</b></div>
     </div>
 
@@ -134,7 +137,8 @@
         <div class="get-in-contact contact-order">
           <p class="title-get-in-contact">Get in touch<br></p>
           <p class="email-info">
-            Contact us at our email adress, <i><b>bddsolutions.tw@gmail.com</b></i>, for any new content we add. You can also subscribe for our newsletter by signing up below
+            Contact us at our email adress, <i><b>bddsolutions.tw@gmail.com</b></i>, for any new content we add. You can
+            also subscribe for our newsletter by signing up below
             with your email address.<br>
           <div class="email-position-in-page">
             <input name="email" class="email" type="text" placeholder="Your email address">
