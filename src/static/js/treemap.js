@@ -38,7 +38,7 @@ const data = {
             color: 'white',
             font: {
                 family: "'Source Sans Pro', sans-serif",
-                size: 17,
+                size: 16,
             },
             formatter: (ctx) => {
                 return `${ctx.raw._data.country}`;
