@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country</title>
+    <title>Region</title>
     <link rel="website icon" type="png" href="../static/images/logo.png">
 
     <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../static/css/content-in-page.css">
     <link rel="stylesheet" href="../static/css/donate-page.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     </script>
 </head>
 
@@ -30,17 +30,15 @@
     <div class="d-flex flex-column justify-content-center w-100 h-100">
 
         <div class="header">
+
             <div class="title">
                 <div class="menu-bars">
                     <i class='fa-solid fa-bars' id="btn"></i>
                 </div>
-                <a href="index.html">
-                    <img src="../static/images/logo.png" class="logo">
-                </a>
-                <a href="index.html" class="link-logo">
-                    <p>International <b>Terrorism</b> Database</p>
-                </a>
+                <img src="../static/images/logo.png" class="logo">
+                <p>International <b>Terrorism</b> Database</p>
             </div>
+
             <div class="header-board">
                 <nav>
                     <ul>
@@ -126,7 +124,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="title-content">
-                        <htitle>Pie chart for Methods of Attack</htitle>
+                        <htitle>Make the change</htitle>
+                        <htitle>Choose to donate</htitle>
                         <hr class="line">
                     </div>
                     <div class="btns-chart">
@@ -161,10 +160,9 @@
             </div>
 
             <div class="main-content reverse-column">
-                <div class="col-6" id="canvas1">
-                    <canvas id="pieChart" style="width:100%; max-width:700px"></canvas>
-                    <canvas id="doughnutChart" style="width:100%; max-width:700px"></canvas>
-                    <script src="../static/js/pieChart.js"></script>
+                <div class="col-6">
+                    <canvas id="canvas1"></canvas>
+                    <script src="../static/js/lineChart.js"></script>
                 </div>
                 <div class="col-6">
                     <div class="side1">
@@ -270,25 +268,20 @@
             </div>
 
 
-        </div>
-
-
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <b style="color:transparent">space</b>
+            <div class="row">
+                <div class="col-12">
+                    <b style="color:transparent">space</b>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-
 
     <div class="footer">
         <div class="bold-footer">
             <a href="donate-page.html">
-              <button class="donate-button">Donate</button>
+                <button class="donate-button">Donate</button>
             </a>
-          </div>
+        </div>
         <div class="bold-footer">
             <b>About us</b>
             <hr class="horizontal-line">
@@ -310,8 +303,6 @@
             <div><img src="../static/images/4logos.png" alt="social-media-logos" class="social-media-logos"></div>
         </div>
     </div>
-
-
 </body>
 
 </html>

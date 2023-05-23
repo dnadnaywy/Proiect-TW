@@ -15,6 +15,7 @@ a:active {
 }
 
 .footer {
+  margin-left: 70px;
   height: auto;
   position:relative;
   bottom: 0;
@@ -35,6 +36,7 @@ a:active {
 
 .footer .bold-footer {
   flex-direction: column;
+
 }
 
 .horizontal-line {

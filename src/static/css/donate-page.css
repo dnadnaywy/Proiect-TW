@@ -1,0 +1,20 @@
+button.donate-button {
+    position: relative;
+    font-size: 1vw;
+    display: inline-block;
+    padding: 0.5vw 2vw;
+    border: 0.1vw solid #7048D5;
+    border-radius: 29px;
+    border-bottom: none;
+    background-color: #7048D5;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button.donate-button:hover {
+    background: #fff;
+    color: #000;
+    border:0.1vw solid #000;
+}
