@@ -4,4 +4,11 @@
     padding: 30px;
 }
 
+#canvas2 {
+    height: auto;
+    width: 100%;
+    position: relative;
+    padding: 30px;
+}
+
 /*canvas info*/
