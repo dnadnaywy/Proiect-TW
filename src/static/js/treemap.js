@@ -38,7 +38,7 @@ const data = {
             color: 'white',
             font: {
                 family: "'Source Sans Pro', sans-serif",
-                size: 16,
+                size: 17,
             },
             formatter: (ctx) => {
                 return `${ctx.raw._data.country}`;
@@ -57,12 +57,20 @@ const config = {
         maintainAspectRatio: false,
         plugins: {
             tooltip: {
+                titleFont: {
+                    size: 18,
+                    font: "'Source Sans Pro', sans-serif"
+                },
+                bodyFont: {
+                    size: 17,
+                    font: "'Source Sans Pro', sans-serif"
+                },
                 callbacks: {
                     title: function (context) {
                         return context[0].raw._data.country;
                     },
                     label: function (context) {
-                        return `Number of Incidents: ${context.raw._data.numberOfIncidents}`;
+                        return ` Number of Incidents: ${context.raw._data.numberOfIncidents}`;
                     },
                     labelTextColor: function (context) {
                         return 'white';
@@ -85,6 +93,6 @@ function colorFromRaw(ctx) {
 
 // render init block
 const myChart = new Chart(
-    document.getElementById('canvas1'),
+    document.getElementById('canvas2'),
     config
 );
