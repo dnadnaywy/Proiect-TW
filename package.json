@@ -1,0 +1,26 @@
+{
+  "name": "proiect-tw",
+  "version": "1.0.0",
+  "description": "test-npm-init-1",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnadnaywy/Proiect-TW.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dnadnaywy/Proiect-TW/issues"
+  },
+  "homepage": "https://github.com/dnadnaywy/Proiect-TW#readme",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "pg": "^8.11.0"
+  }
+}
