@@ -21,6 +21,7 @@ Componenta echipa:
 # Work log
 
 * Diana Panainte a populat baza de date cu date din csv (15.06)
+* Diana Panainte - api urile merg toate pt pie/doughnut charts + integrare completa frontend-backend pt metode de atac (16.06)
 
 
 # Instalare
