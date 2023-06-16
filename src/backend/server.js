@@ -20,7 +20,7 @@ const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
+
   if (req.url === '/terrorism-data' && req.method === 'GET') {
     try {
       const client = await pool.connect();
@@ -38,7 +38,31 @@ const server = http.createServer(async (req, res) => {
       pool.end();
     }
   } else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {
-    const dataChart = pieChartController.getCountAttackTypes(req, res, pool);
+    pieChartController.getCountAttackTypes(req, res, pool);
+  } else if (req.url === '/api/pie/country' && req.method === 'GET') {
+    const country = 'country';
+    pieChartController.getCountCountry(req, res, pool, country);
+  } else if (req.url === '/api/pie/region' && req.method === 'GET') {
+    const region = 'region';
+    pieChartController.getCountCountry(req, res, pool, region);
+  } else if (req.url === '/api/pie/target' && req.method === 'GET') {
+    const target = 'target';
+    pieChartController.getCountCountry(req, res, pool, target);
+  } else if (req.url === '/api/pie/group_name' && req.method === 'GET') {
+    const group_name = 'group_name';
+    pieChartController.getCountCountry(req, res, pool, group_name);
+  } else if (req.url === '/api/pie/weapon_type' && req.method === 'GET') {
+    const weapon_type = 'weapon_type';
+    pieChartController.getCountCountry(req, res, pool, weapon_type);
+  } else if (req.url === '/api/pie/weapon_subtype' && req.method === 'GET') {
+    const weapon_subtype = 'weapon_subtype';
+    pieChartController.getCountCountry(req, res, pool, weapon_subtype);
+  } else if (req.url === '/api/pie/nkill' && req.method === 'GET') {
+    const nkill = 'nkill';
+    pieChartController.getCountCountry(req, res, pool, nkill);
+  } else if (req.url === '/api/pie/nkill_us' && req.method === 'GET') {
+    const nkill_us = 'nkill_us';
+    pieChartController.getCountCountry(req, res, pool, nkill_us);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not found');
