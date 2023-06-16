@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 const http = require('http');
+const pieChartController = require('./controller/pieChartController');
 
 const pool = new Pool({
   user: 'postgres',
@@ -7,9 +8,19 @@ const pool = new Pool({
   database: 'bddsolutions',
   password: 'postgres',
   port: 5432, // Default PostgreSQL port
+  max: 20, // Maximum number of connections in the pool
+  idleTimeoutMillis: 30000, // Time in milliseconds a connection can remain idle before being closed
+  connectionTimeoutMillis: 2000 // Time in milliseconds to wait while establishing a new connection
 });
 
+module.exports = pool;
+
 const server = http.createServer(async (req, res) => {
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
   if (req.url === '/terrorism-data' && req.method === 'GET') {
     try {
       const client = await pool.connect();
@@ -26,6 +37,8 @@ const server = http.createServer(async (req, res) => {
     finally {
       pool.end();
     }
+  } else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {
+    const dataChart = pieChartController.getCountAttackTypes(req, res, pool);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not found');
