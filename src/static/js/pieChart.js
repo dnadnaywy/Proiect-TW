@@ -1,51 +1,79 @@
 var xValues = [];
 
-function fetchDataXValues() {
-  return new Promise((resolve, reject) => {
-    fetch('http://localhost:3000/api/countAttackTypes')
-      .then(response => response.json())
-      .then(data => {
-        const xValues = data.map(obj => obj.attack_type);
-        const yValues = data.map(obj => obj.count);
-        resolve(xValues);
-      })
-      .catch(error => {
-        reject(error);
-      });
-  });
+function fetchDataXValues(title) {
+  if (title === 'Method of Attack') {
+    return new Promise((resolve, reject) => {
+      fetch('http://localhost:3000/api/countAttackTypes')
+        .then(response => response.json())
+        .then(data => {
+          const xValues = data.map(obj => obj.attack_type);
+          resolve(xValues);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  } else if (title === 'Terrorist Groups') {
+    return new Promise((resolve, reject) => {
+      fetch('http://localhost:3000/api/pie/group_name')
+        .then(response => response.json())
+        .then(data => {
+          const xValues = data.map(obj => obj.group_name);
+          resolve(xValues);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
 }
 
-function fetchDataYValues() {
-  return new Promise((resolve, reject) => {
-    fetch('http://localhost:3000/api/countAttackTypes')
-      .then(response => response.json())
-      .then(data => {
-        const yValues = data.map(obj => obj.count);
-        resolve(yValues);
-      })
-      .catch(error => {
-        reject(error);
-      });
-  });
+function fetchDataYValues(title) {
+  if (title === 'Method of Attack') {
+    return new Promise((resolve, reject) => {
+      fetch('http://localhost:3000/api/countAttackTypes')
+        .then(response => response.json())
+        .then(data => {
+          const yValues = data.map(obj => obj.count);
+          resolve(yValues);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  } else if (title === 'Terrorist Groups') {
+    return new Promise((resolve, reject) => {
+      fetch('http://localhost:3000/api/pie/group_name')
+        .then(response => response.json())
+        .then(data => {
+          const yValues = data.map(obj => obj.count);
+          resolve(yValues);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
 }
 
-const promises = [fetchDataXValues(), fetchDataYValues()];
+function makeActualPieChart(title) {
+  const promises = [fetchDataXValues(title), fetchDataYValues(title)];
 
-Promise.all(promises)
-  .then(([xValues, yValues]) => {
-    console.log('Resolved values:', xValues, yValues);
-    console.log(xValues.length);
-    const numColors = xValues.length; // Specify the desired number of colors
-    const randomColorArray = generateRandomColorArray(numColors);
-    console.log('i am in promises stuff()');
+  Promise.all(promises)
+    .then(([xValues, yValues]) => {
+      console.log('Resolved values:', xValues, yValues);
+      console.log(xValues.length);
+      const numColors = xValues.length; // Specify the desired number of colors
+      const randomColorArray = generateRandomColorArray(numColors);
 
-    pieChartDisplayer(xValues, yValues, randomColorArray);
-    doughnutChartDisplayer(xValues, yValues, randomColorArray);
-    // Use the resolved values as needed here
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+      pieChartDisplayer(xValues, yValues, randomColorArray, title);
+      doughnutChartDisplayer(xValues, yValues, randomColorArray, title);
+      // Use the resolved values as needed here
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
 //for generating a random array with random colours
 function generateRandomHexColor() {
@@ -62,7 +90,7 @@ function generateRandomColorArray(numColors) {
   return colorArray;
 }
 
-function pieChartDisplayer(xValues, yValues, barColors) {
+function pieChartDisplayer(xValues, yValues, barColors, title) {
   new Chart("pieChart", {
     type: "pie",
     data: {
@@ -75,13 +103,13 @@ function pieChartDisplayer(xValues, yValues, barColors) {
     options: {
       title: {
         display: true,
-        text: "Terrorism by Method of Attack"
+        text: "Terrorism by " + title
       }
     }
   });
 }
 
-function doughnutChartDisplayer(xValues, yValues, barColors) {
+function doughnutChartDisplayer(xValues, yValues, barColors, title) {
   new Chart("doughnutChart", {
     type: "doughnut",
     data: {
@@ -94,7 +122,7 @@ function doughnutChartDisplayer(xValues, yValues, barColors) {
     options: {
       title: {
         display: true,
-        text: "Terrorism by Method of Attack"
+        text: "Terrorism by " + title
       }
     }
   });

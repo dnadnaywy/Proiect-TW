@@ -1,5 +1,5 @@
-function displayPieChart() {
-  // alert('Hello world');
+function displayPieChart(title) {
+  // alert(title);
   let lineChart = document.getElementById("bring-line-chart");
   lineChart.style.display = "none";
 
@@ -8,6 +8,8 @@ function displayPieChart() {
 
   let pieChart = document.getElementById("bring-pie-chart");
   pieChart.style.display = "block";
+
+  makeActualPieChart(title);
 }
 
 function displayLineChart() {

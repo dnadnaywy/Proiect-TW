@@ -9,7 +9,7 @@ exports.getAllCountAttackTypes = (async (pool) => {
 exports.getAllCountCountry = (async (databaseColumn, pool) => {
   const client = await pool.connect();
 
-  const result = await client.query(`SELECT ${databaseColumn}, COUNT(*) FROM terrorism_data GROUP BY ${databaseColumn} ORDER BY COUNT(*) DESC`);
+  const result = await client.query(`SELECT ${databaseColumn}, COUNT(*) FROM terrorism_data GROUP BY ${databaseColumn} ORDER BY COUNT(*) DESC limit 10`);
   const returnedRows = result.rows;
   client.release();
   return returnedRows;
