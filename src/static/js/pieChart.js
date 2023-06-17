@@ -37,6 +37,8 @@ Promise.all(promises)
     console.log(xValues.length);
     const numColors = xValues.length; // Specify the desired number of colors
     const randomColorArray = generateRandomColorArray(numColors);
+    console.log('i am in promises stuff()');
+
     pieChartDisplayer(xValues, yValues, randomColorArray);
     doughnutChartDisplayer(xValues, yValues, randomColorArray);
     // Use the resolved values as needed here

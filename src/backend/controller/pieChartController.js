@@ -2,6 +2,7 @@
 const pieChartModel = require('../model/pieChartModel');
 
 const allCountAttackTypes = {
+  
   // Controller method for handling a specific route
   getCountAttackTypes: (req, res, pool) => {
     // Retrieve data from the model or perform any necessary operations
