@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country</title>
+    <title>Method of Attack</title>
     <link rel="website icon" type="png" href="../static/images/logo.png">
 
     <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
 
     <link rel="stylesheet" href="../static/css/responsive-page.css">
     <link rel="stylesheet" href="../static/css/footer.css">
@@ -134,7 +132,7 @@
 
                             <div class="btn-chart">
                                 <img src="../static/images/treemap-chart.png" class="img-chart-icon" />
-                                <div class="text-icons-chart">
+                                <div class="text-icons-chart" onclick="displayTreemapChart()">
                                     Treemap
                                 </div>
                             </div>
@@ -142,14 +140,15 @@
 
                             <div class="btn-chart">
                                 <img src="../static/images/line-graph.png" class="img-chart-icon" />
-                                <div class="text-icons-chart">
+                                <div class="text-icons-chart" onclick="displayLineChart()">
+                                    Line
                                 </div>
-                                Line
+
                             </div>
 
                             <div class="btn-chart">
                                 <img src="../static/images/pie-chart.png" class="img-chart-icon" />
-                                <div class="text-icons-chart">
+                                <div class="text-icons-chart" onclick="displayPieChart()">
                                     Pie
                                 </div>
                             </div>
@@ -160,9 +159,21 @@
 
             <div class="main-content reverse-column">
                 <div class="col-6" id="canvas1">
-                    <canvas id="pieChart" style="width:100%; max-width:700px"></canvas>
-                    <canvas id="doughnutChart" style="width:100%; max-width:700px"></canvas>
-                    <script src="../static/js/pieChart.js"></script>
+                    <div id="bring-pie-chart">
+                        <canvas id="pieChart" style="width:100%; max-width:700px"></canvas>
+                        <canvas id="doughnutChart" style="width:100%; max-width:700px"></canvas>
+                        <script src="../static/js/pieChart.js"></script>
+                    </div>
+
+                    <div id="bring-line-chart">
+                        <canvas id="lineChart" style="width:100%; max-width:700px"></canvas>
+                        <script src="../static/js/lineChart.js"></script>
+                    </div>
+
+                    <div id="bring-treemap-chart">
+                        <canvas id="canvas2" style="width:100%; max-width:700px"></canvas>
+                        <script src="../static/js/treemap.js"></script>
+                    </div>
                 </div>
                 <div class="col-6">
                     <div class="side1">
@@ -304,6 +315,7 @@
         </div>
     </div>
 
+    <script src="../static/js/0-charts-united.js"></script>
 
 </body>
 

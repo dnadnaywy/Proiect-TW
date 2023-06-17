@@ -124,6 +124,21 @@ htitle {
 
 }
 
+/* added after partial */
+
+.text-icons-chart:hover {
+    cursor: pointer;
+    font-size: 16px;
+    color: #ccc;
+    transition: all ease-in-out 0.5s;
+}
+
+#bring-line-chart, #bring-pie-chart, #bring-treemap-chart {
+    display: none;
+}
+
+/* ending - added after partial - normal part begins */
+
 .btn-chart {
     align-items: center;
     height: 1.5vw;
@@ -132,7 +147,8 @@ htitle {
 }
 
 .text-icons-chart {
-    font-size: 10px;
+    font-size: 14px;
+    transition: all ease-in-out 0.5s;
 }
 
 .img-chart-icon {
@@ -326,6 +342,7 @@ htitle {
 }
 
 @media only screen and (max-width: 768px) {
+
     /*changing the font of all the page here, only for mobile version*/
     .title-get-in-contact {
         font-size: 18px;
