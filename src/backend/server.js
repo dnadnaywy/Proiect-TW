@@ -9,8 +9,6 @@ const pool = new Pool({
   password: 'postgres',
   port: 5432, // Default PostgreSQL port
   max: 20, // Maximum number of connections in the pool
-  idleTimeoutMillis: 30000, // Time in milliseconds a connection can remain idle before being closed
-  connectionTimeoutMillis: 2000 // Time in milliseconds to wait while establishing a new connection
 });
 
 module.exports = pool;
@@ -63,6 +61,11 @@ const server = http.createServer(async (req, res) => {
   } else if (req.url === '/api/pie/nkill_us' && req.method === 'GET') {
     const nkill_us = 'nkill_us';
     pieChartController.getCountCountry(req, res, pool, nkill_us);
+  } else if (req.url === '/api/terrorist-cards' && req.method === 'GET') {
+    pieChartController.getAllRow(req, res, pool);
+  } else if (req.url.startsWith('/api/terrorist-card/') && req.method === 'GET') {
+    const id = req.url.substring(20);
+    pieChartController.getAllRowById(req, res, pool, id);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not found');

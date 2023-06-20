@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terrorist Data</title>
+  <link rel="website icon" type="png" href="../static/images/logo.png">
+
+  <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../static/css/responsive-page.css">
+  <link rel="stylesheet" href="../static/css/footer.css">
+  <link rel="stylesheet" href="../static/css/header.css">
+  <link rel="stylesheet" href="../static/css/sidebar.css">
+  <link rel="stylesheet" href="../static/css/responsive-text-box.css">
+  <link rel="stylesheet" href="../static/css/canvas.css">
+  <link rel="stylesheet" href="../static/css/content-in-page.css">
+  <link rel="stylesheet" href="../static/css/terrorist-cards.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
+</head>
+
+
+<body onload="displayDataFromDatabase()">
+  <div class="d-flex flex-column justify-content-center w-100 h-100">
+
+    <div class="header">
+      <div class="title">
+        <div class="menu-bars">
+          <i class='fa-solid fa-bars' id="btn"></i>
+        </div>
+        <a href="index.html">
+          <img src="../static/images/logo.png" class="logo">
+        </a>
+        <a href="index.html" class="link-logo">
+          <p>International <b>Terrorism</b> Database</p>
+        </a>
+      </div>
+      <div class="header-board">
+        <nav>
+          <ul>
+            <li><button class="header-button header-button-left">Login</button></li>
+            <li><button class="header-button header-button-right">Sign up</button></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+
+    <div class="sidebar">
+
+      <ul class="nav-list">
+        <li>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search...">
+          <span class="tooltip">Search</span>
+        </li>
+        <li>
+          <a href="country.html">
+            <i class="fa-solid fa-flag"></i>
+            <span class="links_name">Country</span>
+          </a>
+          <span class="tooltip">Country</span>
+        </li>
+        <li>
+          <a href="region.html">
+            <i class="fa-solid fa-earth-americas"></i>
+            <span class="links_name">Region</span>
+          </a>
+          <span class="tooltip">Region</span>
+        </li>
+        <li>
+          <a href="method-of-attack.html">
+            <i class='fa-solid fa-solid fa-bomb'></i>
+            <span class="links_name">Method of Attack</span>
+          </a>
+          <span class="tooltip">Method of Attack</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class='fa-solid fa-bullseye'></i>
+            <span class="links_name">Target</span>
+          </a>
+          <span class="tooltip">Target</span>
+        </li>
+        <li>
+          <a href="terrorist-groups.html">
+            <i class='fa-solid fa-people-group'></i>
+            <span class="links_name">Terrorist Groups</span>
+          </a>
+          <span class="tooltip">Terrorist Groups</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class='fa-solid fa-gun'></i>
+            <span class="links_name">Weapons</span>
+          </a>
+          <span class="tooltip">Weapons</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class='fa-solid fa-cross'></i>
+            <span class="links_name">Deaths</span>
+          </a>
+          <span class="tooltip">Deaths</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class='fa-solid fa-cross'></i>
+            <span class="links_name">Deaths (U.S.)</span>
+          </a>
+          <span class="tooltip">Deaths (U.S.)</span>
+        </li>
+      </ul>
+      <script src="../static/js/sidebar.js"></script>
+    </div>
+
+
+    <div class="content-in-page">
+      <div class="row">
+        <div class="col-12">
+          <div class="title-content">
+            <htitle>Terrorist Data</htitle>
+            <hr class="line">
+          </div>
+
+          <div class="btns-bar" style="width: auto; color: aliceblue;">
+
+            <div>
+              <h3>Country</h3>
+              <input type="text" id="countrySearchInput" placeholder="Search countries">
+              <div id="countryFilterContainer">
+                <!-- Existing initial countries are listed here -->
+                <label><input type="checkbox" class="filter-checkbox" data-filter-category="country"
+                    data-filter-value="united states">United States</label>
+                <!-- Add more initial countries as needed -->
+                <!-- Search input -->
+
+              </div>
+            </div>
+
+            <div>
+              <h3>Year</h3>
+              <div id="yearFilterContainer">
+                <label><input type="checkbox" class="filter-checkbox" data-filter-category="year" data-filter-value="2019">2019</label>
+                <label><input type="checkbox" class="filter-checkbox" data-filter-category="year" data-filter-value="2020">2020</label>
+                <label><input type="checkbox" class="filter-checkbox" data-filter-category="year" data-filter-value="2021">2021</label>
+                <!-- Add more years as needed -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content reverse-column">
+        <div class="col-12" id="all-cards-content">
+          <!-- <div class="terrorist-act-card">
+            <div class="display-card-properties card">
+              <div><b>Country:</b><br>USA
+                <hr class="horizontal-line-in-cards">
+              </div>
+              <div><b>Region:</b><br>North America
+                <hr class="horizontal-line-in-cards">
+              </div>
+              <div><b>Attack Type:</b><br>Bombing/Explosion</div>
+              <div><b>Weapon Type:</b><br>Explosives</div>
+            </div>
+            <div>
+              <h3>See more details</h3>
+            </div>
+          </div> -->
+
+          <!-- <div class="card">
+            <p>Country:</p>           <b><p class="country-name">Mexico</p></b>
+            <p>Region:</p>            <b><p class="region-name">North America</p></b>
+            <p>Year:</p>              <b><p class="year">2019</p></b>
+            <p>Attack type:</p>       <b><div class="attack-type-name">Bombing/Explosion</div></b>
+            <p>Weapon Type:</p>       <b><p class="year">Explosives</p></b>
+            <div class="see-more-details"><h3>See more details:</h3></div> <div><i class="fa-solid fa-computer-mouse"></i></div>
+          </div> -->
+          
+          <!-- <div class="more-detail-for-card">
+            <i class="fa-solid fa-xmark"></i>
+            <br><br>
+            <i class="fa-solid fa-arrow-right"></i>
+            This attack took place in <b>United States</b>, <b>North America</b>. The <b>KKK</b> targeted <b>people</b>.<br>
+            <br>
+            <i class="fa-solid fa-arrow-right"></i> Weapon Type: <b>Firearms</b>. Weapon subtype: <b>Gun.</b><br>
+            <br>
+            <i>This is the summary of the attack:</i>
+            <br><br>
+            <i class="fa-solid fa-arrow-right"></i> '9/9/2002: A man from Bombay attempted to hijack an Air Seychelles flight bound for Seychelles from Bombay, Maharashtra state, India.  The plane had already taken off from Bombay when the knife-wielding hijacker attempted to access the cockpit.  The cabin crew seized the man, tying him to a passenger seat until the plane landed in Male, Maldives, and he could be arrested.  One crew member was injured in the scuffle; there were no further injuries.  The motives behind the attempted hijacking are unknown; however, the assailant stated that he wanted to redirect the plane to another location.  Nine other passengers were taken into custody for questioning.'
+          </div> -->
+        </div>
+
+        <div class="col-12" id="see-more-details-container"></div>
+      </div>
+
+      <div class="side">
+        <div class="row">
+          <div class="main-content reverse-column">
+            <div class="col-6">
+              <p class="text-content-side">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elit dui, in
+                tincidunt felis auctor elementum. Etiam eleifend risus augue, at lacinia neque accumsan
+                vitae. Ut et purus non dui bibendum lacinia ac ac velit. Ut molestie est nunc, sed
+                sodales augue vehicula non. Pellentesque et sapien sit amet. </p>
+              <p class="text-content-side">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elit dui, in
+                tincidunt felis auctor elementum. Etiam eleifend risus augue, at lacinia neque accumsan
+                vitae. Ut et purus non dui bibendum lacinia ac ac velit. Ut molestie est nunc, sed
+                sodales augue vehicula non. Pellentesque et sapien sit amet. </p>
+            </div>
+            <div class="col-6">
+              <div class="side1">
+                <div class="image-info">
+                  <img src="../static/images/photo-1.png" class="image-mask  image-mask-border">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="main-content">
+          <div class="col-6">
+            <div class="image-info">
+              <img src="../static/images/photo-2.jpg" class="image-mask  image-mask-border">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="side1">
+              <p class="text-content-side">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elit dui, in
+                tincidunt felis auctor elementum. Etiam eleifend risus augue, at lacinia neque accumsan
+                vitae. Ut et purus non dui bibendum lacinia ac ac velit. Ut molestie est nunc, sed
+                sodales augue vehicula non. Pellentesque et sapien sit amet.
+              </p>
+              <p class="text-content-side">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elit dui, in
+                tincidunt felis auctor elementum. Etiam eleifend risus augue, at lacinia neque accumsan
+                vitae. Ut et purus non dui bibendum lacinia ac ac velit. Ut molestie est nunc, sed
+                sodales augue vehicula non. Pellentesque et sapien sit amet.
+              </p>
+              <p class="text-content-side">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elit dui, in
+                tincidunt felis auctor elementum. Etiam eleifend risus augue, at lacinia neque accumsan
+                vitae. Ut et purus non dui bibendum lacinia ac ac velit. Ut molestie est nunc, sed
+                sodales augue vehicula non. Pellentesque et sapien sit amet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="main-content reverse-column">
+          <div class="col-6">
+            <p class="text-content-side">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elit dui, in
+              tincidunt felis auctor elementum. Etiam eleifend risus augue, at lacinia neque accumsan
+              vitae. Ut et purus non dui bibendum lacinia ac ac velit. Ut molestie est nunc, sed sodales
+              augue vehicula non. Pellentesque et sapien sit amet.
+            </p>
+            <p class="text-content-side">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales elit dui, in
+              tincidunt felis auctor elementum. Etiam eleifend risus augue, at lacinia neque accumsan
+              vitae. Ut et purus non dui bibendum lacinia ac ac velit. Ut molestie est nunc, sed sodales
+              augue vehicula non. Pellentesque et sapien sit amet.
+            </p>
+          </div>
+          <div class="col-6">
+            <div class="side1">
+
+              <div class="image-info">
+                <img src="../static/images/photo-3.jpg" class="image-mask  image-mask-border">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <b style="color:transparent">space</b>
+    </div>
+  </div>
+  </div>
+
+
+  <div class="footer">
+    <div class="bold-footer">
+      <b>About us</b>
+      <hr class="horizontal-line">
+      <a href="about-us-page.html">
+        <p class="other-info-footer"><i>Get in touch</i></p>
+      </a>
+    </div>
+    <div class="bold-footer">
+      <b>Terms</b>
+      <hr class="horizontal-line">
+      <a href="#">
+        <p class="other-info-footer">Terms & Conditions</p>
+      </a>
+      <a href="#">
+        <p class="other-info-footer">Privacy Policy</p>
+      </a>
+    </div>
+    <div class="icons">
+      <div><img src="../static/images/4logos.png" alt="social-media-logos" class="social-media-logos"></div>
+    </div>
+  </div>
+
+  <script src="../static/js/0-charts-united.js"></script>
+  <script src="../static/js/searchPage.js"></script>
+  <script src="../static/js/displayTerroristCardsSearchPage.js"></script>
+
+</body>
+
+</html>
