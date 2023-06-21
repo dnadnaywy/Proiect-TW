@@ -122,7 +122,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="title-content">
-                        <htitle>Pie chart for Methods of Attack</htitle>
+                        <htitle id="chart-title-in-page">Method of Attack</htitle>
                         <hr class="line">
                     </div>
                     <div class="btns-chart">
@@ -132,7 +132,7 @@
 
                             <div class="btn-chart">
                                 <img src="../static/images/treemap-chart.png" class="img-chart-icon" />
-                                <div class="text-icons-chart" onclick="displayTreemapChart()">
+                                <div class="text-icons-chart" onclick="displayTreemapChart(document.title)">
                                     Treemap
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
 
                             <div class="btn-chart">
                                 <img src="../static/images/line-graph.png" class="img-chart-icon" />
-                                <div class="text-icons-chart" onclick="displayLineChart()">
+                                <div class="text-icons-chart" onclick="displayLineChart(document.title)">
                                     Line
                                 </div>
 
@@ -171,6 +171,11 @@
                     </div>
 
                     <div id="bring-treemap-chart">
+                        <!-- SCRIPTS ADDED FOR TREEMAP -->
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.3.0/dist/chartjs-chart-treemap.min.js"></script>
+
                         <canvas id="canvas2" style="width:100%; max-width:700px"></canvas>
                         <script src="../static/js/treemap.js"></script>
                     </div>
