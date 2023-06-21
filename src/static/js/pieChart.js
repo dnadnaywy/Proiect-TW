@@ -28,6 +28,8 @@ function fetchDataXValues(title) {
   }
 }
 
+// module.exports = fetchDataXValues;
+
 function fetchDataYValues(title) {
   if (title === 'Method of Attack') {
     return new Promise((resolve, reject) => {

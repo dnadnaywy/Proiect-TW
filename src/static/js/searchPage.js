@@ -2,7 +2,7 @@ const additionalCountries = ['India', 'Russia', 'Mexico']; // Add more countries
 
 const countryFilterContainer = document.getElementById('countryFilterContainer');
 const countrySearchInput = document.getElementById('countrySearchInput');
-const yearFilterContainer = document.getElementById('yearFilterContainer');
+const attackTypeFilterContainer = document.getElementById('attackTypeFilterContainer');
 const filterCheckboxes = document.getElementsByClassName('filter-checkbox');
 const cards = document.getElementsByClassName('card');
 
@@ -48,13 +48,13 @@ function filterCards() {
   Array.from(cards).forEach((card) => {
     const countryName = card.getElementsByClassName('country-name')[0].textContent.toLowerCase();
     const regionName = card.getElementsByClassName('region-name')[0].textContent.toLowerCase();
-    const year = card.getElementsByClassName('year')[0].textContent.toLowerCase();
+    const attackTypeName = card.getElementsByClassName('attack-type-name')[0].textContent.toLowerCase();
 
     let matchesFilter = true;
 
     for (const filterCategory in selectedFilters) {
       const filterValues = selectedFilters[filterCategory];
-      const cardValue = filterCategory === 'country' ? countryName : filterCategory === 'year' ? year : regionName;
+      const cardValue = filterCategory === 'country' ? countryName : filterCategory === 'attack-type' ? attackTypeName : regionName;
 
       if (!filterValues.includes(cardValue)) {
         matchesFilter = false;

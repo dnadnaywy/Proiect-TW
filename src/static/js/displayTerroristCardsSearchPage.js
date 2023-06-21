@@ -12,7 +12,7 @@ async function displayDataFromDatabase() {
       <p>Region:</p>            <b><p class="region-name">${card.region}</p></b>
       <p>Year:</p>              <b><p class="year">2019</p></b>
       <p>Attack type:</p>       <b><div class="attack-type-name">${card.attack_type}</div></b>
-      <p>Weapon Type:</p>       <b><p class="year">${card.weapon_type}</p></b>
+      <p>Weapon Type:</p>       <b><p class="weapon-type-name">${card.weapon_type}</p></b>
       <div class="see-more-details" onclick="seeMoreDetails(event)"><h3>See more details:</h3></div> <div><i class="fa-solid fa-computer-mouse"></i></div>
     </div>
                                   `;
