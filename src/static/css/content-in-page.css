@@ -157,8 +157,6 @@ htitle {
 .text-icons-chart {
     font-size: 14px;
     transition: all ease-in-out 0.5s;
-    font-size: 14px;
-    transition: all ease-in-out 0.5s;
 }
 
 .img-chart-icon {
@@ -352,7 +350,6 @@ htitle {
 }
 
 @media only screen and (max-width: 768px) {
-
 
     /*changing the font of all the page here, only for mobile version*/
     .title-get-in-contact {

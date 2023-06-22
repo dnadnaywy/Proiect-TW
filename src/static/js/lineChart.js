@@ -142,7 +142,6 @@ function makeActualLineChart(title) {
   Promise.all(promises)
     .then(([xValues, yValues]) => {
       lineChartDisplayer(xValues, yValues, title);
-      activeChart = [lineChart];
       activeChartId = 'lineChart';
     })
     .catch(error => {

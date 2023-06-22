@@ -4,6 +4,8 @@ const url = require('url');
 const pieChartController = require('./controller/pieChartController');
 const paginationController = require('./controller/paginationController');
 const searchController = require('./controller/searchController');
+const treemapController = require('./controller/treemapController');
+const worldmapController = require('./controller/worldmapController');
 
 const pool = new Pool({
   user: 'postgres',

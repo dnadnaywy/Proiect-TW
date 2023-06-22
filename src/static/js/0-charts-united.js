@@ -57,6 +57,6 @@ function displayPieChart(title) {
   document.getElementById("bring-treemap-chart").style.display = "none";
 
   showExportButtons();
-  
+
   makeActualPieChart(title);
 }
