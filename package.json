@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/dnadnaywy/Proiect-TW#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "csv-parser": "^3.0.0",
+    "jsonwebtoken": "^9.0.0",
     "pg": "^8.11.0"
   },
   "devDependencies": {}
