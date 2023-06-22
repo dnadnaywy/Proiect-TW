@@ -4,6 +4,26 @@ const url = require('url');
 const pieChartController = require('./controller/pieChartController');
 const paginationController = require('./controller/paginationController');
 const searchController = require('./controller/searchController');
+const treemapController = require('./controller/treemapController');
+const worldmapController = require('./controller/worldmapController');
+
+const handleApiRequest = require("./controller/controller");
+const handleViewRequest = require("../frontend/view.js")
+const config = require('./utils/configuration');
+const { encryptedPassword } = require('./security/passwordEncrypted');
+const path = require('path');
+const fs = require('fs');
+
+const mimeMap = {
+  '.js': 'application/javascript',
+  '.html': 'text/html',
+  '.css': 'text/css',
+  '.png': 'image/png',
+  '.jpg': 'image/jpg',
+  '.json': 'application/json',
+  '.txt': 'text/plain',
+  '.gif': 'image/gif',
+};
 
 const pool = new Pool({
   user: 'postgres',
@@ -12,10 +32,70 @@ const pool = new Pool({
   password: 'postgres',
   port: 5432, // Default PostgreSQL port
   max: 20, // Maximum number of connections in the pool
-  max: 20, // Maximum number of connections in the pool
 });
 
-module.exports = pool;
+const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS "users"
+    (
+        "id"          SERIAL PRIMARY KEY,
+        "username"    VARCHAR(255) NOT NULL,
+        "firstname"   VARCHAR(255) NOT NULL,
+        "lastname"    VARCHAR(255) NOT NULL,
+        "email"       VARCHAR(255) NOT NULL,
+        "password"    VARCHAR(255) NOT NULL,
+        "role"        VARCHAR(255) NOT NULL,
+        "birthdate"   DATE         NOT NULL,
+        "phonenumber" VARCHAR(255) NOT NULL,
+        "created_at"  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "deleted"     BOOLEAN      NOT NULL DEFAULT FALSE
+    );`;
+
+
+const insertAdminAccountQuery = `INSERT INTO users (username, firstname, lastname, email, password, role, birthdate,
+                                                    phonenumber)
+                                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+
+const databaseInitialization = async (createTableQuery, insertAdminAccountQuery) => {
+  try {
+    const client = await pool.connect();
+
+    await client.query(createTableQuery);
+
+    const adminRow = await client.query('SELECT * FROM users WHERE role = $1', [config.adminRole]);
+    const values = [config.adminUsername, config.adminFirstname, config.adminLastname, config.adminEmail, await encryptedPassword(config.adminPassword), config.adminRole, config.adminBirthdate, config.adminPhonenumber];
+
+    if (adminRow.rows.length === 0) {
+      await client.query(insertAdminAccountQuery, values);
+    } else {
+      const modifyAdminAccountQuery = `UPDATE users
+                                             SET username    = $1,
+                                                 firstname   = $2,
+                                                 lastname    = $3,
+                                                 email       = $4,
+                                                 password    = $5,
+                                                 role        = $6,
+                                                 birthdate   = $7,
+                                                 phonenumber = $8
+                                             WHERE role = $6`;
+      await client.query(modifyAdminAccountQuery, values);
+    }
+
+    client.release();
+    return true;
+
+  } catch (error) {
+    console.error(error.stack);
+    return false;
+  }
+
+};
+
+
+databaseInitialization(createTableQuery, insertAdminAccountQuery).then(result => {
+  if (result) {
+    console.log('Database initialized successfully');
+  }
+});
 
 module.exports = pool;
 
@@ -162,16 +242,30 @@ async function pieChartMapping(req, res) {
     const deaths_us = 'nkill_us';
     treemapController.getCountByColumn(req, res, pool, deaths_us);
   }
-  // ---------------------------- LINE CHART ----------------------------------------------
-
   // ----------------------------- WORLD MAP ----------------------------------------------
   else if (req.url === '/api/worldmap' && req.method === 'GET') {
     worldmapController.getCount(req, res, pool);
   }
-  // -------------------------- 404 NOT FOUND ---------------------------------------------
-  else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not found');
+  // -------------------------- LOGIN ---------------------------------------------
+  else if (req.url.startsWith('/api')) {
+    await handleApiRequest(req, res, pool);
+  } else if (req.url.startsWith('/view')) {
+    handleViewRequest(req, res);
+  } else {
+    console.log(req.url);
+    const fileUrl = '/frontend' + req.url;
+    const filePath = path.resolve('..' + fileUrl);
+    const fileExt = path.extname(filePath);
+    console.log(filePath);
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+      } else {
+        res.writeHead(200, { 'Content-Type': mimeMap[fileExt] });
+        res.end(data);
+      }
+    });
   }
 }
 
