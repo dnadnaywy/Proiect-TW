@@ -8,7 +8,7 @@ const treemapController = require('./controller/treemapController');
 const worldmapController = require('./controller/worldmapController');
 
 const handleApiRequest = require("./controller/controller");
-const handleViewRequest = require("../frontend/view.js")
+const handleViewRequest = require("../view.js")
 const config = require('./utils/configuration');
 const { encryptedPassword } = require('./security/passwordEncrypted');
 const path = require('path');
@@ -100,27 +100,19 @@ databaseInitialization(createTableQuery, insertAdminAccountQuery).then(result =>
 module.exports = pool;
 
 const server = http.createServer(async (req, res) => {
-
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
   pieChartMapping(req, res); //
 });
-
 //-------------------------------------------------
-
 const port = 3000;
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
 //-----------------------------------------------
-
 async function pieChartMapping(req, res) {
-
   const parsedUrl = url.parse(req.url, true); // for the pagination stuff
-
   if (req.url === '/terrorism-data' && req.method === 'GET') {
     try {
       const client = await pool.connect();
@@ -268,48 +260,37 @@ async function pieChartMapping(req, res) {
     });
   }
 }
-
-
 //-------------------------------------------------------------------------------------------
-
 function insertRowIntoTest(name) {
   const insertQuery = `
   INSERT INTO test (name)
   VALUES ($1)
   `;
-
   const values = [name];
-
   pool.query(insertQuery, values, (err, res) => {
     if (err) {
       console.error('Error inserting data:', err);
     } else {
       console.log('Data inserted successfully');
     }
-
     // Close the database connection
   });
 }
-
 function insertRowIntoTerrorismTable(summary, country, region, attack_type, target, group_name, weapon_type, weapon_subtype, nkill, nkillus) {
   const insertQuery = `
   INSERT INTO terrorism_data (summary, country, region, attack_type, target, group_name, weapon_type, weapon_subtype, nkill, nkill_us)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
   `;
-
   const values = [summary, country, region, attack_type, target, group_name, weapon_type, weapon_subtype, nkill, nkillus];
-
   pool.query(insertQuery, values, (err, res) => {
     if (err) {
       console.error('Error inserting data:', err);
     } else {
       console.log('Data inserted successfully');
     }
-
     // Close the database connection
   });
 }
-
 module.exports = {
   insertRowIntoTerrorismTable: insertRowIntoTerrorismTable
 };

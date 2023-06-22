@@ -1,158 +1,98 @@
-function getRouteByTitle(title) {
-    let route = 'http://localhost:3000';
-    switch (title) {
-        case 'Country':
-            route += '/api/treemap/country';
-            break;
-        case 'Region':
-            route += '/api/treemap/region';
-            break;
-        case 'Method of Attack':
-            route += '/api/treemap/attack_type';
-            break;
-        case 'Target':
-            route += '/api/treemap/target';
-            break;
-        case 'Terrorist Groups':
-            route += '/api/treemap/group_name';
-            break;
-        case 'Weapon':
-            route += '/api/treemap/weapon_type';
-            break;
-        case 'Deaths':
-            route += '/api/treemap/nkill';
-            break;
-        case 'Deaths (U.S.)':
-            route += '/api/treemap/nkill_us';
-            break;
-        default:
-            route += '/not-found';
-            break;
-    }
-
-    return route;
-}
-
-function fetchTreemapData(title) {
-    return new Promise((resolve, reject) => {
-        fetch(getRouteByTitle(title))
-            .then(response => response.json())
-            .then(data => {
-                const treemapData = data;
-                resolve(treemapData);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
-
-function getHighestValueFromData(data) {
-    let highestValue = 0;
-    data.forEach((element) => {
-        highestValue = Math.max(highestValue, element.value);
-    });
-    return highestValue;
-}
-
-function colorFromRaw(ctx, highestValue) {
-    if (ctx.type != 'data') {
-        return 'transparent';
-    }
-    const value = ctx.raw.v;
-    const normalizedValue = value / highestValue; // Normalize the value between 0 and 1
-    let alpha = normalizedValue * 0.9;
-    alpha = Math.min(Math.max(alpha, 0), 1); 
-    return `rgba(76, 60, 116, ${alpha})`;
-}
-
-function initializeTreemap(title, treemapData) {
-    const highestValue = getHighestValueFromData(treemapData);
-
-    // setup 
-    const data = {
-        datasets: [{
-            label: 'Number of Incidents by ' + title,
-            tree: treemapData,
-            backgroundColor: (ctx) => colorFromRaw(ctx, highestValue),
-            borderColor: [
-                'rgba(112, 72, 213, 1)',
-            ],
-            spacing: 1,
-            borderWidth: 1,
-            hoverBorderWidth: 2,
-            labels: {
-                display: true,
-                align: 'center',
-                color: 'white',
-                font: {
-                    family: "'Source Sans Pro', sans-serif",
-                    size: 16,
-                },
-                formatter: (ctx) => {
-                    return `${ctx.raw._data.key}`;
-                },
+// setup 
+const data = {
+    datasets: [{
+        label: 'Number of Incidents by Country',
+        tree: [
+            { country: 'Iraq', numberOfIncidents: '24636' },
+            { country: 'Pakistan', numberOfIncidents: '14368' },
+            { country: 'Afghanistan', numberOfIncidents: '12731' },
+            { country: 'India', numberOfIncidents: '11960' },
+            { country: 'Colombia', numberOfIncidents: '8306' },
+            { country: 'Philippines', numberOfIncidents: '6908' },
+            { country: 'Peru', numberOfIncidents: '6096' },
+            { country: 'El Salvador', numberOfIncidents: '5320' },
+            { country: 'United Kingdom', numberOfIncidents: '5235' },
+            { country: 'Turkey', numberOfIncidents: '4292' },
+            { country: 'Somalia', numberOfIncidents: '4142' },
+            { country: 'Nigeria', numberOfIncidents: '3907' },
+            { country: 'Thailand', numberOfIncidents: '3849' },
+            { country: 'Yemen', numberOfIncidents: '3347' },
+            { country: 'Spain', numberOfIncidents: '3249' },
+            { country: 'Ethiopia', numberOfIncidents: '190' },
+            { country: 'Tajikistan', numberOfIncidents: '188' },
+            { country: 'Uruguay', numberOfIncidents: '82' },
+            { country: 'Albania', numberOfIncidents: '80' },
+            { country: 'Romania', numberOfIncidents: '6' },
+            { country: 'Andorra', numberOfIncidents: '3' },
+        ],
+        backgroundColor: (ctx) => colorFromRaw(ctx),
+        borderColor: [
+            'rgba(112, 72, 213, 1)',
+        ],
+        spacing: 1,
+        borderWidth: 1,
+        hoverBorderWidth: 2,
+        labels: {
+            display: true,
+            align: 'center',
+            color: 'white',
+            font: {
+                family: "'Source Sans Pro', sans-serif",
+                size: 16,
             },
-            key: 'value',
-        }]
-    };
+            formatter: (ctx) => {
+                return `${ctx.raw._data.country}`;
+            },
+        },
+        key: 'numberOfIncidents',
+    }]
+};
 
-    // config 
-    const config = {
-        type: 'treemap',
-        data,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                tooltip: {
-                    titleFont: {
-                        size: 18,
-                        font: "'Source Sans Pro', sans-serif"
+// config 
+const config = {
+    type: 'treemap',
+    data,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                titleFont: {
+                    size: 18,
+                    font: "'Source Sans Pro', sans-serif"
+                },
+                bodyFont: {
+                    size: 17,
+                    font: "'Source Sans Pro', sans-serif"
+                },
+                callbacks: {
+                    title: function (context) {
+                        return context[0].raw._data.country;
                     },
-                    bodyFont: {
-                        size: 17,
-                        font: "'Source Sans Pro', sans-serif"
+                    label: function (context) {
+                        return ` Number of Incidents: ${context.raw._data.numberOfIncidents}`;
                     },
-                    callbacks: {
-                        title: function (context) {
-                            return context[0].raw._data.key;
-                        },
-                        label: function (context) {
-                            return ` Number of Incidents: ${context.raw._data.value}`;
-                        },
-                        labelTextColor: function (context) {
-                            return 'white';
-                        }
+                    labelTextColor: function (context) {
+                        return 'white';
                     }
                 }
             }
         }
-    };
+    }
+};
 
-    return config;
+//color block
+function colorFromRaw(ctx) {
+    if (ctx.type != 'data') {
+        return 'transparent';
+    }
+    const value = ctx.raw.v;
+    let alpha = (Math.log(value) / 9);
+    return `rgba(76, 60, 116, ${alpha})`;
 }
 
-function treemapDisplayer(title, data) {
-    const config = initializeTreemap(title, data);
-
-    const treemap = new Chart(
-        document.getElementById('canvas2'),
-        config
-    );
-
-    activeChart = [treemap];
-    activeChartId = 'canvas2';
-}
-
-function makeActualTreemap(title) {
-    const promises = [fetchTreemapData(title)];
-
-    Promise.all(promises)
-        .then(([treemapData]) => {
-            treemapDisplayer(title, treemapData);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+// render init block
+const myChart = new Chart(
+    document.getElementById('canvas2'),
+    config
+);

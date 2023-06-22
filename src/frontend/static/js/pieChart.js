@@ -66,10 +66,8 @@ function makeActualPieChart(title) {
       const numColors = xValues.length; // Specify the desired number of colors
       const randomColorArray = generateRandomColorArray(numColors);
 
-      const pieChart = pieChartDisplayer(xValues, yValues, randomColorArray, title);
-      const doughnutChart = doughnutChartDisplayer(xValues, yValues, randomColorArray, title);
-      activeChart = [pieChart, doughnutChart];
-      activeChartId = 'pieChart';
+      pieChartDisplayer(xValues, yValues, randomColorArray, title);
+      doughnutChartDisplayer(xValues, yValues, randomColorArray, title);
       // Use the resolved values as needed here
     })
     .catch(error => {
@@ -93,7 +91,7 @@ function generateRandomColorArray(numColors) {
 }
 
 function pieChartDisplayer(xValues, yValues, barColors, title) {
-  return new Chart("pieChart", {
+  new Chart("pieChart", {
     type: "pie",
     data: {
       labels: xValues,
@@ -112,7 +110,7 @@ function pieChartDisplayer(xValues, yValues, barColors, title) {
 }
 
 function doughnutChartDisplayer(xValues, yValues, barColors, title) {
-  return new Chart("doughnutChart", {
+  new Chart("doughnutChart", {
     type: "doughnut",
     data: {
       labels: xValues,

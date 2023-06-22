@@ -1,0 +1,96 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #000;
+  padding: 20px;
+  z-index: 20;
+  align-items: center;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+
+}
+
+.header-board {
+  font-size: 2vw;
+  margin: 0;
+  color: #fff;
+}
+
+/*begin of added after*/
+
+.title {
+
+  font-size: 2.5vw;
+  padding: 0;
+  border: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-variant: small-caps;
+
+}
+
+.link-logo {
+  font-size: 2.5vw;
+  padding: 0;
+  border: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-variant: small-caps;
+}
+
+.logo {
+  margin-left: 5vw;
+  width: auto;
+  height: 2.25vw;
+}
+
+/*final of added after*/
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: max-content;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 0.25vw;
+}
+
+nav li:second-child {
+  margin-right: 2vw;
+}
+
+button.header-button {
+  font-size: 1vw;
+  display: inline-block;
+  padding: 0.5vw 2vw;
+  border: 0.2vw solid #7048D5;
+  border-radius: 29px;
+  border-bottom: none;
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button.header-button:hover {
+  background: linear-gradient(to bottom, #7048D5, #000);
+  color: #f1f1f1;
+  border: none;
+}
+
+button.header-button-left {
+  border-radius: 29px 0px 29px 29px;
+}
+
+button.header-button-right {
+  border-radius: 29px 29px 29px 0;
+}
