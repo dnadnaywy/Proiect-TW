@@ -15,21 +15,33 @@ function exportChartToCSV(title) {
 
     switch (activeChartId) {
         case "pieChart":    // Pie chart & Doughnut chart
-            myChart = Chart.getChart("pieChart");
-            const labels = myChart.data.labels;
-            const dataset = myChart.data.datasets;
-            for (let i = 0; i < labels.length; i++) {
-                csvData += `${labels[i]}, ${dataset[0].data[i]}\n`;
+            {
+                myChart = Chart.getChart("pieChart");
+                const labels = myChart.data.labels;
+                const dataset = myChart.data.datasets;
+                for (let i = 0; i < labels.length; i++) {
+                    csvData += `${labels[i]}, ${dataset[0].data[i]}\n`;
+                }
+                break;
             }
-            break;
         case "canvas2":     // Treemap
-            myChart = Chart.getChart("canvas2");
-            myChart.data.datasets[0].tree.forEach(element => {
-                csvData += `${element.key}, ${element.value}\n`;
-            });
-            break;
-        case "line":        // Line chart
-            break;
+            {
+                myChart = Chart.getChart("canvas2");
+                myChart.data.datasets[0].tree.forEach(element => {
+                    csvData += `${element.key}, ${element.value}\n`;
+                });
+                break;
+            }
+        case "lineChart":        // Line chart
+            {
+                myChart = Chart.getChart("lineChart");
+                const labels = myChart.data.labels;
+                const dataset = myChart.data.datasets;
+                for (let i = 0; i < labels.length; i++) {
+                    csvData += `${labels[i]}, ${dataset[0].data[i]}\n`;
+                }
+                break;
+            }
         default:
             break;
     }
@@ -59,8 +71,8 @@ function exportChartToPNG(title) {
         case "canvas2":     // Treemap
             downloadPNG(Chart.getChart("canvas2"));
             break;
-        case "line":        // Line chart
-            //downloadPNG(Chart.getChart("lineChart"));
+        case "lineChart":        // Line chart
+            downloadPNG(Chart.getChart("lineChart"));
             break;
         default:
             break;
@@ -87,27 +99,42 @@ function exportChartToJSON(title) {
 
     switch (activeChartId) {
         case "pieChart":    // Pie chart & Doughnut chart
-            myChart = Chart.getChart("pieChart");
-            const labels = myChart.data.labels;
-            const dataset = myChart.data.datasets;
-            for (let i = 0; i < labels.length; i++) {
-                const key = labels[i];
-                const value = dataset[0].data[i];
-                const dataObject = { [title]: key, count: value };
-                jsonData.push(dataObject);
+            {
+                myChart = Chart.getChart("pieChart");
+                const labels = myChart.data.labels;
+                const dataset = myChart.data.datasets;
+                for (let i = 0; i < labels.length; i++) {
+                    const key = labels[i];
+                    const value = dataset[0].data[i];
+                    const dataObject = { [title]: key, count: value };
+                    jsonData.push(dataObject);
+                }
+                break;
             }
-            break;
         case "canvas2":     // Treemap
-            myChart = Chart.getChart("canvas2");
-            myChart.data.datasets[0].tree.forEach(element => {
-                const key = element.key;
-                const value = element.value;
-                const dataObject = { [title]: key, count: value };
-                jsonData.push(dataObject);
-            });
-            break;
-        case "line":        // Line chart
-            break;
+            {
+                myChart = Chart.getChart("canvas2");
+                myChart.data.datasets[0].tree.forEach(element => {
+                    const key = element.key;
+                    const value = element.value;
+                    const dataObject = { [title]: key, count: value };
+                    jsonData.push(dataObject);
+                });
+                break;
+            }
+        case "lineChart":        // Line chart
+            {
+                myChart = Chart.getChart("lineChart");
+                const labels = myChart.data.labels;
+                const dataset = myChart.data.datasets;
+                for (let i = 0; i < labels.length; i++) {
+                    const key = labels[i];
+                    const value = dataset[0].data[i];
+                    const dataObject = { [title]: key, count: value };
+                    jsonData.push(dataObject);
+                }
+                break;
+            }
         default:
             break;
     }
