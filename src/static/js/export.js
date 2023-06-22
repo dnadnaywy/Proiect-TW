@@ -43,8 +43,28 @@ function exportChartToCSV(title) {
     link.click();
 }
 
-function exportChartToPNG(title) {
+function downloadPNG(myChart) {
+    const link = document.createElement('a');
+    link.href = myChart.toBase64Image();
+    link.download = 'chart_image.png';
+    link.click();
+}
 
+function exportChartToPNG(title) {
+    switch (activeChartId) {
+        case "pieChart":    // Pie chart & Doughnut chart
+            downloadPNG(Chart.getChart("pieChart"));
+            downloadPNG(Chart.getChart("doughnutChart"));
+            break;
+        case "canvas2":     // Treemap
+            downloadPNG(Chart.getChart("canvas2"));
+            break;
+        case "line":        // Line chart
+            //downloadPNG(Chart.getChart("lineChart"));
+            break;
+        default:
+            break;
+    }
 }
 
 function exportChartToSVG(title) {
