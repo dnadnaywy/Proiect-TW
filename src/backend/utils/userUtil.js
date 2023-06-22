@@ -1,45 +1,13 @@
 const sendMessage = require("../utils/sendMessage");
-
-const testExistingUserData = async (userDetails, res, pool) => {
+const security = require("../security/jwtAccesProvider.js");
+const existsUserData = async (userDetails, res, pool) => {
     const client = await pool.connect();
     try {
-        let query;
-        let values;
+        if (!await testDataExists('email', userDetails.email, res, 'Email already exists.', client)) return false;
 
-        let textMessage = '';
+        if(!await testDataExists('username', userDetails.username, res, 'Username already exists.', client)) return false;
 
-        query = 'SELECT * FROM users WHERE email = $1';
-        values = [userDetails.email];
-        const emailResult = await client.query(query, values);
-        if (emailResult.rows.length > 0) {
-            textMessage = 'Email already exists.';
-            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: textMessage});
-            client.release();
-            return false;
-        }
-
-        query = 'SELECT * FROM users WHERE username = $1';
-        values = [userDetails.username];
-        const usernameResult = await client.query(query, values);
-
-        if (usernameResult.rows.length > 0) {
-            textMessage = 'Username already exists.';
-            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: textMessage});
-            client.release();
-            return false;
-
-        }
-
-        query = 'SELECT * FROM users WHERE phonenumber = $1';
-        values = [userDetails.phonenumber];
-        const phonenumberResult = await client.query(query, values);
-        if (phonenumberResult.rows.length > 0) {
-            textMessage = 'Phonenumber already exists.';
-            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: textMessage});
-            client.release();
-            return false;
-
-        }
+        if(!await testDataExists('phonenumber', userDetails.phonenumber, res, 'Phone number already exists.', client)) return false;
         client.release();
         return true;
 
@@ -51,4 +19,20 @@ const testExistingUserData = async (userDetails, res, pool) => {
 };
 
 
-module.exports = {testExistingUserData};
+const testDataExists = async (typeData, userData, res, textMessage, client) => {
+    const query = 'SELECT * FROM users WHERE ' + typeData + ' = $1';
+    const values = [userData];
+    const result = await client.query(query, values);
+    if (result.rows.length > 0) {
+        sendMessage(res, { statusCode: 400, status: 'Bad Request', message: textMessage });
+        client.release();
+        return false;
+    }
+    return true;
+};
+
+
+
+
+
+module.exports = {existsUserData};

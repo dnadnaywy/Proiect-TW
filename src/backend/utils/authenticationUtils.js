@@ -1,5 +1,5 @@
 const sendMessage = require("./sendMessage");
-const testMissingFields = (userFields, res) => {
+const registerMissingFields = (userFields, res) => {
     let missingFields = [];
     let filledFields = 0;
     for (const field in userFields) {
@@ -34,6 +34,30 @@ const testMissingFields = (userFields, res) => {
 
 }
 
+const loginMissingFields = (userFields, res) => {
+
+    if (userFields.username === '' && userFields.password === '') {
+        sendMessage(res, {
+            statusCode: 400,
+            status: 'Bad Request',
+            message: 'Please fill the username and password fields.'
+        });
+        return false;
+    }
+
+    if (userFields.username === '') {
+        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Please fill the username or email field.'});
+        return false;
+    }
+
+    if (userFields.password === '') {
+        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Please fill the password field.'});
+        return false;
+    }
+
+    return true;
+
+}
 const validateUserDataStructure = (userFields, res) => {
     if (!validateUsername(userFields.username, res))
         return false;
@@ -153,6 +177,7 @@ const validatePhonenumber = (phonenumber, res) => {
 
 
 module.exports = {
-    testMissingFields,
+    registerMissingFields,
     validateUserDataStructure,
+    loginMissingFields
 }

@@ -1,10 +1,17 @@
 const users = require('../model/userModel');
-const parseJSON = require('../utils/parseJSON');
+const {parseJSON, matchJSONProperties} = require('../utils/parseJSON');
 const sendMessage = require('../utils/sendMessage');
-const {testMissingFields, validateUserDataStructure} = require('../utils/authenticationUtils');
-const {testExistingUserData}= require('../utils/userUtil');
+const {
+    registerMissingFields,
+    loginMissingFields,
+    validateUserDataStructure,
+    userNotFound
+} = require('../utils/authenticationUtils');
+const {existsUserData} = require('../utils/userUtil');
 const security = require('../security/jwtAccesProvider.js');
-const passwordEncrypted = require('../security/passwordEncrypted.js');
+const {encryptedPassword, matchPassword} = require('../security/passwordEncrypted.js');
+const config = require('../utils/configuration');
+// const {userRole} = require("../utils/configuration");
 const authenticationController = async (req, res, pool) => {
     const method = req.method;
     const URL = req.url;
@@ -12,33 +19,59 @@ const authenticationController = async (req, res, pool) => {
 
     if (method === 'POST') {
         if (endpoint === 'register') {
-            const userFields = await parseJSON(req);
-            await registerUser(userFields, res, pool);
-        }
-        else
-        {
+
+            // let fields = ['username', 'firstname', 'lastname', 'email', 'password', 'birthdate', 'phonenumber'];
+
+            // const copyReq = req;
+            // if (!await matchJSONProperties(fields, copyReq, res)) {
+            //     return;
+            // }
+
+            await registerUser(req, res, pool);
+
+        } else if (endpoint === 'login') {
+
+            // let fields = ['username', 'password'];
+            // if (!await matchJSONProperties(fields, req, res)) {
+            //     return;
+            // }
+
+            await loginUser(req, res, pool);
+
+        } else if (endpoint === 'logout') {
+
+            await logoutUser(res);
+
+        } else {
             res.writeHead(404, {'Content-Type': 'text/plain'});
             res.end('Not found');
         }
-        // else if (endpoint === 'sign-in') {
-        //     const userFields = await parseJSON(req);
-        //     signInUser(userFields, res);
-        // }
-    }
-    else {
+    } else {
         res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end('Not found');
     }
 }
 
-const registerUser = async (userFields, res, pool) => {
 
-    userFields.role = 'user';
-    if(!testMissingFields(userFields, res)) return;
-    if(!validateUserDataStructure(userFields, res)) return;
-    if(!await testExistingUserData(userFields, res, pool)) return;
+const registerUser = async (req, res, pool) => {
 
-    let hashPassword = await passwordEncrypted(userFields.password);
+    const userFields = await parseJSON(req);
+
+    if (!registerMissingFields(userFields, res)) {
+        return;
+    }
+
+    if (!validateUserDataStructure(userFields, res)) {
+        return;
+    }
+
+    if (!await existsUserData(userFields, res, pool)) {
+        return;
+    }
+
+    let hashPassword = await encryptedPassword(userFields.password);
+
+    userFields.role = config.userRole;
 
     const user = {
         username: userFields.username,
@@ -48,7 +81,8 @@ const registerUser = async (userFields, res, pool) => {
         password: hashPassword,
         role: userFields.role,
         birthdate: userFields.birthdate,
-        phonenumber: userFields.phonenumber
+        phonenumber: userFields.phonenumber,
+
     }
 
     security.handleSecurity(res, user);
@@ -56,12 +90,42 @@ const registerUser = async (userFields, res, pool) => {
     await users.createUser(user, res, pool);
 
     sendMessage(res, {statusCode: 200, status: 'OK', message: 'User created successfully'});
-
 }
 
-// function signInUser(userFields, res) {
-//
-// }
+const loginUser = async (req, res, pool) => {
+    const userFields = await parseJSON(req);
+
+    if (!loginMissingFields(userFields, res)) {
+        return;
+    }
+
+    const userDatabase = await users.getUser(userFields, res, pool);
+    console.log(userDatabase);
+
+    if (userDatabase === null) {
+        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User not found'})
+        return;
+    }
+
+    if(userDatabase.deleted===true){
+        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User deleted'})
+        return;
+    }
+
+    let currentPassword = userFields.password;
+    let databaseHashPassword = userDatabase.password;
+    if (!await matchPassword(currentPassword, databaseHashPassword, res)) {
+        return;
+    }
+
+    security.handleSecurity(res, userDatabase);
+    sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged in successfully'});
+}
+
+const logoutUser = async (res) => {
+    security.deleteCookie(res);
+    sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged out successfully'});
+}
 
 
 module.exports = {authenticationController}
