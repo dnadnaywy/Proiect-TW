@@ -1,4 +1,5 @@
-const additionalCountries = ['India', 'Russia', 'Mexico']; // Add more countries here
+const additionalCountries = ['India']; // Add more countries here
+const additionalAttackTypes = ['Armed Assault', 'Assassination', 'Bombing/Explosion', 'Facility/Infrastructure Attack', 'Hijacking', 'Hostage Taking (Barricade Incident)', 'Hostage Taking (Kidnapping)', 'Unarmed Assault', 'Unknown']; // Add more countries here
 
 const countryFilterContainer = document.getElementById('countryFilterContainer');
 const countrySearchInput = document.getElementById('countrySearchInput');
@@ -6,8 +7,24 @@ const attackTypeFilterContainer = document.getElementById('attackTypeFilterConta
 const filterCheckboxes = document.getElementsByClassName('filter-checkbox');
 const cards = document.getElementsByClassName('card');
 
+async function getCountriesName() {
+  const response = await fetch("http://localhost:3000/api/countries");
+  try {
+    const jsonData = await response.json();
+
+    jsonData.forEach(country => {
+      additionalCountries.push(country.country);
+    });
+    return await jsonData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Function to add additional countries to the filter container
-function addAdditionalCountries() {
+async function addAdditionalCountries() {
+  await getCountriesName();
+
   additionalCountries.forEach((country) => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -16,6 +33,7 @@ function addAdditionalCountries() {
     checkbox.dataset.filterValue = country.toLowerCase();
 
     const label = document.createElement('label');
+    label.className = 'filters-options';
     label.appendChild(checkbox);
     label.appendChild(document.createTextNode(country));
 
@@ -23,8 +41,26 @@ function addAdditionalCountries() {
   });
 }
 
+function addAdditionalAttackTypes() {
+  additionalAttackTypes.forEach((attackType) => {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'filter-checkbox';
+    checkbox.dataset.filterCategory = 'attack-type';
+    checkbox.dataset.filterValue = attackType.toLowerCase();
+
+    const label = document.createElement('label');
+    label.className = 'filters-options';
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode(attackType));
+
+    attackTypeFilterContainer.appendChild(label);
+  });
+}
+
 // Add additional countries to the filter container
 addAdditionalCountries();
+addAdditionalAttackTypes();
 
 // Function to filter cards based on the selected filters and search input
 function filterCards() {
@@ -78,7 +114,6 @@ Array.from(filterCheckboxes).forEach((checkbox) => {
 });
 
 countrySearchInput.addEventListener('input', filterCards);
-
 // Function to filter country options based on search input
 function filterCountryOptions() {
   const searchInput = countrySearchInput.value.trim().toLowerCase();

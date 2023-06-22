@@ -5,16 +5,13 @@ const allCountAttackTypes = {
   
   // Controller method for handling a specific route
   getCountAttackTypes: (req, res, pool) => {
-    // Retrieve data from the model or perform any necessary operations
     pieChartModel.getAllCountAttackTypes(pool)
       .then(data => {
-        // Respond with the data or perform additional processing
         // console.log(data);
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(data));
       })
       .catch(error => {
-        // Handle any errors that occur during processing
         console.error(error);
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Internal server error');
@@ -22,16 +19,12 @@ const allCountAttackTypes = {
   },
 
   getCountCountry: (req, res, pool, databaseColumn) => {
-    // Retrieve data from the model or perform any necessary operations
     pieChartModel.getAllCountCountry(databaseColumn, pool)
       .then(data => {
-        // Respond with the data or perform additional processing
-        console.log(data);
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(data));
       })
       .catch(error => {
-        // Handle any errors that occur during processing
         console.error(error);
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Internal server error');
@@ -39,11 +32,9 @@ const allCountAttackTypes = {
   },
 
   getAllRow: (req, res, pool) => {
-    // Retrieve data from the model or perform any necessary operations
     pieChartModel.getAllRowFromDatabase(pool)
       .then(data => {
-        // Respond with the data or perform additional processing
-        console.log(data);
+        // console.log(data);
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(data));
       })
@@ -60,7 +51,7 @@ const allCountAttackTypes = {
     pieChartModel.getAllRowFromDatabaseById(id, pool)
       .then(data => {
         // Respond with the data or perform additional processing
-        console.log(data);
+        // console.log(data);
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(data));
       })
