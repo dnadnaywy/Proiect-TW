@@ -27,6 +27,7 @@ Componenta echipa:
 * Diana Pantiru - integrare worldmap (20-21.06)
 * Diana Pantiru - export pieChart/doughnutChart + treemap in CSV (21.06)
 * Diana Pantiru - export pieChart/doughnutChart + treemap in PNG (22.06)
+* Diana Pantiru - export pieChart/doughnutChart + treemap in JSON (22.06)
 
 
 # Instalare
