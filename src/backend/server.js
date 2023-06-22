@@ -2,6 +2,7 @@ const { Pool } = require('pg');
 const http = require('http');
 const pieChartController = require('./controller/pieChartController');
 const treemapController = require('./controller/treemapController');
+const worldmapController = require('./controller/worldmapController');
 
 const pool = new Pool({
   user: 'postgres',
@@ -64,14 +65,14 @@ const server = http.createServer(async (req, res) => {
   } else if (req.url === '/api/pie/nkill_us' && req.method === 'GET') {
     const nkill_us = 'nkill_us';
     pieChartController.getCountCountry(req, res, pool, nkill_us);
-  } 
+  }
   // ----------------------------- SEARCH PAGE --------------------------------------------
   else if (req.url === '/api/terrorist-cards' && req.method === 'GET') {
     pieChartController.getAllRow(req, res, pool);
   } else if (req.url.startsWith('/api/terrorist-card/') && req.method === 'GET') {
     const id = req.url.substring(20);
     pieChartController.getAllRowById(req, res, pool, id);
-  } 
+  }
   // ------------------------------ TREEMAP -----------------------------------------------
   else if (req.url === '/api/treemap/country' && req.method === 'GET') {
     const country = 'country';
@@ -104,7 +105,9 @@ const server = http.createServer(async (req, res) => {
   // ---------------------------- LINE CHART ----------------------------------------------
 
   // ----------------------------- WORLD MAP ----------------------------------------------
-  
+  else if (req.url === '/api/worldmap' && req.method === 'GET') {
+    worldmapController.getCount(req, res, pool);
+  }
   // -------------------------- 404 NOT FOUND ---------------------------------------------
   else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
