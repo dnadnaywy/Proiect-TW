@@ -28,8 +28,6 @@ function fetchDataXValues(title) {
   }
 }
 
-// module.exports = fetchDataXValues;
-
 function fetchDataYValues(title) {
   if (title === 'Method of Attack') {
     return new Promise((resolve, reject) => {
@@ -68,8 +66,10 @@ function makeActualPieChart(title) {
       const numColors = xValues.length; // Specify the desired number of colors
       const randomColorArray = generateRandomColorArray(numColors);
 
-      pieChartDisplayer(xValues, yValues, randomColorArray, title);
-      doughnutChartDisplayer(xValues, yValues, randomColorArray, title);
+      const pieChart = pieChartDisplayer(xValues, yValues, randomColorArray, title);
+      const doughnutChart = doughnutChartDisplayer(xValues, yValues, randomColorArray, title);
+      activeChart = [pieChart, doughnutChart];
+      activeChartId = 'pieChart';
       // Use the resolved values as needed here
     })
     .catch(error => {
@@ -93,7 +93,7 @@ function generateRandomColorArray(numColors) {
 }
 
 function pieChartDisplayer(xValues, yValues, barColors, title) {
-  new Chart("pieChart", {
+  return new Chart("pieChart", {
     type: "pie",
     data: {
       labels: xValues,
@@ -112,7 +112,7 @@ function pieChartDisplayer(xValues, yValues, barColors, title) {
 }
 
 function doughnutChartDisplayer(xValues, yValues, barColors, title) {
-  new Chart("doughnutChart", {
+  return new Chart("doughnutChart", {
     type: "doughnut",
     data: {
       labels: xValues,

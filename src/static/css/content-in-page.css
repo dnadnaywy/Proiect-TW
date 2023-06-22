@@ -103,6 +103,8 @@ htitle {
 
 .btns-chart {
     display: flex;
+    flex-direction: column;
+    /*the second bar goes below*/
     align-items: center;
     text-align: center;
     margin-top: 5vw;
@@ -111,7 +113,6 @@ htitle {
     color: #454449;
     font-size: 50%;
     padding: 5px;
-
 }
 
 .btns-bar {
@@ -119,9 +120,10 @@ htitle {
     border-radius: 29px;
     width: 21%;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-around;
-
+    margin-bottom: 1vw;
 }
 
 /* added after partial */
@@ -133,7 +135,13 @@ htitle {
     transition: all ease-in-out 0.5s;
 }
 
-#bring-line-chart, #bring-pie-chart, #bring-treemap-chart {
+#bring-line-chart,
+#bring-pie-chart,
+#bring-treemap-chart {
+    display: none;
+}
+
+#export-buttons-container {
     display: none;
 }
 
@@ -147,6 +155,8 @@ htitle {
 }
 
 .text-icons-chart {
+    font-size: 14px;
+    transition: all ease-in-out 0.5s;
     font-size: 14px;
     transition: all ease-in-out 0.5s;
 }
@@ -342,6 +352,7 @@ htitle {
 }
 
 @media only screen and (max-width: 768px) {
+
 
     /*changing the font of all the page here, only for mobile version*/
     .title-get-in-contact {

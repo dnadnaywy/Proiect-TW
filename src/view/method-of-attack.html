@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Method of Attack</title>
+    <title>Method of Attack</title>
     <link rel="website icon" type="png" href="../static/images/logo.png">
 
     <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
@@ -20,6 +21,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </script>
+    <script src="../static/js/export.js"></script>
 </head>
 
 
@@ -87,6 +89,7 @@
                 </li>
                 <li>
                     <a href="terrorist-groups.html">
+                    <a href="terrorist-groups.html">
                         <i class='fa-solid fa-people-group'></i>
                         <span class="links_name">Terrorist Groups</span>
                     </a>
@@ -122,34 +125,55 @@
             <div class="row">
                 <div class="col-12">
                     <div class="title-content">
-                        <htitle>Pie chart for Methods of Attack</htitle>
+                        <htitle id="chart-title-in-page">Method of Attack</htitle>
                         <hr class="line">
                     </div>
+
+
                     <div class="btns-chart">
-
                         <div class="btns-bar">
-
-
                             <div class="btn-chart">
                                 <img src="../static/images/treemap-chart.png" class="img-chart-icon" />
-                                <div class="text-icons-chart" onclick="displayTreemapChart()">
+                                <div class="text-icons-chart" onclick="displayTreemapChart(document.title)">
                                     Treemap
                                 </div>
                             </div>
 
-
                             <div class="btn-chart">
                                 <img src="../static/images/line-graph.png" class="img-chart-icon" />
-                                <div class="text-icons-chart" onclick="displayLineChart()">
+                                <div class="text-icons-chart" onclick="displayLineChart(document.title)">
                                     Line
                                 </div>
-
                             </div>
 
                             <div class="btn-chart">
                                 <img src="../static/images/pie-chart.png" class="img-chart-icon" />
                                 <div class="text-icons-chart" onclick="displayPieChart(document.title)">
+                                <div class="text-icons-chart" onclick="displayPieChart(document.title)">
                                     Pie
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btns-bar" id="export-buttons-container">
+                            <div class="btn-chart">
+                                <img src="../static/images/download.svg" class="img-chart-icon" />
+                                <div class="text-icons-chart" onclick="exportChartToCSV(document.title)">
+                                    CSV
+                                </div>
+                            </div>
+
+                            <div class="btn-chart">
+                                <img src="../static/images/download.svg" class="img-chart-icon" />
+                                <div class="text-icons-chart" onclick="exportChartToPNG(document.title)">
+                                    PNG
+                                </div>
+                            </div>
+
+                            <div class="btn-chart">
+                                <img src="../static/images/download.svg" class="img-chart-icon" />
+                                <div class="text-icons-chart" onclick="exportChartToJSON(document.title)">
+                                    JSON
                                 </div>
                             </div>
                         </div>
@@ -171,6 +195,11 @@
                     </div>
 
                     <div id="bring-treemap-chart">
+                        <!-- SCRIPTS ADDED FOR TREEMAP -->
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.3.0/dist/chartjs-chart-treemap.min.js"></script>
+
                         <canvas id="canvas2" style="width:100%; max-width:700px"></canvas>
                         <script src="../static/js/treemap.js"></script>
                     </div>
@@ -315,6 +344,7 @@
         </div>
     </div>
 
+    <script src="../static/js/0-charts-united.js"></script>
     <script src="../static/js/0-charts-united.js"></script>
 
 </body>
