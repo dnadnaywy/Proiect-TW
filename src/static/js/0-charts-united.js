@@ -38,7 +38,7 @@ function displayLineChart(title) {
 
   showExportButtons();
 
-  //makeActualLineChart(title);
+  makeActualLineChart(title);
 }
 
 function displayPieChart(title) {
