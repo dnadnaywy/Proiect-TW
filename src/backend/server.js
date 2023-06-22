@@ -2,9 +2,22 @@ const {Pool} = require('pg');
 const http = require('http');
 // const pieChartController = require('./controller/pieChartController');
 const handleApiRequest = require("./controller/controller");
-const handleViewRequest = require("./view/view.js")
+const handleViewRequest = require("../frontend/view.js")
 const config = require('./utils/configuration');
 const {encryptedPassword} = require('./security/passwordEncrypted');
+const path = require('path');
+const fs = require('fs');
+
+const mimeMap = {
+    '.js': 'application/javascript',
+    '.html': 'text/html',
+    '.css': 'text/css',
+    '.png': 'image/png',
+    '.jpg': 'image/jpg',
+    '.json': 'application/json',
+    '.txt': 'text/plain',
+    '.gif': 'image/gif',
+};
 
 const pool = new Pool({
     user: 'postgres',
@@ -49,10 +62,17 @@ const databaseInitialization = async (createTableQuery, insertAdminAccountQuery)
 
         if (adminRow.rows.length === 0) {
             await client.query(insertAdminAccountQuery, values);
-        }
-        else
-        {
-            const modifyAdminAccountQuery = `UPDATE users SET username = $1, firstname = $2, lastname = $3, email = $4, password = $5, role = $6, birthdate = $7, phonenumber = $8 WHERE role = $6`;
+        } else {
+            const modifyAdminAccountQuery = `UPDATE users
+                                             SET username    = $1,
+                                                 firstname   = $2,
+                                                 lastname    = $3,
+                                                 email       = $4,
+                                                 password    = $5,
+                                                 role        = $6,
+                                                 birthdate   = $7,
+                                                 phonenumber = $8
+                                             WHERE role = $6`;
             await client.query(modifyAdminAccountQuery, values);
         }
 
@@ -84,59 +104,75 @@ const server = http.createServer(async (req, res) => {
 
     if (req.url.startsWith('/api')) {
         await handleApiRequest(req, res, pool);
-    }
-    else if (req.url.startsWith('/view')) {
-        await handleViewRequest(req, res);
+    } else if (req.url.startsWith('/view')) {
+        handleViewRequest(req, res);
+    } else {
+        console.log(req.url);
+        const fileUrl = '/frontend'+req.url;
+        const filePath = path.resolve('..' + fileUrl);
+        const fileExt = path.extname(filePath);
+        console.log(filePath);
+        fs.readFile(filePath, (err, data) => {
+            if (err) {
+                res.writeHead(404, {'Content-Type': 'text/plain'});
+                res.end('Not Found');
+            } else {
+                res.writeHead(200, {'Content-Type': mimeMap[fileExt]});
+                res.end(data);
+            }
+        });
     }
 
-        // } else
-        // if (req.url === '/terrorism-data' && req.method === 'GET') {
-        //     try {
-        //         const client = await pool.connect();
-        //         const result = await client.query('SELECT * FROM terrorism_data');
-        //         const users = result.rows;
-        //         client.release();
-        //         res.writeHead(200, {'Content-Type': 'application/json'});
-        //         res.end(JSON.stringify(users));
-        //     } catch (error) {
-        //         console.error('Error executing query', error);
-        //         res.writeHead(500, {'Content-Type': 'text/plain'});
-        //         res.end('Internal server error');
-        //     } finally {
-        //         pool.end();
-        //     }
-        // } else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {
-        //     pieChartController.getCountAttackTypes(req, res, pool);
-        // } else if (req.url === '/api/pie/country' && req.method === 'GET') {
-        //     const country = 'country';
-        //     pieChartController.getCountCountry(req, res, pool, country);
-        // } else if (req.url === '/api/pie/region' && req.method === 'GET') {
-        //     const region = 'region';
-        //     pieChartController.getCountCountry(req, res, pool, region);
-        // } else if (req.url === '/api/pie/target' && req.method === 'GET') {
-        //     const target = 'target';
-        //     pieChartController.getCountCountry(req, res, pool, target);
-        // } else if (req.url === '/api/pie/group_name' && req.method === 'GET') {
-        //     const group_name = 'group_name';
-        //     pieChartController.getCountCountry(req, res, pool, group_name);
-        // } else if (req.url === '/api/pie/weapon_type' && req.method === 'GET') {
-        //     const weapon_type = 'weapon_type';
-        //     pieChartController.getCountCountry(req, res, pool, weapon_type);
-        // } else if (req.url === '/api/pie/weapon_subtype' && req.method === 'GET') {
-        //     const weapon_subtype = 'weapon_subtype';
-        //     pieChartController.getCountCountry(req, res, pool, weapon_subtype);
-        // } else if (req.url === '/api/pie/nkill' && req.method === 'GET') {
-        //     const nkill = 'nkill';
-        //     pieChartController.getCountCountry(req, res, pool, nkill);
-        // } else if (req.url === '/api/pie/nkill_us' && req.method === 'GET') {
-        //     const nkill_us = 'nkill_us';
-        //     pieChartController.getCountCountry(req, res, pool, nkill_us);
+
+    // } else
+    // if (req.url === '/terrorism-data' && req.method === 'GET') {
+    //     try {
+    //         const client = await pool.connect();
+    //         const result = await client.query('SELECT * FROM terrorism_data');
+    //         const users = result.rows;
+    //         client.release();
+    //         res.writeHead(200, {'Content-Type': 'application/json'});
+    //         res.end(JSON.stringify(users));
+    //     } catch (error) {
+    //         console.error('Error executing query', error);
+    //         res.writeHead(500, {'Content-Type': 'text/plain'});
+    //         res.end('Internal server error');
+    //     } finally {
+    //         pool.end();
+    //     }
+    // } else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {
+    //     pieChartController.getCountAttackTypes(req, res, pool);
+    // } else if (req.url === '/api/pie/country' && req.method === 'GET') {
+    //     const country = 'country';
+    //     pieChartController.getCountCountry(req, res, pool, country);
+    // } else if (req.url === '/api/pie/region' && req.method === 'GET') {
+    //     const region = 'region';
+    //     pieChartController.getCountCountry(req, res, pool, region);
+    // } else if (req.url === '/api/pie/target' && req.method === 'GET') {
+    //     const target = 'target';
+    //     pieChartController.getCountCountry(req, res, pool, target);
+    // } else if (req.url === '/api/pie/group_name' && req.method === 'GET') {
+    //     const group_name = 'group_name';
+    //     pieChartController.getCountCountry(req, res, pool, group_name);
+    // } else if (req.url === '/api/pie/weapon_type' && req.method === 'GET') {
+    //     const weapon_type = 'weapon_type';
+    //     pieChartController.getCountCountry(req, res, pool, weapon_type);
+    // } else if (req.url === '/api/pie/weapon_subtype' && req.method === 'GET') {
+    //     const weapon_subtype = 'weapon_subtype';
+    //     pieChartController.getCountCountry(req, res, pool, weapon_subtype);
+    // } else if (req.url === '/api/pie/nkill' && req.method === 'GET') {
+    //     const nkill = 'nkill';
+    //     pieChartController.getCountCountry(req, res, pool, nkill);
+    // } else if (req.url === '/api/pie/nkill_us' && req.method === 'GET') {
+    //     const nkill_us = 'nkill_us';
+    //     pieChartController.getCountCountry(req, res, pool, nkill_us);
     // }
-    else {
-        res.writeHead(404, {'Content-Type': 'text/plain'});
-        res.end('Not found');
-
-    }
+// else
+//     {
+//         res.writeHead(404, {'Content-Type': 'text/plain'});
+//         res.end('Not found');
+//
+//     }
 });
 
 const port = 3000;

@@ -40,7 +40,11 @@ const userController = async (req, res, pool) => {
 const deleteUser = async (req, res, pool) => {
 
     const decoded = security.decodedJWT(req);
-    console.log(decoded);
+
+    if(!decoded){
+        res.end('No cookie, no jwt, no user, no admin no no no');
+        return;
+    }
 
     await userModel.deactivateUser(decoded['username'], pool);
 

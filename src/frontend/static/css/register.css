@@ -32,6 +32,7 @@
     width: 300px;
     height: 2px;
     transition: box-shadow 0.3s ease;
+    color: #FFFFFF;
 }
 
 .input-wrapper input:focus {
@@ -39,6 +40,7 @@
     outline: none;
     box-shadow: 0 0 15px #7048D5;
     border: 1px solid #7048D5;
+
 }
 
 .input-wrapper .icon {
@@ -52,8 +54,11 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    right: 30px;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: larger;
+    color: #696082;
 }
 
 .submit-btn {
@@ -61,7 +66,8 @@
     display: block;
     width: 50%;
     padding: 10px;
-    border: 2px solid #7048D5;
+    border: 3px solid #7048D5;
+    border-bottom: none;
     background: transparent;
     color: #FFFFFF;
     cursor: pointer;
@@ -89,7 +95,8 @@
 }
 
 .submit-btn:hover {
-    background: #7048D5;
+    background: linear-gradient(to bottom, #7048D5, #000);
+
 }
 
 .containerRegister {
@@ -107,10 +114,11 @@
     /*max-width: 500px;*/
 }
 
-.image-z{
+.image-z {
     display: flex;
     overflow: hidden;
 }
+
 .input-wrapper {
     display: flex;
     justify-content: space-between;
