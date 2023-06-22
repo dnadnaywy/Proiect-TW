@@ -1,6 +1,9 @@
 const { Pool } = require('pg');
 const http = require('http');
+const url = require('url');
 const pieChartController = require('./controller/pieChartController');
+const paginationController = require('./controller/paginationController');
+const searchController = require('./controller/searchController');
 
 const pool = new Pool({
   user: 'postgres',
@@ -18,6 +21,22 @@ const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  pieChartMapping(req, res); //
+});
+
+//-------------------------------------------------
+
+const port = 3000;
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+//-----------------------------------------------
+
+async function pieChartMapping(req, res) {
+
+  const parsedUrl = url.parse(req.url, true); // for the pagination stuff
 
   if (req.url === '/terrorism-data' && req.method === 'GET') {
     try {
@@ -66,16 +85,20 @@ const server = http.createServer(async (req, res) => {
   } else if (req.url.startsWith('/api/terrorist-card/') && req.method === 'GET') {
     const id = req.url.substring(20);
     pieChartController.getAllRowById(req, res, pool, id);
+  } else if (req.url.startsWith('/api/terrorist-cards') && req.method === 'GET') {
+    const queryParams = parsedUrl.query;
+    var page = parseInt(queryParams.page) || 1;
+    if (page > 18170) {
+      page = 1; //any page over 18170 (the last calculated page will be assigned to the first page)
+    }
+    paginationController.get10RowsPagination(req, res, pool, page);
+  } else if (req.url === '/api/countries' && req.method === 'GET') {
+    searchController.getAllCountries(req, res, pool);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not found');
   }
-});
-
-const port = 3000; // Choose the port number you want to use
-server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+}
 
 //-------------------------------------------------------------------------------------------
 

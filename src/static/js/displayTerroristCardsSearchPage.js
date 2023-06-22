@@ -10,14 +10,18 @@ async function displayDataFromDatabase() {
       let htmlSegment = `<div class="card" data-card-id="${card.id}">
       <p>Country:</p>           <b><p class="country-name">${card.country}</p></b>
       <p>Region:</p>            <b><p class="region-name">${card.region}</p></b>
-      <p>Year:</p>              <b><p class="year">2019</p></b>
       <p>Attack type:</p>       <b><div class="attack-type-name">${card.attack_type}</div></b>
       <p>Weapon Type:</p>       <b><p class="weapon-type-name">${card.weapon_type}</p></b>
-      <div class="see-more-details" onclick="seeMoreDetails(event)"><h3>See more details:</h3></div> <div><i class="fa-solid fa-computer-mouse"></i></div>
+      <div class="see-more-details" onclick="seeMoreDetails(event)"><i class="fa-regular fa-eye" title = "Click to see more details!"></i></div> <div class="open-lock"><i class="fa-solid fa-lock-open" onclick="saveCard(event)"></i></div>
     </div>
                                   `;
       html += htmlSegment;
     });
+
+    html += `<div class="pagination">
+    <button class="pagination-pages previous-button">Previous Page</button>
+    <button class="pagination-pages next-button" current-page="1">Next Page</button>
+  </div>`;
 
     container.innerHTML = html;
 
@@ -33,7 +37,6 @@ const seeMoreText = document.querySelectorAll('.see-more-details');
 function showAlert(event) {
   alert('Hello world!');
 }
-
 
 async function seeMoreDetails(event) {
   const card = event.target.closest('.card');
@@ -69,7 +72,6 @@ async function seeMoreDetails(event) {
 
     detailsContainer.innerHTML = html;
 
-    // Perform actions with the card ID, such as fetching data from the database
     console.log(jsonData);
     return await jsonData;
   } catch (error) {

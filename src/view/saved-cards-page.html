@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terrorist Data</title>
+  <title>Saved Terrorist Cards</title>
   <link rel="website icon" type="png" href="../static/images/logo.png">
 
   <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
@@ -118,7 +118,6 @@
       <script src="../static/js/sidebar.js"></script>
     </div>
 
-
     <div class="content-in-page">
       <div class="row">
         <div class="col-12">
@@ -126,32 +125,12 @@
           <b style="color:transparent">space</b>
 
           <div class="title-content">
-            <htitle>Terrorist Data</htitle>
+            <htitle>Saved Terrorist Cards</htitle>
             <hr class="line">
           </div>
 
           <b style="color:transparent">space</b>
-
-          <div class="btns-bar" style="width: auto; color: aliceblue;">
-
-            <div>
-              <h3>Country</h3>
-              <input type="text" id="countrySearchInput" placeholder="Search countries">
-              <div id="countryFilterContainer">
-                <label class="filters-options"><input type="checkbox" class="filter-checkbox"
-                    data-filter-category="country" data-filter-value="united states">United States</label>
-              </div>
-            </div>
-
-            <div>
-              <h3>Attack Type:</h3>
-              <div id="attackTypeFilterContainer">
-                <!-- <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="facility/infrastructure attack">Facility/Infrastructure Attack</label>
-                <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="bombing/explosion">Bombing/Explosion</label> -->
-              </div>
-            </div>
-
-          </div>
+            
         </div>
       </div>
 
@@ -173,7 +152,7 @@
             <div class="see-more-details" onclick="seeMoreDetails(event)">
               <i class="fa-regular fa-eye" title="Click to see more details!"></i>
             </div>
-            <div class="open-lock"><i class="fa-solid fa-lock-open" onclick="saveCard(event)"></i></div>
+            <div><i class="fa-solid fa-lock-open"></i></div>
           </div>
         </div>
         <div class="col-12" id="see-more-details-container"></div>
@@ -213,11 +192,6 @@
       <div><img src="../static/images/4logos.png" alt="social-media-logos" class="social-media-logos"></div>
     </div>
   </div>
-
-  <script src="../static/js/searchPage.js"></script>
-  <script src="../static/js/displayTerroristCardsSearchPage.js"></script>
-  <script src="../static/js/pagination.js"></script>
-  <script defer src="../static/js/saveCards.js"></script>
 
 </body>
 
