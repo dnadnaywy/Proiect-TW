@@ -29,6 +29,9 @@ Componenta echipa:
 * Diana Pantiru - export pieChart/doughnutChart + treemap in PNG (22.06)
 * Diana Pantiru - export pieChart/doughnutChart + treemap in JSON (22.06)
 * Diana Pantiru - integrare lineChart + export (22.06)
+* Briana - backend pentru autentificare (18.06)
+* Briana - securitate
+* Briana - frontend + integrare
 
 # Instalare
 
