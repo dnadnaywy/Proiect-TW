@@ -69,6 +69,7 @@ function makeActualPieChart(title) {
       const pieChart = pieChartDisplayer(xValues, yValues, randomColorArray, title);
       const doughnutChart = doughnutChartDisplayer(xValues, yValues, randomColorArray, title);
       activeChart = [pieChart, doughnutChart];
+      activeChartId = 'pieChart';
       // Use the resolved values as needed here
     })
     .catch(error => {

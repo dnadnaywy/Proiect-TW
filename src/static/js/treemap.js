@@ -142,6 +142,7 @@ function treemapDisplayer(title, data) {
     );
 
     activeChart = [treemap];
+    activeChartId = 'canvas2';
 }
 
 function makeActualTreemap(title) {

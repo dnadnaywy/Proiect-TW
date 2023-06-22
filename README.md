@@ -25,6 +25,7 @@ Componenta echipa:
 * Diana Panainte - creat pagina de search, cardurile pt fiecare atac, o filtrare initiala si container-ul de detalii pt fiecare card (19-20.06)
 * Diana Pantiru - integrare treemap pentru Method of Attack + titlu dinamic (19.06)
 * Diana Pantiru - integrare worldmap (20-21.06)
+* Diana Pantiru - export pieChart/doughnutChart + treemap in CSV (21.06)
 
 
 # Instalare
