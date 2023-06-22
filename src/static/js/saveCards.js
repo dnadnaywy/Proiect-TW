@@ -34,15 +34,11 @@ function saveCard(event) {
 //       // Extract the HTML content from the response
 //       const responseHtml = xhr.responseText;
 
-//       // Create a temporary container element
-//       const tempContainer = document.createElement('div');
-//       tempContainer.innerHTML = responseHtml;
-
 //       // Get the desired content from the temporary container
 //       const newContent = tempContainer.querySelector('#all-cards-content');
 
 //       // Append the new content to the current page
-//       const targetElement = document.getElementById('target-element');
+//       const targetElement = document.getElementById('all-cards-content');
 //       targetElement.appendChild(newContent);
 //     } else {
 //       console.error('Request failed. Status:', xhr.status);

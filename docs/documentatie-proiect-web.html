@@ -75,27 +75,17 @@
     <section id="introduction" role="doc-introduction">
         <h2>1. Introducere</h2>
         <section id="purpose" role="doc-purpose">
-            <h3>1.1 Scop</h3>
+            <h3>1.1 Scopul documentului</h3>
             <p>
-                „Colecția de date internaționale despre atacurile teroriste" înglobează informații, după cum precizează
-                și
-                titlul, despre terorism.
-                Pagină creată de echipa noastră prezintă are mai mult decât scopul informativ asupra atacurilor
-                teroriste,
-                fenomen ce se răspândește tot mai des pe toate continentele,
-                acela de a atrage atentia asupra a cât mai multor utilizatori asupra evenimentelor cunoscute sau mai
-                puțin
-                cunoscute ce au loc în lume folosind mediul online.
-                Într-un mod atractiv vizual, proiectul web iși propune să evidențieze printr-o serie de grafice evoluția
-                atacurilor teroriste: armele folosite, regiunile afectate,
-                formele de atac, grupurile teroriste, grupurile țintă și, pierderile cele mai mari, numărul de vieți
-                luate.
-            </p>
+                Scopul acestui document este să prezinte detaliile aplicației 'International Terrorism Database'. 
+                Acesta va cuprinde toate amănuntele legate de caracteristicile aplicației, interfața și modul în care trebuie să functioneze. 
+                Acest document va fi utilizat pentru a înțelege modul de utilizare a aplicației de persoanele care folosesc site-ul pentru prima dată.
+           </p>
         </section>
         <section id="conventions" role="doc-conventions">
             <h3>1.2 Convenții tipografice</h3>
             <p>
-                Aceasta documentație nu foloșeste convenții de nume.
+                Aceasta documentație nu folosește convenții de nume.
             </p>
         </section>
         <section id="audience" role="doc-audience">
@@ -113,6 +103,18 @@
         <section id="scope" role="doc-scope">
             <h3>1.4 Scopul produsului </h3>
             <p>
+                „Colecția de date internaționale despre atacurile teroriste" înglobează informații, după cum precizează
+                și
+                titlul, despre terorism.
+                Pagină creată de echipa noastră are mai mult decât scop informativ asupra atacurilor
+                teroriste,
+                fenomen ce se răspândește tot mai des pe toate continentele. Ne dorim să atragem
+                atenția a cât mai multor utilizatori asupra evenimentelor ce au loc în lume.
+                Într-un mod atractiv vizual, proiectul web iși propune să evidențieze printr-o serie de grafice evoluția
+                atacurilor teroriste: armele folosite, regiunile afectate,
+                formele de atac, grupurile teroriste, grupurile țintă și pierderile cele mai mari, numărul de vieți
+                luate.<br>
+
                 Scopul aplicației noastre web este de a oferi o resursă pentru analiza și înțelegerea fenomenului
                 terorismului global. Prin intermediul acesteia, utilizatorii pot vizualiza datele în mod eficient, în
                 diferite tipuri de grafice, inclusiv într-o formă cartografică. Acest lucru le va permite să înțeleagă
@@ -120,23 +122,23 @@
                 bine impactul pe care aceste evenimente le au asupra întregii lumi.
                 O altă caracteristică importantă a acestei aplicații web este posibilitatea de a exporta datele în mai
                 multe
-                formate, inclusiv CSV, PNG și SVG. Astfel, utilizatorii vor putea descărca și utiliza informațiile mai
+                formate, inclusiv CSV, PNG și JSON. Astfel, utilizatorii vor putea descărca și utiliza informațiile mai
                 departe.
                 În plus, aplicația va oferi și suport pentru căutarea de incidente raportate în baza de date prin
-                intermediul unui API, astfel încât și alte aplicații să poată accesa aceste date.
+                intermediul unui REST API documentat cu Swagger, astfel încât și alte aplicații să poată accesa aceste date.
             </p>
         </section>
         <section id="references" role="doc-references">
             <h3>1.5 Referinte </h3>
             <p>
-                In dezvoltarea acestei aplicatii web am consultat urmatoarele surse:
+                În dezvoltarea acestei aplicatii web am consultat următoarele surse:
             <ul>
                 <li>
                     <a href="https://www.w3schools.co"> Grafice, Media Query</a>
-                    <a href="">Bara de meniu</a>
-                    <a
-                        href="https://www.freepik.com/search?format=search&last_filter=selection&last_value=1&query=terrorism&selection=1">Imagini</a>
+                    <a href="https://www.freepik.com/search?format=search&last_filter=selection&last_value=1&query=terrorism&selection=1">Imagini</a>
                     <a href="https://www.flaticon.com/">Vectori</a>
+                    <a href="https://www.chartjs.org">Chart-uri</a>
+                    <a href="https://d3js.org">World Map</a>
                 </li>
             </ul>
             </p>
@@ -149,73 +151,55 @@
             <p>
                 Cu pagina noastră valorificăm facilitățile mediului online într-un mod simplu de utilizat de vizitatori
                 datorită marcajelor sugestive, adică elementele principale sunt însoțite de icon-uri reprezentative,
-                sugerând funcționaltiățile paginii.
-                Rolul cel mai important al aplicației este de a atrage publicul să contribuie la una dintre probleme
+                sugerând funcționalitățile paginii.
+                Rolul cel mai important al aplicației este de a atrage publicul să contribuie la una dintre problemele
                 actuale
-                ale lumii, prin informare bineînțeles, de la aceștia către pagină, dar și viceversa, printr-o formă
-                sigură
+                ale lumii, prin informare printr-o formă sigură
                 și care chiar atrage atenția asupra topicului.
-                <!-- DIAGRAMA -->
-
             </p>
         </section>
         <section id="functiile" role="doc-functiile">
-            <h3>2.2 Functiile produsului</h3>
+            <h3>2.2 Funcțiile produsului</h3>
             <p>
-                Printre funcțiile produsului se numără cunoscutele emailuri ce se trimit utilizatorilor, interacțiunile
-                cu
-                platformele de socializare,
-                metode de donații, postarea de informații ce contribuie la acuratețea informațiilor de pe site.
-                Toți tilizatorii au posibilitatea de a avea postate informațiile despre atacuri pe site în urma
+                Printre funcțiile produsului se numără emailuri ce se trimit utilizatorilor, interacțiunile
+                cu platformele de socializare,
+                metode de donații.
+                Toți utilizatorii au posibilitatea de a vedea informațiile despre atacuri pe site în urma
                 validării
-                lor de către unu administrator sau
-                pot fi postate direct dacă acesta este licențiat. Această licență este fie oferită de unul dintre
-                administartorii paginii sau de un utilizator autorizat. Ne dorim să avem un sistem automat de verificare
-                a
-                identității unei persoane după buletin, însă
-                varianta sigură este cea de aprobare manuală.
+                lor de către un administrator.
             <p>Pe pagina principală este o hartă interactivă. Prin selectarea unei regiuni de pe hartă, pagina afișează
                 o
                 serie de numere cu privire la atacuri.
-                În continuarea paginii se găsesc postări distribuite de pe rețelele de socializare, imagini, informații,
-                o
-                sugestie de înregistrare,
+                În continuarea paginii se găsesc postări distribuite de pe rețelele de socializare, imagini, informații.
 
                 Pagina cu donații are ca intermediar un procesor de plăți, dar și informații despre cauze pentru
                 motivarea
                 includerii acestei opțiuni.
             </p>
             <p> Creearea contului presupune introducerea unei adrese de email/ număr de telefon, a unei parole cât mai
-                complexe, anumele persoanei/organizației, datei de naștere dacă e vorba despre o persoană, anumite
-                informații opționale, precum adresa, statutul (elev, student).
+                complexe, a numelui persoanei/organizației, datei de naștere dacă e vorba despre o persoană..
                 In varianta desktop în headerul paginii web se găsesc butoanele pentru conectare și înregistrare, iar în
                 bara de meniu pentru versiunea mobile.
-                După crearea acestuia utilizatorul va primi un cod de validare și un link.
                 Datele pot fi modificate în pagina de cont ulterior în cazul unor greșeli sau schimbării de date cu
-                caracter
-                personal.
+                caracter personal.
                 În funcție de vârsta utilizatorului anumite informații vor fi blocate sau disponibile, iar inexistența
-                contului poate duce la indisponibiltatea informației
+                contului poate duce la indisponibiltatea informației.
             </p>
             <p> Important este că informațiile pot fi vizualizate și fără existența unui cont de utilizator, iar pagina
                 și
-                cauzele pentru oferirea de donații este accesibil[ tuturor celor doritori să ajute.
+                cauzele pentru oferirea de donații este accesibilă tuturor celor doritori să ajute.
                 O altă funcționalitate comună atât vizitatorului cât și a utilizatorului înregistrat este distribuirea
                 de
                 informații din pagină.
-                În schimb, în calitate de utilizator te bucuri de mai multe optiuni pe care le ofera pagina, precum:
-                postarea de recenzii, oferirea unui feedback la conținut, înscrierea în grupuri, prioritate la
-                participarea
-                de evenimente sau chiar crearea unui eveniment.
                 Pentru abonarea la newsletter este necesară doar adresa de email.
             </p>
             Punctele de interes sunt graficele. Din bara de meniu se pot accesa categoriile pentru care se dorește
             generarea automată a graficului de către pagină.
             Graficele sunt de tipul: treemap, linear, pie, iar selectarea tipului de grafic se face din butonul
-            interactiv ce contine un simbol ilustrativ al acestuia.
-            Graficul default este cel linear.
-            Pe langa acesta, un box cu diferite informații este aferent graficului, iar pagina se continua cu imagini si
-            informatii.
+            interactiv ce conține un simbol ilustrativ al acestuia.
+            După ce se alege un tip de chart, apare posibilitatea de a da export în cele trei formate, CSV, PNG, JSON.
+            Pe lânga acesta, un box cu diferite informații este aferent graficului, iar pagina se continuă cu imagini și
+            informații.
             Graficele au o animație la intrarea pe pagină, ceea ce oferă un aspect dinamic, iar o funcționalitate este
             afișarea unei informații la trecerea cu mouse-ul sau apăsarea unui punct
             de pe grafic.
@@ -226,7 +210,7 @@
         <img src="Blank diagram.png" height=600px><!--           diagrama use case-->
 
         <section id="clasele" role="doc-clasele">
-            <h3>2.3 Clasele si caracteristicile utilizatorului</h3>
+            <h3>2.3 Clasele și caracteristicile utilizatorului</h3>
             <p>
                 Cele 3 tipuri de utilizator care vor interacționa cu aplicația sunt: admin, vizitator, utilizator logat.
                 Vizitatorul va putea accesa pagina principală a aplicației și poate vedea informații generale despre
@@ -235,7 +219,7 @@
                 sub formă de grafice și diagrame sau printr-o hartă interactivă.
                 Un utilizator logat va avea aceleași drepturi pe care le are un simplu vizitator. În plus, va putea
                 salva
-                căutările anterioare și vedea istoricul acestora. Va putea primi email-uri cu alerte despre atacuri noi
+                evenimente din baza noastră de date într-o colecție și le va putea vedea în altă pagină. Va putea primi email-uri cu alerte despre atacuri noi
                 care
                 au loc. De asemenea, își va putea gestiona profilul.
                 Adminul este practic un utilizator autorizat să poată gestiona baza de date a aplicației, să actualizeze
@@ -247,58 +231,52 @@
             <h3>2.4 Mediul de operare</h3>
             <p>
                 Aplicația poate fi accesată din browser, atât desktop, cât și mobile, având un design responsive. Pentru
-                stocarea datelor necesare aplicației folosim o bază de date relațională SQLite.
+                stocarea datelor necesare aplicației folosim o bază de date relațională PostgreSQL.
             </p>
         </section>
         <section id="constrangeri" role="doc-constrangeri">
-            <h3>2.5 Constrangeri de implementare si design</h3>
+            <h3>2.5 Constrângeri de implementare și design</h3>
             <p>
-                O alegere inspirată este folosirea unei palete de culori formată din negru și mov (si varianțe ale
-                aestora + non-culori) pentru varianta
-                dark-mode, iar alb și mov pentru varianta light-mode, îmbinându-se armonios componentele în pagină.
+                O alegere inspirată este folosirea unei palete de culori formată din negru și mov (și varianțe ale
+                acestora) pentru varianta
+                dark-mode, îmbinându-se armonios componentele în pagină.
                 De asemenea, utilizarea fontului sans-serif Surse Sans Pro este o
-                alegere potrivită pentru un design minimalist. Secțiunile sunt pozitionate pe linii si coloane, pagina
+                alegere potrivită pentru un design minimalist. Secțiunile sunt poziționate pe linii și coloane, pagina
                 fiind
                 responsive pentru o experiență cât mai bună indiferent de dispozitivul ales; în varianta
-                mobile elementele fiind poziționate unele sub altele.
+                mobile elementele sunt poziționate unele sub altele.
             </p>
         </section>
     </section>
 
     <section id="cerinte" role="doc-cerinte">
-        <h2>3. Cerinte de interfata externa</h2>
+        <h2>3. Cerințe pentru interfață externă</h2>
         <section id="interfete" role="doc-interfete">
-            <h3>3.1 Interfete cu utilizatorul</h3>
+            <h3>3.1 Interfețe cu utilizatorul</h3>
             <p>
-                În cadrul aplicației, utilizatorii vor avea acces:
+                În cadrul aplicației, utilizatorii vor putea:
             <ul>
                 <li>să-și creeze un cont/ să se conecteze apăsând butoanele din header și introducând informații în
-                    câmpurile aferente
+                    câmpurile aferente,
                 </li>
                 <li>să vizualizeze grafice din bara de meniu sau să caute o informație folosind căsuța search, apăsând
                     pe
-                    icon-ul cu lupă
+                    icon-ul cu lupă,
                 </li>
-                <li>să acceseze paginile donații, despre noi, postari de pe retelele de socializare
+                <li>să acceseze paginile donații, despre noi,
                 </li>
-                <li>să descarce în format jpeg sau png graficele de pe pagină
+                <li>să descarce în format PNG, CSV, JSON graficele de pe pagină,
                 </li>
-                <li>să trimită un email către adresa de email stabilită de administratori
+                <li>să trimită un email către adresa de email stabilită de administratori,
                 </li>
-                <li>să apese pe harta interactivă, selectând o locație; Aceasta va fi memorată ca locație default pentru
-                    accesările
-                    ulterioare ale paginilor cu grafice
+                <li>să apese pe harta interactivă, selectând o locație și vizualizând informații despre atacurile teroriste din acea zonă,
                 </li>
-                <li>să selecteze tipul de chart din butonul cu icon-urile ce ilustrează charturi
+                <li>să selecteze tipul de chart din butonul cu icon-urile ce ilustrează charturi,
                 </li>
-                <li>să apese lock sau unlock la un grafic/articol, informație din baza de date, echivalentul unui lacăt
-                    deschis sau închis, pentru a salva pentru mai târziu un chart pe care îl va găsi într-o secțiune
-                    numită
-                    Pinurile mele
+                <li>să apese lock sau unlock pe un card cu informații despre terorism cu scopul de a le salva într-o altă secțiune pe 
+                    care să o acceseze mai târziu din meniu
                 </li>
             </ul>
-            Utilizatorii cu cont vor putea să publice și să acceseze conținut filtrat după vârsta lor, să se înscrie la
-            evenimente.
 
         </section>
 
@@ -307,11 +285,14 @@
         <section id="caracteristici" role="doc-caracteristici">
             <h2>4. Caracteristicile proiectului</h2>
 
-            <li> 4.1 <a href="#paginaPrincipala"> Pagina Principala </a></li>
-            <li> 4.2 <a href="#treemapChartCountry"> Treemap Chart for Countries </a></li>
-            <li> 4.3 <a href="#lineChartRegion"> Line Chart for Regions</a></li>
-            <li> 4.4 <a href="#pieChartMOA"> Pie Chart for Methods of Attack </a></li>
-            <li> 4.5 <a href="#aboutUs"> Pagina de About Us </a></li>
+            <li> 4.1 <a href="#paginaPrincipala"> Pagina Principală </a></li>
+            <li> 4.2.1 <a href="https://media.discordapp.net/attachments/1085154384545075276/1121532049807900723/image.png?width=1381&height=670"> Treemap/Line/Pie Chart </a></li>
+            <li> 4.2.2 <a href="https://media.discordapp.net/attachments/1085154384545075276/1121532141847728209/image.png?width=1383&height=670"> Treemap/Line/Pie Chart </a></li>
+            <li> 4.2.3 <a href="https://cdn.discordapp.com/attachments/1085154384545075276/1121534392079241236/image.png"> Treemap/Line/Pie Chart </a></li>
+            <li> 4.3 <a href="#searchPage"> Pagina de Search </a></li>
+            <li> 4.4 <a href="#loginPage"> Pagina de Login </a></li>
+            <li> 4.5 <a href="#registerPage"> Pagina de Register </a></li>
+            <li> 4.6 <a href="#aboutUs"> Pagina de About Us </a></li>
 
             <section id="paginaPrincipala" role="doc-paginaPrincipala">
                 <h3>4.1 Pagina Principala </h3>
