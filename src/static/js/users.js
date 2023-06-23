@@ -1,70 +1,87 @@
-const searchBar = document.getElementById('searchBar');
-const userRows = document.getElementsByClassName('user-row');
+async function displayDataFromDatabase() {
+    const response = await fetch("http://localhost:3000/api/terrorist-cards");
+    try {
+        let container = document.querySelector('#all-cards-content');
 
-searchBar.addEventListener('input', function() {
-    const searchTerm = searchBar.value.toLowerCase();
+        const jsonData = await response.json();
 
-    for (let i = 0; i < userRows.length; i++) {
-        const username = userRows[i].querySelector('.username').textContent.toLowerCase();
+        let html = '';
+        jsonData.forEach(card => {
+            let htmlSegment = `<div class="card" data-card-id="${card.id}">
+      <p>Country:</p>           <b><p class="country-name">${card.country}</p></b>
+      <p>Region:</p>            <b><p class="region-name">${card.region}</p></b>
+      <p>Attack type:</p>       <b><div class="attack-type-name">${card.attack_type}</div></b>
+      <p>Weapon Type:</p>       <b><p class="weapon-type-name">${card.weapon_type}</p></b>
+      <div class="see-more-details" onclick="seeMoreDetails(event)"><i class="fa-regular fa-eye" title = "Click to see more details!"></i></div> <div class="open-lock"><i class="fa-solid fa-lock-open" onclick="saveCard(event)"></i></div>
+    </div>
+                                  `;
+            html += htmlSegment;
+        });
 
-        if (username.includes(searchTerm)) {
-            userRows[i].style.display = 'table-row';
-        } else {
-            userRows[i].style.display = 'none';
-        }
+        html += `<div class="pagination">
+    <button class="pagination-pages previous-button">Previous Page</button>
+    <button class="pagination-pages next-button" current-page="1">Next Page</button>
+  </div>`;
+
+        container.innerHTML = html;
+
+        console.log(jsonData);
+        return await jsonData;
+    } catch (error) {
+        console.log(error);
     }
-});
-
-// Simulăm datele utilizatorilor
-
-const userData = [
-    { nume: 'John Doe', email: 'johndoe@example.com', rol: 'Utilizator' },
-    { nume: 'Jane Smith', email: 'janesmith@example.com', rol: 'Admin' },
-    // Adăugați mai multe obiecte pentru utilizatori
-];
-
-// Funcția pentru generarea rândurilor tabelului
-function generateUserRows() {
-    const tableBody = document.getElementById('user-data');
-    tableBody.innerHTML = '';
-
-    userData.forEach(user => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-      <td>${user.nume}</td>
-      <td>${user.email}</td>
-      <td>${user.rol}</td>
-      <td>
-        <button class="delete-button" onclick="confirmDelete()">Șterge</button>
-      </td>
-    `;
-        tableBody.appendChild(row);
-    });
 }
 
-// Funcție apelată când se apasă butonul de confirmare ștergere
-function confirmDelete() {
-    deleteUser()
-    document.getElementById('delete-modal').style.display = 'block';
+const seeMoreText = document.querySelectorAll('.see-more-details');
 
+function showAlert(event) {
+    alert('Hello world!');
 }
 
-// Funcție apelată când se apasă butonul de anulare ștergere
-function cancelDelete() {
-    document.getElementById('delete-modal').style.display = 'none';
+async function seeMoreDetails(event) {
+    const card = event.target.closest('.card');
+    const cardId = card.dataset.cardId;
+
+    const response = await fetch("http://localhost:3000/api/terrorist-card/" + cardId);
+
+    try {
+        const jsonData = await response.json();
+
+        let detailsContainer = document.querySelector('#see-more-details-container');
+        let cardContainer = document.getElementById('all-cards-content');
+        detailsContainer.style.display = "flex";
+        cardContainer.style.display = "none";
+
+        let html = '';
+
+        jsonData.forEach(attack => {
+            let htmlSegment = `<div class="more-detail-for-card">
+                  <i class="fa-solid fa-xmark" onclick="closeSeeMoreDetails()"></i>
+                  <br><br>
+                  <i class="fa-solid fa-arrow-right"></i>
+                  This attack took place in <b>${attack.country}</b>, <b>${attack.region}</b>. The <b>${attack.group_name}</b> targeted <b>${attack.target}</b>.<br>
+                  <br>
+                  <i class="fa-solid fa-arrow-right"></i> Weapon Type: <b>${attack.weapon_type}</b>. Weapon subtype: <b>${attack.weapon_subtype}.</b><br>
+                  <br>
+                  <i>This is the summary of the attack:</i>
+                  <br><br>
+                  <i class="fa-solid fa-arrow-right"></i> ${attack.summary}
+                </div>`;
+            html += htmlSegment;
+        });
+
+        detailsContainer.innerHTML = html;
+
+        console.log(jsonData);
+        return await jsonData;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-// Funcție apelată când se confirmă ștergerea utilizatorului
-function deleteUser() {
-    // Logica pentru ștergerea utilizatorului din baza de date
-    console.log('Utilizatorul a fost șters.');
-    document.getElementById('delete-modal').style.display = 'none';
-
-    // După ștergere, actualizați tabelul cu utilizatori
-    generateUserRows();
+function closeSeeMoreDetails() {
+    let detailsContainer = document.querySelector('#see-more-details-container');
+    let cardContainer = document.getElementById('all-cards-content');
+    detailsContainer.style.display = "none";
+    cardContainer.style.display = "flex";
 }
-
-// Apelați funcția pentru generarea rândurilor tabelului la încărcarea paginii
-
-generateUserRows();
-cancelDelete();

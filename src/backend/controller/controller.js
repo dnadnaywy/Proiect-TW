@@ -75,7 +75,9 @@ const handleApiRequest = async (req, res, pool) => {
         });
         console.log('am ajuns pe aici');
         req.on("end", () => {
-            sendEmail(email);
+            const message = "Hi there, your newsletter confirmation for subscribing at <b>bddsolutions</b> website is here.<br><br>Thank you,<br>BDDSolutions Team"
+            const subject= "Newsletter Confirmation";
+            sendEmail(email, message, subject);
             res.statusCode = 200;
             res.end("Email sent successfully");
         });

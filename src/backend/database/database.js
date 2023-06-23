@@ -19,6 +19,7 @@ const databaseInitialization = async (pool) => {
         "birthdate"   DATE         NOT NULL,
         "phonenumber" VARCHAR(255) NOT NULL,
         "created_at"  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "resetLink"   VARCHAR(255)  DEFAULT '',
         "deleted"     BOOLEAN      NOT NULL DEFAULT FALSE
     );`;
 

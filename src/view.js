@@ -19,7 +19,7 @@ const handleViewRequest = (req, res) => {
         registerView(req, res);
     } else if (URL === '/view/login') {
         loginView(req, res);
-    } else if (URL === '/view/forgotPassword') {
+    } else if (URL === '/view/forgot-password') {
         changePasswordView(req, res);
     } else if (URL === '/view/home') {
         homeView(req, res);
@@ -37,8 +37,8 @@ const handleViewRequest = (req, res) => {
     else if (URL === '/view/attack') {
         attackView(req, res);
     }
-    else if (URL === '/view/cards') {
-        saveCardsView(req, res);
+    else if (URL === '/view/saved-cards') {
+        savedCardsView(req, res);
     }
     else if (URL === '/view/search-page') {
         searchView(req, res);
@@ -64,6 +64,9 @@ const registerView = (req, res) => {
 }
 
 const loginView = (req, res) => {
+    //verify if the user is already log in
+
+
     const filePath = '../view/login.html';
     readHTML(filePath, res);
 }
@@ -98,8 +101,9 @@ const attackView = (req, res) => {
     readHTML(filePath, res);
 }
 
-const saveCardsView = (req, res) => {
-    const filePath = '../view/save-cards.html';
+const savedCardsView = (req, res) => {
+
+    const filePath = '../view/saved-cards-page.html';
     readHTML(filePath, res);
 }
 
@@ -111,5 +115,7 @@ const usersView = (req, res) => {
     const filePath = '../view/users.html';
     readHTML(filePath, res);
 }
+
+
 
 module.exports = handleViewRequest;

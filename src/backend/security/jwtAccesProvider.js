@@ -94,4 +94,4 @@ const verifyJWTRole = (res, req, role) => {
     return true;
 }
 
-module.exports = {handleSecurity, deleteCookie, verifyJWTRole, decodedJWT, authorized};
+module.exports = {handleSecurity, deleteCookie, verifyJWTRole, decodedJWT, authorized, generateToken};
