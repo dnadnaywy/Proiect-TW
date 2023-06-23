@@ -65,5 +65,6 @@ function deleteUser() {
 }
 
 // Apelați funcția pentru generarea rândurilor tabelului la încărcarea paginii
-cancelDelete();
+
 generateUserRows();
+cancelDelete();

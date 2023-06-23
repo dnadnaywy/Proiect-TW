@@ -159,7 +159,7 @@ const validateDate = (birthdate, res) => {
 }
 
 const validatePhonenumber = (phonenumber, res) => {
-    if (phonenumber.length < 10 || phonenumber.length > 10) {
+    if (phonenumber.toString().length < 10 || phonenumber.toString().length > 10) {
         sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Your phonenumber needs 10 digits.'});
         return false;
     }
