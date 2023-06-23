@@ -19,7 +19,7 @@ const handleViewRequest = (req, res) => {
         registerView(req, res);
     } else if (URL === '/view/login') {
         loginView(req, res);
-    } else if (URL === '/view/changePassword') {
+    } else if (URL === '/view/forgotPassword') {
         changePasswordView(req, res);
     } else if (URL === '/view/home') {
         homeView(req, res);
@@ -69,7 +69,7 @@ const loginView = (req, res) => {
 }
 
 const changePasswordView = (req, res) => {
-    const filePath = '../view/changePassword.html';
+    const filePath = '../view/forgot-password.html';
     readHTML(filePath, res);
 }
 
