@@ -21,7 +21,7 @@ const handleViewRequest = (req, res) => {
         loginView(req, res);
     } else if (URL === '/view/changePassword') {
         changePasswordView(req, res);
-    } else if(URL === '/view/home') {
+    } else if (URL === '/view/home') {
         homeView(req, res);
     }
     else if (URL === '/view/method-of-attack') {
@@ -31,7 +31,10 @@ const handleViewRequest = (req, res) => {
         aboutUsView(req, res);
     } else if (URL === '/view/country') {
         countryView(req, res);
-    } else if (URL === '/view/attack') {
+    } else if (URL === '/view/region') {
+        regionView(req, res);
+    }
+    else if (URL === '/view/attack') {
         attackView(req, res);
     }
     else if (URL === '/view/cards') {
@@ -43,7 +46,7 @@ const handleViewRequest = (req, res) => {
     else if (URL === '/view/users') {
         usersView(req, res);
     }
-        else {
+    else {
         res.statusCode = 404;
         res.end('Not Found');
     }
@@ -82,6 +85,11 @@ const aboutUsView = (req, res) => {
 
 const countryView = (req, res) => {
     const filePath = '../view/country.html';
+    readHTML(filePath, res);
+}
+
+const regionView = (req, res) => {
+    const filePath = '../view/region.html';
     readHTML(filePath, res);
 }
 
