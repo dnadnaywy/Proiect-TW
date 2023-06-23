@@ -26,7 +26,7 @@ function getRouteByTitleLineChart(title) {
       route += '/api/pie/nkill_us';
       break;
     default:
-      route += '/not-found';
+      route += '/api/not-found';
       break;
   }
 

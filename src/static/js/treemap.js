@@ -26,7 +26,7 @@ function getRouteByTitle(title) {
             route += '/api/treemap/nkill_us';
             break;
         default:
-            route += '/not-found';
+            route += '/api/not-found';
             break;
     }
 
