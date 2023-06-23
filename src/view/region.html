@@ -20,8 +20,7 @@
     <link rel="stylesheet" href="../static/css/canvas.css">
     <link rel="stylesheet" href="../static/css/content-in-page.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    </script>
+    <script src="../static/js/export.js"></script>
 </head>
 
 
@@ -88,7 +87,7 @@
                     <span class="tooltip">Method of Attack</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="target">
                         <i class='fa-solid fa-bullseye'></i>
                         <span class="links_name">Target</span>
                     </a>
@@ -102,25 +101,25 @@
                     <span class="tooltip">Terrorist Groups</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="weapons">
                         <i class='fa-solid fa-gun'></i>
                         <span class="links_name">Weapons</span>
                     </a>
                     <span class="tooltip">Weapons</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deaths">
                         <i class='fa-solid fa-cross'></i>
                         <span class="links_name">Deaths</span>
                     </a>
                     <span class="tooltip">Deaths</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deaths-us">
                         <i class='fa-solid fa-cross'></i>
-                        <span class="links_name">Deaths (U.S.)</span>
+                        <span class="links_name">Deaths (USA)</span>
                     </a>
-                    <span class="tooltip">Deaths (U.S.)</span>
+                    <span class="tooltip">Deaths (USA)</span>
                 </li>
             </ul>
             <script src="../static/js/sidebar.js"></script>
@@ -132,33 +131,53 @@
             <div class="row">
                 <div class="col-12">
                     <div class="title-content">
-                        <htitle>Line chart for Regions</htitle>
+                        <htitle id="chart-title-in-page">Region</htitle>
                         <hr class="line">
                     </div>
+
                     <div class="btns-chart">
-
                         <div class="btns-bar">
-
-
                             <div class="btn-chart">
                                 <img src="../static/images/treemap-chart.png" class="img-chart-icon" />
-                                <div class="text-icons-chart">
+                                <div class="text-icons-chart" onclick="displayTreemapChart(document.title)">
                                     Treemap
                                 </div>
                             </div>
 
-
                             <div class="btn-chart">
                                 <img src="../static/images/line-graph.png" class="img-chart-icon" />
-                                <div class="text-icons-chart">
+                                <div class="text-icons-chart" onclick="displayLineChart(document.title)">
+                                    Line
                                 </div>
-                                Line
                             </div>
 
                             <div class="btn-chart">
                                 <img src="../static/images/pie-chart.png" class="img-chart-icon" />
-                                <div class="text-icons-chart">
+                                <div class="text-icons-chart" onclick="displayPieChart(document.title)">
                                     Pie
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btns-bar" id="export-buttons-container">
+                            <div class="btn-chart">
+                                <img src="../static/images/download.svg" class="img-chart-icon" />
+                                <div class="text-icons-chart" onclick="exportChartToCSV(document.title)">
+                                    CSV
+                                </div>
+                            </div>
+
+                            <div class="btn-chart">
+                                <img src="../static/images/download.svg" class="img-chart-icon" />
+                                <div class="text-icons-chart" onclick="exportChartToPNG(document.title)">
+                                    PNG
+                                </div>
+                            </div>
+
+                            <div class="btn-chart">
+                                <img src="../static/images/download.svg" class="img-chart-icon" />
+                                <div class="text-icons-chart" onclick="exportChartToJSON(document.title)">
+                                    JSON
                                 </div>
                             </div>
                         </div>
@@ -167,9 +186,27 @@
             </div>
 
             <div class="main-content reverse-column">
-                <div class="col-6">
-                    <canvas id="lineChart"></canvas>
-                    <script src="../static/js/lineChart.js"></script>
+                <div class="col-6" id="canvas1">
+                    <div id="bring-pie-chart">
+                        <canvas id="pieChart" style="width:100%; max-width:700px"></canvas>
+                        <canvas id="doughnutChart" style="width:100%; max-width:700px"></canvas>
+                        <script src="../static/js/pieChart.js"></script>
+                    </div>
+
+                    <div id="bring-line-chart">
+                        <canvas id="lineChart" style="width:100%; max-width:700px"></canvas>
+                        <script src="../static/js/lineChart.js"></script>
+                    </div>
+
+                    <div id="bring-treemap-chart">
+                        <!-- SCRIPTS ADDED FOR TREEMAP -->
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.3.0/dist/chartjs-chart-treemap.min.js"></script>
+
+                        <canvas id="canvas2" style="width:100%; max-width:700px"></canvas>
+                        <script src="../static/js/treemap.js"></script>
+                    </div>
                 </div>
                 <div class="col-6">
                     <div class="side1">
@@ -304,6 +341,9 @@
             </div>
         </div>
     </div>
+
+    <script src="../static/js/0-charts-united.js"></script>
+
 </body>
 
 </html>

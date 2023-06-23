@@ -23,20 +23,31 @@ const handleViewRequest = (req, res) => {
         changePasswordView(req, res);
     } else if (URL === '/view/home') {
         homeView(req, res);
-    }
-    else if (URL === '/view/method-of-attack') {
-        methodOfAttackView(req, res);
-    }
-    else if (URL === '/view/about-us') {
+    } else if (URL === '/view/about-us') {
         aboutUsView(req, res);
-    } else if (URL === '/view/country') {
+    } 
+    // --------------------- CHART PAGES ------------------
+    else if (URL === '/view/country') {
         countryView(req, res);
     } else if (URL === '/view/region') {
         regionView(req, res);
+    } else if (URL === '/view/method-of-attack') {
+        methodOfAttackView(req, res);
+    } else if (URL === '/view/target') {
+        targetView(req, res);
+    } else if (URL === '/view/terrorist-groups') {
+        terroristGroupsView(req, res);
+    } else if (URL === '/view/weapons') {
+        weaponsView(req, res);
+    } else if (URL === '/view/deaths') {
+        deathsView(req, res);
+    } else if (URL === '/view/deaths-us') {
+        deathsUSView(req, res);
     }
-    else if (URL === '/view/attack') {
-        attackView(req, res);
-    }
+    // else if (URL === '/view/attack') {
+    //     attackView(req, res);
+    // }
+    // --------------------- END ------------------
     else if (URL === '/view/cards') {
         saveCardsView(req, res);
     }
@@ -73,15 +84,12 @@ const changePasswordView = (req, res) => {
     readHTML(filePath, res);
 }
 
-const methodOfAttackView = (req, res) => {
-    const filePath = '../view/method-of-attack.html';
-    readHTML(filePath, res);
-}
-
 const aboutUsView = (req, res) => {
     const filePath = '../view/about-us-page.html';
     readHTML(filePath, res);
 }
+
+// --------------------- CHART PAGES VIEWS ------------------
 
 const countryView = (req, res) => {
     const filePath = '../view/country.html';
@@ -93,10 +101,42 @@ const regionView = (req, res) => {
     readHTML(filePath, res);
 }
 
-const attackView = (req, res) => {
-    const filePath = '../view/attack.html';
+const methodOfAttackView = (req, res) => {
+    const filePath = '../view/method-of-attack.html';
     readHTML(filePath, res);
 }
+
+const targetView = (req, res) => {
+    const filePath = '../view/target.html';
+    readHTML(filePath, res);
+}
+
+const terroristGroupsView = (req, res) => {
+    const filePath = '../view/terrorist-groups.html';
+    readHTML(filePath, res);
+}
+
+const weaponsView = (req, res) => {
+    const filePath = '../view/weapons.html';
+    readHTML(filePath, res);
+}
+
+const deathsView = (req, res) => {
+    const filePath = '../view/deaths.html';
+    readHTML(filePath, res);
+}
+
+const deathsUSView = (req, res) => {
+    const filePath = '../view/deaths-us.html';
+    readHTML(filePath, res);
+}
+
+// const attackView = (req, res) => {
+//     const filePath = '../view/attack.html';
+//     readHTML(filePath, res);
+// }
+
+// --------------------- END ------------------
 
 const saveCardsView = (req, res) => {
     const filePath = '../view/save-cards.html';

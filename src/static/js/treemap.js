@@ -16,13 +16,13 @@ function getRouteByTitle(title) {
         case 'Terrorist Groups':
             route += '/api/treemap/group_name';
             break;
-        case 'Weapon':
+        case 'Weapons':
             route += '/api/treemap/weapon_type';
             break;
         case 'Deaths':
             route += '/api/treemap/nkill';
             break;
-        case 'Deaths (U.S.)':
+        case 'Deaths (USA)':
             route += '/api/treemap/nkill_us';
             break;
         default:
