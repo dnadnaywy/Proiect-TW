@@ -1,11 +1,14 @@
-const {authenticationController} = require('./authenticationController');
-const {userController} = require('./userController');
+const { authenticationController } = require('./authenticationController');
+const { userController } = require('./userController');
 const url = require("url");
 const pieChartController = require("./pieChartController");
 const paginationController = require("./paginationController");
 const searchController = require("./searchController");
 const treemapController = require("./treemapController");
 const worldmapController = require("./worldmapController");
+const sendEmailModel = require("../utils/sendEmailNewsletter.js");
+const sendEmail = require('../utils/sendEmailNewsletter.js');
+
 
 const handleApiRequest = async (req, res, pool) => {
     const URL = req.url;
@@ -16,11 +19,11 @@ const handleApiRequest = async (req, res, pool) => {
             const result = await client.query('SELECT * FROM terrorism_data');
             const users = result.rows;
             client.release();
-            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(users));
         } catch (error) {
             console.error('Error executing query', error);
-            res.writeHead(500, {'Content-Type': 'text/plain'});
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
             res.end('Internal server error');
         } finally {
             pool.end();
@@ -65,6 +68,17 @@ const handleApiRequest = async (req, res, pool) => {
         paginationController.get10RowsPagination(req, res, pool, page);
     } else if (req.url === '/api/countries' && req.method === 'GET') {
         searchController.getAllCountries(req, res, pool);
+    } else if (req.url === '/api/send-email' && req.method === 'POST') {
+        let email = "";
+        req.on("data", chunk => {
+            email += chunk;
+        });
+        console.log('am ajuns pe aici');
+        req.on("end", () => {
+            sendEmail(email);
+            res.statusCode = 200;
+            res.end("Email sent successfully");
+        });
     }
     // ----------------------------- PIE CHART ----------------------------------------------
     else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {
@@ -138,7 +152,7 @@ const handleApiRequest = async (req, res, pool) => {
     } else if (URL.startsWith('/api/users')) {
         await userController(req, res, pool);
     } else {
-        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not found');
         // return;
     }
