@@ -21,8 +21,6 @@ const generateToken = (user) => {
         email: user.email
     };
 
-    console.log(jwt.sign(payload, JWT_SECRETKEY, {expiresIn: '2h'}));
-
     return jwt.sign(payload, JWT_SECRETKEY, {expiresIn: '2h'});
 }
 

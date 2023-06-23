@@ -34,11 +34,11 @@ const authenticationController = async (req, res, pool) => {
         } else if (endpoint === 'login') {
 
             let fields = ['username', 'password'];
-            if (!await matchJSONProperties(fields, req, res)) {
+            const user = await parseJSON(req);
+            if (!await matchJSONProperties(fields, user, res)) {
                 return;
             }
-
-            await loginUser(req, res, pool);
+            await loginUser(user, res, pool);
 
         } else if (endpoint === 'logout') {
 
@@ -98,34 +98,35 @@ const registerUser = async (req, res, pool) => {
     sendMessage(res, {statusCode: 200, status: 'OK', message: 'User created successfully'});
 }
 
-const loginUser = async (req, res, pool) => {
-    const userFields = await parseJSON(req);
+const loginUser = async (userFields, res, pool) => {
+    try {
+        if (!loginMissingFields(userFields, res)) {
+            return;
+        }
+        const userDatabase = await users.getUser(userFields, res, pool);
 
-    if (!loginMissingFields(userFields, res)) {
-        return;
+        if (userDatabase === null) {
+            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User not found'})
+            return;
+        }
+
+        if (userDatabase.deleted === true) {
+            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User deleted'})
+            return;
+        }
+
+        let currentPassword = userFields.password;
+        let databaseHashPassword = userDatabase.password;
+        if (!await matchPassword(currentPassword, databaseHashPassword, res)) {
+            return;
+        }
+
+        security.handleSecurity(res, userDatabase);
+        sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged in successfully'});
     }
-
-    const userDatabase = await users.getUser(userFields, res, pool);
-    console.log(userDatabase);
-
-    if (userDatabase === null) {
-        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User not found'})
-        return;
+    catch (e) {
+        console.log(e);
     }
-
-    if (userDatabase.deleted === true) {
-        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User deleted'})
-        return;
-    }
-
-    let currentPassword = userFields.password;
-    let databaseHashPassword = userDatabase.password;
-    if (!await matchPassword(currentPassword, databaseHashPassword, res)) {
-        return;
-    }
-
-    security.handleSecurity(res, userDatabase);
-    sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged in successfully'});
 }
 
 const logoutUser = async (res) => {
@@ -147,7 +148,7 @@ const forgotPassword = async (req, res, pool) => {
     const token = jwt.sign(userDatabase.username, process.env.RESET_PASSWORD_KEY, {expiresIn: '20m'});
 
     const link = `http://localhost:3000/view/reset-password/${token}`;
-    const message = "Hi there, your link to reset your password is here.<br><br></br><br>Thank you,<br>BDDSolutions Team"
+    const message = "Hi there, your link to reset your password is here.<br><br><br>Thank you,<br>BDDSolutions Team"
 
 
     if (!await user.updateUserToken(userDatabase.username, token, pool)) {
@@ -196,7 +197,7 @@ async function updatePassword(req, res) {
         })
 
         sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Your reset link is not valid'});
-        return;
+
     }
 
 }

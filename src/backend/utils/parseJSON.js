@@ -1,31 +1,31 @@
 const sendMessage = require('./sendMessage');
 const parseJSON = (req) => {
     return new Promise((resolve, reject) => {
-        try {
-            let body = '';
-            req.on('data', chunk => {
-                body += chunk.toString();
-            });
-            req.on('end', () => {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+        req.on('end', () => {
+            try {
                 resolve(JSON.parse(body));
-            });
-        } catch (error) {
+            } catch (error) {
+                console.error(error);
+                reject(error);
+            }
+        });
+        req.on('error', (error) => {
             console.error(error);
             reject(error);
-        }
+        });
     });
 }
-const matchJSONProperties = async (fields, req, res) => {
 
-    const user = await parseJSON(req);
+const matchJSONProperties = async (fields, user, res) => {
     const userFieldsKeys = Object.keys(user);
-
-
     if (fields.length !== userFieldsKeys.length) {
         sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Accepted fields are: ' + toString(fields)});
         return false;
     }
-
     for (let i = 0; i < fields.length; i++) {
         if (!user.hasOwnProperty(fields[i])) {
             sendMessage(res, {
