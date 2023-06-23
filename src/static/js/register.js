@@ -1,18 +1,20 @@
-// const config = require("../../../config");
-const sendMessage = require("../../backend/utils/sendMessage");
-document.querySelector("#registration-form").addEventListener('submit', function (e) {
-    e.preventDefault();
+const form = document.getElementById('registration-form');
 
-    let firstname = document.querySelector("#firstname").value;
-    let lastname = document.querySelector("#lastname").value;
-    let username = document.querySelector("#username").value;
-    let email = document.querySelector("#email").value;
-    let password = document.querySelector("#password").value;
-    let phone = document.querySelector("#phone").value;
-    let secondPassword = document.querySelector("#confirm-password").value
-    let role = "user";
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    if (firstname === "" || lastname === "" || username === "" || email === "" || password === "" || phone === "" || secondPassword === "") {
+
+    alert("test")
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const secondPassword = document.getElementById('confirm-password').value;
+    const phonenumber = document.getElementById('phone').value;
+    // const birthdate = document.getElementById('birthdate').value;
+
+    if (firstname === "" || lastname === "" || username === "" || email === "" || password === "" || phonenumber === "" || secondPassword === "") {
         alert("Please fill in every field");
         return;
     }
@@ -35,26 +37,30 @@ document.querySelector("#registration-form").addEventListener('submit', function
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
-            email: email,
-            password: password,
-            phone: phone,
-            role: role
+            firstname,
+            lastname,
+            username,
+            email,
+            password,
+            phonenumber,
+           birthdate: "1999-01-01"
         })
-    }).then(response => response.json())
+    }).then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+               alert("Registration failed: " + data.message);
+                    throw new Error(data.message);
+            });
+        }
+        return response.json();
+    })
         .then(data => {
-            if (data.success) {
-                alert("Registration successful");
-                window.location.href = '';
-            } else {
-                alert("Registration failed");
-
-            }
+            alert("Registration successful");
+            console.log(data);
+            window.location.href = '/view/home';
         })
         .catch(err => {
-                alert("Registration failed");
-            }
-        );
+            alert("Registration failed: " + err.message);
+        });
 });
+
