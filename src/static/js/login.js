@@ -7,7 +7,7 @@ document.querySelector("#toggle-password").addEventListener('click', function (e
     }
 });
 
-const form = document.getElementById('registration-form');
+const form = document.getElementById('login-form');
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();

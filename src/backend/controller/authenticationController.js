@@ -33,10 +33,10 @@ const authenticationController = async (req, res, pool) => {
 
         } else if (endpoint === 'login') {
 
-            // let fields = ['username', 'password'];
-            // if (!await matchJSONProperties(fields, req, res)) {
-            //     return;
-            // }
+            let fields = ['username', 'password'];
+            if (!await matchJSONProperties(fields, req, res)) {
+                return;
+            }
 
             await loginUser(req, res, pool);
 
