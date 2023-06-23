@@ -1,6 +1,4 @@
-function myFunction() {
-    alert("hello");
-}
+
 
 document.querySelector("#toggle-password").addEventListener('click', function (e) {
     let passwordInput = document.querySelector('#password');

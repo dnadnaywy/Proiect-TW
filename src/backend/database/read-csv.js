@@ -4,7 +4,7 @@ function populateDatabase() {
 
   const filePath = 'C:/Users/panai/TW_LAB/Proiect-TW/src/resources/csv/terrorism-database.csv';
 
-  const serverFile = require('../server');
+  const databaseFile = require('/database.js');
 
   fs.createReadStream(filePath)
     .pipe(csv())
@@ -18,7 +18,7 @@ function populateDatabase() {
       if (data.nkillus === '') {
         data.nkillus = 0;
       }
-      serverFile.insertRowIntoTerrorismTable(data.summary, data.country_txt, data.region_txt, data.attacktype1_txt, data.targtype1_txt, data.gname, data.weaptype1_txt, data.weapsubtype1_txt, data.nkill, data.nkillus);
+      databaseFile.insertRowIntoTerrorismTable(data.summary, data.country_txt, data.region_txt, data.attacktype1_txt, data.targtype1_txt, data.gname, data.weaptype1_txt, data.weapsubtype1_txt, data.nkill, data.nkillus);
     })
     .on('end', () => {
       // Actions to perform when reading is finished
