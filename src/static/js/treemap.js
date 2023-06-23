@@ -137,12 +137,12 @@ function treemapDisplayer(title, data) {
     const config = initializeTreemap(title, data);
 
     const treemap = new Chart(
-        document.getElementById('canvas2'),
+        document.getElementById('treemap'),
         config
     );
 
     activeChart = [treemap];
-    activeChartId = 'canvas2';
+    activeChartId = 'treemap';
 }
 
 function makeActualTreemap(title) {
