@@ -128,7 +128,7 @@
   width: 100%;
 }
 
-.sidebar .fa-magnifying-glass {
+/*.sidebar .fa-magnifying-glass {
   position: absolute;
   top: 50%;
   left: 0;
@@ -146,7 +146,7 @@
 .sidebar .fa-magnifying-glass:hover {
   background: #FFF;
   color: #11101d;
-}
+}*/
 
 .sidebar li a {
   display: flex;
