@@ -15,34 +15,76 @@ const readHTML = (filePath, res) => {
 const handleViewRequest = (req, res) => {
     const URL = req.url;
     if (URL === '/view/register') {
+        if (verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         registerView(req, res);
     } else if (URL === '/view/login') {
+        if (verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         loginView(req, res);
     } else if (URL === '/view/forgot-password') {
+        if (verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         forgotPasswordView(req, res);
     } else if (URL === '/view/reset-password') {
+        if (verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         resetPasswordView(req, res);
     } else if (URL === '/view/home') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         homeView(req, res);
     } else if (URL === '/view/about-us') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         aboutUsView(req, res);
     }
     // --------------------- CHART PAGES ------------------
     else if (URL === '/view/country') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         countryView(req, res);
     } else if (URL === '/view/region') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         regionView(req, res);
     } else if (URL === '/view/method-of-attack') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         methodOfAttackView(req, res);
     } else if (URL === '/view/target') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         targetView(req, res);
     } else if (URL === '/view/terrorist-groups') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         terroristGroupsView(req, res);
     } else if (URL === '/view/weapons') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         weaponsView(req, res);
     } else if (URL === '/view/deaths') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         deathsView(req, res);
     } else if (URL === '/view/deaths-us') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         deathsUSView(req, res);
     }
         // else if (URL === '/view/attack') {
@@ -50,10 +92,19 @@ const handleViewRequest = (req, res) => {
         // }
     // --------------------- END ------------------    
     else if (URL === '/view/saved-cards') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         savedCardsView(req, res);
     } else if (URL === '/view/search-page') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         searchView(req, res);
     } else if (URL === '/view/users') {
+        if (!verifyJWTRole(res, req, config.userRole)) {
+            return;
+        }
         usersView(req, res);
     } else if (URL === '/view/admin') {
         if (!verifyJWTRole(res, req, config.userRole)) {
