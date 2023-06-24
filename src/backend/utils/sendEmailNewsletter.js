@@ -5,7 +5,7 @@ function sendEmail(email, message, subject) {
   const options = {
     from: "bddsolutions.tw@gmail.com", // sender address
     to: email, // receiver email
-    subject: "Newsletter Confirmation", // Subject line
+    subject: subject, // Subject line
     text: message,
     html: HTML_TEMPLATE(message),
   }
@@ -16,7 +16,5 @@ function sendEmail(email, message, subject) {
     console.log("MESSAGE ID: ", info.messageId);
   });
 }
-
-// sendEmail();
 
 module.exports = sendEmail;

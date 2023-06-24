@@ -6,7 +6,6 @@ const paginationController = require("./paginationController");
 const searchController = require("./searchController");
 const treemapController = require("./treemapController");
 const worldmapController = require("./worldmapController");
-const sendEmailModel = require("../utils/sendEmailNewsletter.js");
 const sendEmail = require('../utils/sendEmailNewsletter.js');
 const filteringModel = require('../model/filteringModel');
 const paginationModel = require('../model/paginationModel');
@@ -69,7 +68,7 @@ const handleApiRequest = async (req, res, pool) => {
         const queryParams = parsedUrl.query;
         const countries = queryParams.countries;
         const attackTypes = queryParams.attackTypes;
-        const page = queryParams.page;
+        let page = queryParams.page;
         if (page > 18170) {
             page = 1; //any page over 18170 (the last calculated page will be assigned to the first page)
         }

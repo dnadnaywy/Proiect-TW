@@ -13,7 +13,7 @@ const {encryptedPassword, matchPassword} = require('../security/passwordEncrypte
 const config = require('../utils/configuration');
 const userModel = require("../model/userModel");
 const jwt = require("jsonwebtoken");
-const {sendEmailNewsletter} = require("../utils/sendEmailNewsletter");
+const sendEmail = require("../utils/sendEmailNewsletter");
 const authenticationController = async (req, res, pool) => {
     const method = req.method;
     const URL = req.url;
@@ -22,14 +22,13 @@ const authenticationController = async (req, res, pool) => {
     if (method === 'POST') {
         if (endpoint === 'register') {
 
-            // let fields = ['username', 'firstname', 'lastname', 'email', 'password', 'birthdate', 'phonenumber'];
+            let fields = ['username', 'firstname', 'lastname', 'email', 'password', 'birthdate', 'phonenumber'];
+            const user = await parseJSON(req);
+            if (!await matchJSONProperties(fields, user, res)) {
+                return;
+            }
 
-            // const copyReq = req;
-            // if (!await matchJSONProperties(fields, copyReq, res)) {
-            //     return;
-            // }
-
-            await registerUser(req, res, pool);
+            await registerUser(user, res, pool);
 
         } else if (endpoint === 'login') {
 
@@ -46,6 +45,7 @@ const authenticationController = async (req, res, pool) => {
 
         } else if (endpoint === 'forgot-password') {
             await forgotPassword(req, res, pool);
+        } else if (endpoint === 'reset-password') {
             await updatePassword(req, res, pool);
         } else {
             res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -59,9 +59,7 @@ const authenticationController = async (req, res, pool) => {
 }
 
 
-const registerUser = async (req, res, pool) => {
-
-    const userFields = await parseJSON(req);
+const registerUser = async (userFields, res, pool) => {
 
     if (!registerMissingFields(userFields, res)) {
         return;
@@ -123,8 +121,7 @@ const loginUser = async (userFields, res, pool) => {
 
         security.handleSecurity(res, userDatabase);
         sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged in successfully'});
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e);
     }
 }
@@ -135,32 +132,28 @@ const logoutUser = async (res) => {
 }
 
 const forgotPassword = async (req, res, pool) => {
-    const user = parseJSON(req);
-    //  const username = user.username;
-    const userDetails = await userModel.getUser(user, pool);
+    const user = await parseJSON(req);
+    const userDetails = await userModel.getUser(user, res, pool);
     if (userDetails === null) {
-        sendMessage(res, {statusCode: 404, status: 'Not Found', message: 'enter your eamil username or phonenumber'});
+        sendMessage(res, {statusCode: 404, status: 'Not Found', message: 'User not found'});
         return;
     }
+    const RESET_PASSWORD_KEY = 'resetpasswordkey'
+    const token = jwt.sign({username: userDetails.username}, RESET_PASSWORD_KEY, {expiresIn: '20m'});
 
-    const userDatabase = await users.getUser();
+    const link = `http://localhost:3000/view/reset-password`;
+    const message = "Hi there, your link to reset your password is here.<br>" + link + "<br> and here is the code to reset the password: <br>" + token + "<br>Thank you,<br>BDDSolutions Team<br>"
 
-    const token = jwt.sign(userDatabase.username, process.env.RESET_PASSWORD_KEY, {expiresIn: '20m'});
-
-    const link = `http://localhost:3000/view/reset-password/${token}`;
-    const message = "Hi there, your link to reset your password is here.<br><br><br>Thank you,<br>BDDSolutions Team"
-
-
-    if (!await user.updateUserToken(userDatabase.username, token, pool)) {
+    if (!await userModel.updateUserToken(userDetails.username, token, pool)) {
         sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'reset password token not updated'})
     } else {
         try {
-            sendEmailNewsletter(userDatabase.email, "Reset Password", message);
+            sendEmail(userDetails.email, message, "Reset Password");
         } catch (e) {
             sendMessage(res, {
                 statusCode: 400,
                 status: 'Bad Request',
-                message: 'Email with reset link password have not been send'
+                message: 'Email with reset link password have not been send ' + e.message
             });
             return;
         }
@@ -172,34 +165,31 @@ const forgotPassword = async (req, res, pool) => {
     }
 }
 
-async function updatePassword(req, res) {
-    const {token, password} = req.body;
-
+async function updatePassword(req, res, pool) {
+    const details = await parseJSON(req);
+    const token = details.jwt;
+    const password = details.password;
     if (token) {
-        jwt.verify(token, process.env.RESET_PASSWORD_KEY, async function (err, decodedToken) {
+        jwt.verify(token, 'resetpasswordkey', async function (err, decodedToken) {
             if (err) {
                 sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Incorrect or expired link'});
                 return;
             }
-
-            const userDatabase = await userModel.getUserByResetLink(token, userpool)
+            const userDatabase = await userModel.getUserByResetLink(token, pool)
             if (userDatabase === null) {
                 sendMessage(res, {statusCode: 404, status: 'Not Found', message: 'User not found'});
                 return;
             }
             const hashPassword = await encryptedPassword(password);
             userDatabase.password = hashPassword;
-            if (!await user.updateUser(userDatabase, pool)) {
+            console.log("HERE")
+            if (!await userModel.updateUser(userDatabase, pool)) {
                 sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Password not updated'});
                 return;
             }
             sendMessage(res, {statusCode: 200, status: 'OK', message: 'Your password has been changed'});
         })
-
-        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Your reset link is not valid'});
-
     }
-
 }
 
 

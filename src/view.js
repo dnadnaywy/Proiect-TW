@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { verifyJWTRole } = require("./backend/security/jwtAccesProvider");
+const {verifyJWTRole} = require("./backend/security/jwtAccesProvider");
 const config = require("./backend/utils/configuration");
 const readHTML = (filePath, res) => {
     res.setHeader('Content-Type', 'text/html');
@@ -12,7 +12,6 @@ const readHTML = (filePath, res) => {
         }
     });
 }
-
 const handleViewRequest = (req, res) => {
     const URL = req.url;
     if (URL === '/view/register') {
@@ -20,7 +19,9 @@ const handleViewRequest = (req, res) => {
     } else if (URL === '/view/login') {
         loginView(req, res);
     } else if (URL === '/view/forgot-password') {
-        changePasswordView(req, res);
+        forgotPasswordView(req, res);
+    } else if (URL === '/view/reset-password') {
+        resetPasswordView(req, res);
     } else if (URL === '/view/home') {
         homeView(req, res);
     } else if (URL === '/view/about-us') {
@@ -44,10 +45,10 @@ const handleViewRequest = (req, res) => {
     } else if (URL === '/view/deaths-us') {
         deathsUSView(req, res);
     }
-    // else if (URL === '/view/attack') {
-    //     attackView(req, res);
-    // }
-    // --------------------- END ------------------
+        // else if (URL === '/view/attack') {
+        //     attackView(req, res);
+        // }
+    // --------------------- END ------------------    
     else if (URL === '/view/saved-cards') {
         savedCardsView(req, res);
     } else if (URL === '/view/search-page') {
@@ -78,7 +79,6 @@ function homeView(req, res) {
 const registerView = (req, res) => {
     const filePath = '../view/register.html';
     readHTML(filePath, res);
-
 }
 
 const loginView = (req, res) => {
@@ -86,11 +86,14 @@ const loginView = (req, res) => {
     readHTML(filePath, res);
 }
 
-const changePasswordView = (req, res) => {
+const forgotPasswordView = (req, res) => {
     const filePath = '../view/forgot-password.html';
     readHTML(filePath, res);
 }
-
+const resetPasswordView = (req, res, modifiedURL) => {
+    const filePath = '../view/reset-password.html';
+    readHTML(filePath, res);
+}
 const aboutUsView = (req, res) => {
     const filePath = '../view/about-us-page.html';
     readHTML(filePath, res);
@@ -138,12 +141,10 @@ const deathsUSView = (req, res) => {
     readHTML(filePath, res);
 }
 
-// const attackView = (req, res) => {
-//     const filePath = '../view/attack.html';
-//     readHTML(filePath, res);
-// }
-
-// --------------------- END ------------------
+const attackView = (req, res) => {
+    const filePath = '../view/attack.html';
+    readHTML(filePath, res);
+}
 
 const savedCardsView = (req, res) => {
     const filePath = '../view/saved-cards-page.html';
@@ -154,10 +155,10 @@ const searchView = (req, res) => {
     const filePath = '../view/search-page.html';
     readHTML(filePath, res);
 }
-
 const usersView = (req, res) => {
     const filePath = '../view/users.html';
     readHTML(filePath, res);
 }
- 
+
+
 module.exports = handleViewRequest;

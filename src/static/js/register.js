@@ -4,7 +4,6 @@ form.addEventListener('submit', function(event) {
     event.preventDefault();
 
 
-    alert("test")
     const firstname = document.getElementById('firstname').value;
     const lastname = document.getElementById('lastname').value;
     const username = document.getElementById('username').value;

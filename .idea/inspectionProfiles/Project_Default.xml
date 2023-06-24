@@ -17,6 +17,8 @@
       </option>
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
+    <inspection_tool class="SqlCurrentSchemaInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
+    <inspection_tool class="SqlResolveInspection" enabled="true" level="INFORMATION" enabled_by_default="true" />
     <inspection_tool class="TrivialIfJS" enabled="true" level="INFORMATION" enabled_by_default="true" />
   </profile>
 </component>

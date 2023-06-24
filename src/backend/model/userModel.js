@@ -140,10 +140,13 @@ const updateUser = async (user, pool) => {
                            password    = $4,
                            role        = $5,
                            birthdate   = $6,
-                           phonenumber = $7
+                           phonenumber = $7,
+                           resetlink = ''
                        WHERE username = $8`;
-        const values = [user.firstname, user.lastname, user.username, user.email, user.password, user.role, user.birthdate, user.phonenumber, user.username];
+        const values = [user.firstname, user.lastname, user.email, user.password, user.role, user.birthdate, user.phonenumber, user.username];
+        console.log("HERE2")
         await client.query(query, values);
+        console.log("HERE3")
         client.release();
         return true;
     } catch (error) {
@@ -153,11 +156,11 @@ const updateUser = async (user, pool) => {
     }
 }
 
-const updateUserToken = async (username, token, pool) => {
+const updateUserToken = async (username, resetLink, pool) => {
     const client = await pool.connect();
     try {
-        const query = 'UPDATE users SET resetLink = $1 WHERE username = $2';
-        const values = [token, username];
+        const query = 'UPDATE users SET "resetlink" = $1 WHERE username = $2';
+        const values = [resetLink, username];
         await client.query(query, values);
         client.release();
         return true;
