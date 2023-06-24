@@ -97,33 +97,29 @@ const registerUser = async (userFields, res, pool) => {
 }
 
 const loginUser = async (userFields, res, pool) => {
-    try {
-        if (!loginMissingFields(userFields, res)) {
-            return;
-        }
-        const userDatabase = await users.getUser(userFields, res, pool);
-
-        if (userDatabase === null) {
-            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User not found'})
-            return;
-        }
-
-        if (userDatabase.deleted === true) {
-            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User deleted'})
-            return;
-        }
-
-        let currentPassword = userFields.password;
-        let databaseHashPassword = userDatabase.password;
-        if (!await matchPassword(currentPassword, databaseHashPassword, res)) {
-            return;
-        }
-
-        security.handleSecurity(res, userDatabase);
-        sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged in successfully'});
-    } catch (e) {
-        console.log(e);
+    if (!loginMissingFields(userFields, res)) {
+        return;
     }
+    const userDatabase = await users.getUser(userFields, res, pool);
+
+    if (userDatabase === null) {
+        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User not found'})
+        return;
+    }
+
+    if (userDatabase.deleted === true) {
+        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User deleted'})
+        return;
+    }
+
+    let currentPassword = userFields.password;
+    let databaseHashPassword = userDatabase.password;
+    if (!await matchPassword(currentPassword, databaseHashPassword, res)) {
+        return;
+    }
+
+    security.handleSecurity(res, userDatabase);
+    sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged in successfully'});
 }
 
 const logoutUser = async (res) => {
