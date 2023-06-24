@@ -148,13 +148,20 @@
 }
 
 .pagination-pages {
+  background-color: #FFFFFF;
   padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
   border-radius: 14px;
+  transition: all 0.5s;
 }
 
 .pagination-pages:hover {
+  transition: all 0.5s;
   cursor: pointer;
+  border: none;
   background-color: #7048D5;
+  color: #fff;
 }
 
 /* ------------------------------------------------------- */

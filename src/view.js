@@ -15,22 +15,22 @@ const readHTML = (filePath, res) => {
 const handleViewRequest = (req, res) => {
     const URL = req.url;
     if (URL === '/view/register') {
-        if (!verifyJWTRole(res, req, config.userRole)) {
+        if (verifyJWTRole(res, req, config.userRole)) {
             return;
         }
         registerView(req, res);
     } else if (URL === '/view/login') {
-        if (!verifyJWTRole(res, req, config.userRole)) {
+        if (verifyJWTRole(res, req, config.userRole)) {
             return;
         }
         loginView(req, res);
     } else if (URL === '/view/forgot-password') {
-        if (!verifyJWTRole(res, req, config.userRole)) {
+        if (verifyJWTRole(res, req, config.userRole)) {
             return;
         }
         forgotPasswordView(req, res);
     } else if (URL === '/view/reset-password') {
-        if (!verifyJWTRole(res, req, config.userRole)) {
+        if (verifyJWTRole(res, req, config.userRole)) {
             return;
         }
         resetPasswordView(req, res);
