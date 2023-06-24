@@ -19,7 +19,6 @@ async function displayDataFromDatabase() {
         });
 
         html += `<div class="pagination">
-    <button class="pagination-pages previous-button">Previous Page</button>
     <button class="pagination-pages next-button" current-page="1">Next Page</button>
   </div>`;
 
