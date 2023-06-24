@@ -1,27 +1,134 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Page</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/users.css">
-</head>
-<body>
-<table id="userTable">
-    <tr>
-        <th>Nume de utilizator</th>
-        <th>Email</th>
-        <th>Actiuni</th>
-    </tr>
-</table>
+<html lang="en">
 
-<div id="confirmModal" class="modal">
-    <div class="modal-content">
-        <h2>Confirmare stergere</h2>
-        <p>Esti sigur ca vrei sa stergi acest utilizator?</p>
-        <button id="confirmDelete">Da</button>
-        <button id="cancelDelete">Nu</button>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="website icon" type="png" href="../static/images/logo.png">
+
+    <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="../static/css/responsive-page.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/sidebar.css">
+    <link rel="stylesheet" href="../static/css/responsive-text-box.css">
+    <link rel="stylesheet" href="../static/css/canvas.css">
+    <link rel="stylesheet" href="../static/css/content-in-page.css">
+    <link rel="stylesheet" href="../static/css/worldmap.css">
+    <link rel="stylesheet" href="../static/css/register.css">
+    <link rel="stylesheet" href="../static/css/users.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+</head>
+
+
+<body>
+<div class="d-flex flex-column justify-content-center w-100 h-100">
+
+    <div class="header">
+
+        <div class="title">
+            <div class="menu-bars">
+                <i class='fa-solid fa-bars' id="btn"></i>
+            </div>
+            <a href="home">
+                <img src="../static/images/logo.png" class="logo">
+            </a>
+            <a href="home" class="link-logo">
+                <p>International <b>Terrorism</b> Database</p>
+            </a>
+        </div>
+
+
+        <div class="header-board">
+            <nav>
+                <ul>
+                    <li><a href="login"><button class="header-button header-button-left">Login</button></a>
+                    </li>
+                    <li>
+                        <a href="register">
+                            <button class="header-button header-button-right">Sign up</button>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <div class="content-in-page">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="title-content">
+                    <htitle>Administration</htitle>
+                    <hr class="line">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="containerRegister" style="align-items: flex-start; margin-top: 50px">
+
+            <table id="userTable">
+                <tr id="he">
+                    <th>Nume de utilizator</th>
+                    <th>Email</th>
+                    <th>Actiuni</th>
+                </tr>
+            </table>
+
+            <div id="confirmModal" class="modal">
+                <div class="modal-content">
+                    <h2>Confirmare stergere</h2>
+                    <p>Esti sigur ca vrei sa stergi acest utilizator?</p>
+                    <button id="confirmDelete">Da</button>
+                    <button id="cancelDelete">Nu</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="bold-footer">
+        <b>About us</b>
+        <hr class="horizontal-line">
+        <a href="about-us">
+            <p class="other-info-footer"><i>Get in touch</i></p>
+        </a>
+    </div>
+    <div class="bold-footer">
+        <b>Terms</b>
+        <hr class="horizontal-line">
+        <a href="#">
+            <p class="other-info-footer">Terms & Conditions</p>
+        </a>
+        <a href="#">
+            <p class="other-info-footer">Privacy Policy</p>
+        </a>
+    </div>
+    <div class="icons">
+        <div><img src="../static/images/4logos.png" alt="social-media-logos" class="social-media-logos"></div>
     </div>
 </div>
 
 <script src="../static/js/users.js"></script>
+
 </body>
+
+
 </html>
+
+
