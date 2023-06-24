@@ -11,20 +11,18 @@ function fetchData() {
                 return response.json();
             })
             .then(data => {
-                resolve(data); // Resolve the Promise with the JSON data
+                resolve(data);
             })
             .catch(error => {
-                reject(error); // Reject the Promise with the error
+                reject(error);
             });
     });
 }
 
 function renderMap(worldData, terrorismData) {
-    // Get the screen width and height
     const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-    // Set up the container dimensions
     let width, height;
     const margin = { top: 20, right: 20, bottom: 20, left: 20 };
     if (screenWidth < 1024) {
@@ -35,7 +33,6 @@ function renderMap(worldData, terrorismData) {
         height = 400;
     }
 
-    // Create the SVG element
     const svg = d3
         .select('#map-container')
         .append('svg')
@@ -52,7 +49,6 @@ function renderMap(worldData, terrorismData) {
         .scaleExtent([1, 8])
         .on('zoom', zoomed);
 
-    // Attach zoom behavior to the SVG element
     svg.call(zoom);
 
     // Create a group for the map elements
@@ -78,33 +74,24 @@ function renderMap(worldData, terrorismData) {
         .domain([0, 100, 500, 1000, 5000, 10000, 15000, 20000, 25000])
         .range(d3.schemePurples[9]);
 
-    // Set the fill color of each country based on the number of attacks
     map.selectAll('.country')
         .attr('fill', d => {
             const countryData = terrorismData.find(item => item.country === d.properties.name);
             return colorScale(countryData ? countryData.count : 0);
         })
         .each(function (d) {
-            // Store the original fill color as a data attribute
             const originalColor = d3.select(this).attr('fill');
             d3.select(this).attr('data-original-fill', originalColor);
         });
 
-    // Add hover effect to darken the color
     map.selectAll('.country')
-        .on('mouseover', function () {
+        .on('mouseover', function (event, d) {
+            // Darken colour
             const originalColor = d3.select(this).attr('fill');
             const darkerColor = d3.color(originalColor).darker(0.8);
             d3.select(this).attr('fill', darkerColor);
-        })
-        .on('mouseout', function () {
-            // Restore the original color
-            const originalColor = d3.select(this).attr('data-original-fill');
-            d3.select(this).attr('fill', originalColor);
-        });
 
-    map.selectAll('.country')
-        .on('mouseover', function (event, d) {
+            // Tooltip
             const countryData = terrorismData.find(item => item.country === d.properties.name);
             const tooltipContent = countryData ? `<strong>${d.properties.name}</strong><br/>Attacks: ${countryData.count}` : d.properties.name;
 
@@ -116,6 +103,11 @@ function renderMap(worldData, terrorismData) {
                 .style("top", (event.pageY - 28) + "px");
         })
         .on('mouseout', function () {
+            // Restore the original color
+            const originalColor = d3.select(this).attr('data-original-fill');
+            d3.select(this).attr('fill', originalColor);
+
+            // Tooltip
             tooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
@@ -132,7 +124,7 @@ function renderMap(worldData, terrorismData) {
         if (clickedCountry.classed("active")) {
             resetZoom(event);
         } else {
-            zoomToCountry(event, feature); 
+            zoomToCountry(event, feature);
         }
     }
 
@@ -179,7 +171,7 @@ const worldDataUrl = 'https://raw.githubusercontent.com/holtzy/D3-graph-gallery/
 // Load the GeoJSON data for the world map
 d3.json(worldDataUrl).then(worldData => {
     fetchData().then(terrorismData => {
-        renderMap(worldData, terrorismData); 
+        renderMap(worldData, terrorismData);
     }).catch(error => {
         console.log('Error:', error);
     });

@@ -10,7 +10,6 @@ const handleSecurity = (res, user) => {
     } else {
         let token = generateToken(user);
         setCookie(res, token);
-        //   console.log('token', token);
     }
 }
 
@@ -21,8 +20,6 @@ const generateToken = (user) => {
         email: user.email
     };
 
-    console.log(jwt.sign(payload, JWT_SECRETKEY, {expiresIn: '2h'}));
-
     return jwt.sign(payload, JWT_SECRETKEY, {expiresIn: '2h'});
 }
 
@@ -31,8 +28,6 @@ const setCookie = (res, token) => {
     const options = {
         path: '/',
         httpOnly: true
-        // ,
-        // secure: true
     };
     res.setHeader('Set-Cookie', serialize('token', token, options));
 }
@@ -62,22 +57,12 @@ const decodedJWT = (req) => {
     return null;
 }
 
-const authorized = (res, req) => {
-    const decodeJWT = decodedJWT(res, req);
-
-    if (!decodeJWT) {
-        return false;
-    }
-
-    return true;
-}
-
 const verifyJWTRole = (res, req, role) => {
 
     const decoded = decodedJWT(req);
 
     if (!decoded) {
-        sendMessage(res, {statusCode: 401, status: 'Unauthorized', message: 'No token provided you need to login'});
+        sendMessage(res, {statusCode: 401, status: 'Unauthorized', message: 'No token provided, you need to login'});
         return false;
     }
 
@@ -86,7 +71,7 @@ const verifyJWTRole = (res, req, role) => {
         sendMessage(res, {
             statusCode: 401,
             status: 'Unauthorized',
-            message: 'You cannot delete the account'
+            message: 'You do not have permission to access this resource.'
         });
         return false;
     }
@@ -94,4 +79,4 @@ const verifyJWTRole = (res, req, role) => {
     return true;
 }
 
-module.exports = {handleSecurity, deleteCookie, verifyJWTRole, decodedJWT, authorized};
+module.exports = {handleSecurity, deleteCookie, verifyJWTRole, decodedJWT, generateToken};

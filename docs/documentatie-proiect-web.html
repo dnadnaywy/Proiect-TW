@@ -12,7 +12,7 @@
 </head>
 
 <header>
-    <h2>International Terrorism Database</h2>
+    <h1>International Terrorism Database</h1>
 </header>
 
 <body>
@@ -20,8 +20,7 @@
     <div class=" content-in-page">
         <h2>Content</h2>
         <ol>
-            <li>
-                <h1>Introducere</h1>
+            <li><a href="#introduction">Introducere</a>
                 <ul dir="auto">
                     <li> 1.1 <a href="#purpose"> Scop </a></li>
                     <li> 1.2 <a href="#conventions"> Conventii tipografice </a></li>
@@ -77,10 +76,12 @@
         <section id="purpose" role="doc-purpose">
             <h3>1.1 Scopul documentului</h3>
             <p>
-                Scopul acestui document este să prezinte detaliile aplicației 'International Terrorism Database'. 
-                Acesta va cuprinde toate amănuntele legate de caracteristicile aplicației, interfața și modul în care trebuie să functioneze. 
-                Acest document va fi utilizat pentru a înțelege modul de utilizare a aplicației de persoanele care folosesc site-ul pentru prima dată.
-           </p>
+                Scopul acestui document este să prezinte detaliile aplicației 'International Terrorism Database'.
+                Acesta va cuprinde toate amănuntele legate de caracteristicile aplicației, interfața și modul în care
+                trebuie să functioneze.
+                Acest document va fi utilizat pentru a înțelege modul de utilizare a aplicației de persoanele care
+                folosesc site-ul pentru prima dată.
+            </p>
         </section>
         <section id="conventions" role="doc-conventions">
             <h3>1.2 Convenții tipografice</h3>
@@ -125,7 +126,8 @@
                 formate, inclusiv CSV, PNG și JSON. Astfel, utilizatorii vor putea descărca și utiliza informațiile mai
                 departe.
                 În plus, aplicația va oferi și suport pentru căutarea de incidente raportate în baza de date prin
-                intermediul unui REST API documentat cu Swagger, astfel încât și alte aplicații să poată accesa aceste date.
+                intermediul unui REST API documentat cu Swagger, astfel încât și alte aplicații să poată accesa aceste
+                date.
             </p>
         </section>
         <section id="references" role="doc-references">
@@ -135,7 +137,8 @@
             <ul>
                 <li>
                     <a href="https://www.w3schools.co"> Grafice, Media Query</a>
-                    <a href="https://www.freepik.com/search?format=search&last_filter=selection&last_value=1&query=terrorism&selection=1">Imagini</a>
+                    <a
+                        href="https://www.freepik.com/search?format=search&last_filter=selection&last_value=1&query=terrorism&selection=1">Imagini</a>
                     <a href="https://www.flaticon.com/">Vectori</a>
                     <a href="https://www.chartjs.org">Chart-uri</a>
                     <a href="https://d3js.org">World Map</a>
@@ -207,7 +210,8 @@
 
             <!--           diagrama use case-->
         </section>
-        <img src="Blank diagram.png" height=600px><!--           diagrama use case-->
+        <img src="Blank diagram.png" height=600px>
+        <!--           diagrama use case-->
 
         <section id="clasele" role="doc-clasele">
             <h3>2.3 Clasele și caracteristicile utilizatorului</h3>
@@ -219,7 +223,8 @@
                 sub formă de grafice și diagrame sau printr-o hartă interactivă.
                 Un utilizator logat va avea aceleași drepturi pe care le are un simplu vizitator. În plus, va putea
                 salva
-                evenimente din baza noastră de date într-o colecție și le va putea vedea în altă pagină. Va putea primi email-uri cu alerte despre atacuri noi
+                evenimente din baza noastră de date într-o colecție și le va putea vedea în altă pagină. Va putea primi
+                email-uri cu alerte despre atacuri noi
                 care
                 au loc. De asemenea, își va putea gestiona profilul.
                 Adminul este practic un utilizator autorizat să poată gestiona baza de date a aplicației, să actualizeze
@@ -269,11 +274,13 @@
                 </li>
                 <li>să trimită un email către adresa de email stabilită de administratori,
                 </li>
-                <li>să apese pe harta interactivă, selectând o locație și vizualizând informații despre atacurile teroriste din acea zonă,
+                <li>să apese pe harta interactivă, selectând o locație și vizualizând informații despre atacurile
+                    teroriste din acea zonă,
                 </li>
                 <li>să selecteze tipul de chart din butonul cu icon-urile ce ilustrează charturi,
                 </li>
-                <li>să apese lock sau unlock pe un card cu informații despre terorism cu scopul de a le salva într-o altă secțiune pe 
+                <li>să apese lock sau unlock pe un card cu informații despre terorism cu scopul de a le salva într-o
+                    altă secțiune pe
                     care să o acceseze mai târziu din meniu
                 </li>
             </ul>
@@ -286,60 +293,107 @@
             <h2>4. Caracteristicile proiectului</h2>
 
             <li> 4.1 <a href="#paginaPrincipala"> Pagina Principală </a></li>
-            <li> 4.2.1 <a href="https://media.discordapp.net/attachments/1085154384545075276/1121532049807900723/image.png?width=1381&height=670"> Treemap/Line/Pie Chart </a></li>
-            <li> 4.2.2 <a href="https://media.discordapp.net/attachments/1085154384545075276/1121532141847728209/image.png?width=1383&height=670"> Treemap/Line/Pie Chart </a></li>
-            <li> 4.2.3 <a href="https://cdn.discordapp.com/attachments/1085154384545075276/1121534392079241236/image.png"> Treemap/Line/Pie Chart </a></li>
+            <li> 4.1 <a href="#chartsPage"> Pagina de Chart-uri </a></li>
+            <li> 4.2.1 <a
+                    href="https://media.discordapp.net/attachments/1085154384545075276/1121532049807900723/image.png?width=1381&height=670">
+                    Treemap </a></li>
+            <li> 4.2.2 <a
+                    href="https://media.discordapp.net/attachments/1085154384545075276/1121532141847728209/image.png?width=1383&height=670">
+                    Line Chart </a></li>
+            <li> 4.2.3 <a
+                    href="https://cdn.discordapp.com/attachments/1085154384545075276/1121534392079241236/image.png">
+                    Pie Chart </a></li>
             <li> 4.3 <a href="#searchPage"> Pagina de Search </a></li>
             <li> 4.4 <a href="#loginPage"> Pagina de Login </a></li>
             <li> 4.5 <a href="#registerPage"> Pagina de Register </a></li>
             <li> 4.6 <a href="#aboutUs"> Pagina de About Us </a></li>
 
             <section id="paginaPrincipala" role="doc-paginaPrincipala">
-                <h3>4.1 Pagina Principala </h3>
+                <h3>4.1 Pagina Principală </h3>
                 <p>
-                    Pagina principala este o pagina ce contine o harta interativa, cu posibilitatea de a da zoom peste
-                    anumite zone pentru a afla informatii despre atacurile teroriste din acele zone. De asemenea, pe
-                    pagina principala se afla un meniu cu optiuni de navigare, un search bar si un buton de
+                    Pagina principală este o pagină ce conține o hartă interactivă, cu posibilitatea de a da zoom peste
+                    oricare țară pentru a afla informații despre atacurile teroriste din acea zonă. De asemenea, pe
+                    pagina principală se află un meniu cu opțiuni de navigare, un search bar și butoane de
                     login/register.
                 </p>
             </section>
 
-            <section id="treemapChartCountry" role="doc-treemapChartCountry">
-                <h3>4.2 Treemap Chart for Countries </h3>
+            <section id="chartsPage" role="doc-chartsPage">
+                <h3>4.2 Charts Page </h3>
                 <p>
-                    Pentru reprezentarea tarilor, am ales un chart de tip treemap, care ilustreaza foarte bine datele
-                    referitoare la numarul de incidente dintr-o anumita zona, pentru a ilustra gravitatea situatiei.
-                    De asemenea, am adaugat un buton de tip switch pentru a putea schimba intre tipul de chart dorit si
-                    mai jos, mai multe detalii si imagini despre acesta.
+                    Pagina de chart-uri reprezintă o pagină ce conține 3 tipuri de chart-uri: <a
+                        href="https://media.discordapp.net/attachments/1085154384545075276/1121532049807900723/image.png?width=1381&height=670">treemap</a>,
+                    <a
+                        href="https://media.discordapp.net/attachments/1085154384545075276/1121532141847728209/image.png?width=1383&height=670">line</a>
+                    și <a
+                        href="https://cdn.discordapp.com/attachments/1085154384545075276/1121534392079241236/image.png">pie</a>,
+                    toate acestea
+                    fiind aplicate pe datele din baza de date, pentru a putea vizualiza informații despre atacurile
+                    teroriste din
+                    lume. Chart-urile sunt reprezentate într-o manieră interactivă, cu posibilitatea de a da hover peste
+                    elemente pentru
+                    a afla mai multe detalii despre acestea.
+
+                    Utilizatorul ajunge pe pagina dedicată unui anumit criteriu de căutare, în funcție de butonul apăsat
+                    din meniu.
+                    Acesta are posibilitatea de a alege tipul de chart dorit, dintre cele 3 disponibile. În momentul în
+                    care unul dintre
+                    ele este selectat, se va afișa chart-ul respectiv, iar totodată, vor fi afișate și butoanele de
+                    download, pentru a putea
+                    exporta datele din chart în format PNG, CSV sau JSON. De asemenea, utilizatorul are posibilitatea de
+                    a schimba tipul
+                    de chart, fără a mai fi nevoie să se întoarcă pe pagina principală.
                 </p>
             </section>
 
-            <section id="lineChartRegion" role="doc-lineChartRegion">
-                <h3>4.3 Line Chart for Regions </h3>
+            <section id="searchPage" role="doc-searchPage">
+                <h3>4.3 Pagina de Search</h3>
                 <p>
-                    Pentru reprezentarea regiunilor, am ales un linechart care ilustreaza evolutia numarului de
-                    incidente in timp pentru cele mai afectate regiuni ale lumii.
-                    De asemenea, am adaugat un buton de tip switch pentru a putea schimba intre tipul de chart dorit si
-                    mai jos, mai multe detalii si imagini despre acesta.
+                    Pagina de Search este o pagină ce conține un formular de căutare, cu posibilitatea de a introduce
+                    criteriile de căutare pentru a afișa atacurile teroriste din baza de date care corespund acestora.
+                    Utilizatorul va putea alege criteriile de căutare dintr-o listă de opțiuni, iar în funcție de
+                    acestea, vor fi afișate rezultatele. De asemenea, utilizatorul are posibilitatea de a apăsa pe un
+                    buton
+                    de pe card pentru a vedea mai multe detalii despre atacul terorist respectiv, inclusiv mai multe
+                    detalii
+                    despre tipul de armă folosită și un scurt rezumat al atacului. Cel de-al doilea buton de pe card
+                    permite
+                    utilizatorului să salveze atacul terorist într-o colecție, pentru a putea fi accesat mai târziu.
+
+                    Toate aceste carduri sunt afișate câte 10 pe pagină, iar utilizatorul are posibilitatea de a naviga
+                    printre
+                    pagini, pentru a vedea toate datele disponibile.
                 </p>
             </section>
 
-            <section id="pieChartMOA" role="doc-pieChartMOA">
-                <h3>4.4 Pie Chart for Methods of Attack </h3>
+            <section id="loginPage" role="doc-loginPage">
+                <h3>4.4 Pagina de Login</h3>
                 <p>
-                    Pentru reprezentarea metodelor de atac, am ales pie chart-uri pentru a ilustra procentajul fiecarei
-                    metode, acestea fiind diverse.
-                    De asemenea, am adaugat un buton de tip switch pentru a putea schimba intre tipul de chart dorit si
-                    mai jos, mai multe detalii si imagini despre acesta.
+                    Pagina de Login este o pagină ce conține un formular de login, cu posibilitatea de a introduce
+                    username-ul și parola pentru a se autentifica în aplicație. De asemenea, conține și un buton de
+                    register, pentru a putea crea un cont nou, dar și un buton de resetare a parolei, în cazul în care
+                    utilizatorul a uitat-o. În cazul în care utilizatorul introduce datele de login
+                    greșite, acesta va primi un mesaj de eroare pentru a încerca din nou.
+                </p>
+            </section>
+
+            <section id="registerPage" role="doc-registerPage">
+                <h3>4.5 Pagina de Register</h3>
+                <p>
+                    Pagina de Register este o pagină ce conține un formular de înregistrare, cu posibilitatea de a
+                    introduce numele, username-ul, parola, numarul de telefon si adresa de email pentru a crea un cont
+                    nou în aplicație. De asemenea, conține și un buton de login, pentru a putea accesa contul nou creat.
+                    În cazul în care utilizatorul introduce datele de înregistrare greșite, acesta va primi un mesaj de
+                    eroare pentru a încerca din nou.
                 </p>
             </section>
 
             <section id="aboutUs" role="doc-aboutUs">
-                <h3>4.5 Pagina de About Us </h3>
+                <h3>4.6 Pagina de About Us </h3>
                 <p>
-                    Pagina de About Us cuprinde niste informatii despre autorii aplicatiei si experienta realizarii
+                    Pagina de About Us cuprinde niște informații despre autorii aplicației și experiența realizării
                     acesteia.
-                    De asemenea, include si o sectiune de inscriere la newsletter sau contact prin email.
+                    De asemenea, include și o secțiune de înscriere la newsletter sau contact prin email.
                 </p>
             </section>
         </section>
@@ -352,6 +406,13 @@
                 designul body-ului paginilor. Pe partea de charturi, fiecare a ales un tip de chart pe care l-a
                 implementat in javascript, iar apoi la final am facut impreuna integrarea tuturor elementelor si
                 organizarea paginilor.
+
+                Am adăugat în plus partea de backend a aplicației, care include partea de login/register/logout, partea
+                de
+                newsletter, partea de search, partea de salvare a cardurilor. Am adăugat și partea de integrare a
+                charturilor cu baza de date, pentru a putea afișa datele din baza de date în charturi și pentru a putea
+                face filtrări pe baza de date.
+                Toate aceste modificări se regăsesc în README.md, secțiunea Worklog.
                 </p>
             </section>
         </section>

@@ -24,9 +24,9 @@ function exportChartToCSV(title) {
                 }
                 break;
             }
-        case "canvas2":     // Treemap
+        case "treemap":     // Treemap
             {
-                myChart = Chart.getChart("canvas2");
+                myChart = Chart.getChart("treemap");
                 myChart.data.datasets[0].tree.forEach(element => {
                     csvData += `${element.key}, ${element.value}\n`;
                 });
@@ -68,8 +68,8 @@ function exportChartToPNG(title) {
             downloadPNG(Chart.getChart("pieChart"));
             downloadPNG(Chart.getChart("doughnutChart"));
             break;
-        case "canvas2":     // Treemap
-            downloadPNG(Chart.getChart("canvas2"));
+        case "treemap":     // Treemap
+            downloadPNG(Chart.getChart("treemap"));
             break;
         case "lineChart":        // Line chart
             downloadPNG(Chart.getChart("lineChart"));
@@ -111,9 +111,9 @@ function exportChartToJSON(title) {
                 }
                 break;
             }
-        case "canvas2":     // Treemap
+        case "treemap":     // Treemap
             {
-                myChart = Chart.getChart("canvas2");
+                myChart = Chart.getChart("treemap");
                 myChart.data.datasets[0].tree.forEach(element => {
                     const key = element.key;
                     const value = element.value;

@@ -26,122 +26,123 @@
 </head>
 
 
-<body onload="myFunction()">
-<div class="d-flex flex-column justify-content-center w-100 h-100">
+<body>
+    <div class="d-flex flex-column justify-content-center w-100 h-100">
 
-    <div class="header">
+        <div class="header">
 
-        <div class="title">
-            <div class="menu-bars">
-                <i class='fa-solid fa-bars' id="btn"></i>
+            <div class="title">
+                <div class="menu-bars">
+                    <i class='fa-solid fa-bars' id="btn"></i>
+                </div>
+                <a href="home">
+                    <img src="../static/images/logo.png" class="logo">
+                </a>
+                <a href="home" class="link-logo">
+                    <p>International <b>Terrorism</b> Database</p>
+                </a>
             </div>
-            <a href="home">
-                <img src="../static/images/logo.png" class="logo">
-            </a>
-            <a href="home" class="link-logo">
-                <p>International <b>Terrorism</b> Database</p>
-            </a>
+
+
+            <!--        <div class="header-board">-->
+            <!--            <nav>-->
+            <!--                <ul>-->
+            <!--                    <li>-->
+            <!--                        <button class="header-button header-button-left">Login</button>-->
+            <!--                    </li>-->
+            <!--                    <li>-->
+            <!--                        <button class="header-button header-button-right">Sign up</button>-->
+            <!--                    </li>-->
+            <!--                </ul>-->
+            <!--            </nav>-->
+            <!--        </div>-->
         </div>
 
 
-        <!--        <div class="header-board">-->
-        <!--            <nav>-->
-        <!--                <ul>-->
-        <!--                    <li>-->
-        <!--                        <button class="header-button header-button-left">Login</button>-->
-        <!--                    </li>-->
-        <!--                    <li>-->
-        <!--                        <button class="header-button header-button-right">Sign up</button>-->
-        <!--                    </li>-->
-        <!--                </ul>-->
-        <!--            </nav>-->
-        <!--        </div>-->
-    </div>
+        <div class="sidebar">
+
+            <ul class="nav-list">
+                <li>
+                    <a href="search-page">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span class="links_name">Search</span>
+                    </a>
+                    <span class="tooltip">Search</span>
+                </li>
+                <li>
+                    <a href="country">
+                        <i class="fa-solid fa-flag"></i>
+                        <span class="links_name">Country</span>
+                    </a>
+                    <span class="tooltip">Country</span>
+                </li>
+                <li>
+                    <a href="region">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <span class="links_name">Region</span>
+                    </a>
+                    <span class="tooltip">Region</span>
+                </li>
+                <li>
+                    <a href="method-of-attack">
+                        <i class='fa-solid fa-solid fa-bomb'></i>
+                        <span class="links_name">Method of Attack</span>
+                    </a>
+                    <span class="tooltip">Method of Attack</span>
+                </li>
+                <li>
+                    <a href="target">
+                        <i class='fa-solid fa-bullseye'></i>
+                        <span class="links_name">Target</span>
+                    </a>
+                    <span class="tooltip">Target</span>
+                </li>
+                <li>
+                    <a href="terrorist-groups">
+                        <i class='fa-solid fa-people-group'></i>
+                        <span class="links_name">Terrorist Groups</span>
+                    </a>
+                    <span class="tooltip">Terrorist Groups</span>
+                </li>
+                <li>
+                    <a href="weapons">
+                        <i class='fa-solid fa-gun'></i>
+                        <span class="links_name">Weapons</span>
+                    </a>
+                    <span class="tooltip">Weapons</span>
+                </li>
+                <li>
+                    <a href="deaths">
+                        <i class='fa-solid fa-cross'></i>
+                        <span class="links_name">Deaths</span>
+                    </a>
+                    <span class="tooltip">Deaths</span>
+                </li>
+                <li>
+                    <a href="deaths-us">
+                        <i class='fa-solid fa-cross'></i>
+                        <span class="links_name">Deaths (USA)</span>
+                    </a>
+                    <span class="tooltip">Deaths (USA)</span>
+                </li>
+            </ul>
+            <script src="../static/js/sidebar.js"></script>
+        </div>
 
 
-    <div class="sidebar">
-        <ul class="nav-list">
-            <li>
-                <a href="search-page">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span class="links_name">Search</span>
-                </a>
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="country">
-                    <i class="fa-solid fa-flag"></i>
-                    <span class="links_name">Country</span>
-                </a>
-                <span class="tooltip">Country</span>
-            </li>
-            <li>
-                <a href="region">
-                    <i class="fa-solid fa-earth-americas"></i>
-                    <span class="links_name">Region</span>
-                </a>
-                <span class="tooltip">Region</span>
-            </li>
-            <li>
-                <a href="method-of-attack">
-                    <i class='fa-solid fa-solid fa-bomb'></i>
-                    <span class="links_name">Method of Attack</span>
-                </a>
-                <span class="tooltip">Method of Attack</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='fa-solid fa-bullseye'></i>
-                    <span class="links_name">Target</span>
-                </a>
-                <span class="tooltip">Target</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='fa-solid fa-people-group'></i>
-                    <span class="links_name">Terrorist Groups</span>
-                </a>
-                <span class="tooltip">Terrorist Groups</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='fa-solid fa-gun'></i>
-                    <span class="links_name">Weapons</span>
-                </a>
-                <span class="tooltip">Weapons</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='fa-solid fa-cross'></i>
-                    <span class="links_name">Deaths</span>
-                </a>
-                <span class="tooltip">Deaths</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='fa-solid fa-cross'></i>
-                    <span class="links_name">Deaths (U.S.)</span>
-                </a>
-                <span class="tooltip">Deaths (U.S.)</span>
-            </li>
-        </ul>
-        <script src="../static/js/sidebar.js"></script>
-    </div>
+        <div class="content-in-page">
 
-
-    <div class="content-in-page">
-
-        <div class="row">
-            <div class="col-12">
-                <div class="title-content">
-                    <htitle>Logare</htitle>
-                    <hr class="line">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title-content">
+                        <htitle>Logare</htitle>
+                        <hr class="line">
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="containerRegister" style="align-items: flex-start; margin-top: 50px">
+            <div class="containerRegister" style="align-items: flex-start; margin-top: 50px">
                 <div class="form-wrapper">
                     <form id="login-form" method="POST" class="login-form">
 
@@ -173,34 +174,33 @@
 
         </div>
 
-</div>
+    </div>
 
 
-<div class="footer">
-    <div class="bold-footer">
-        <b>About us</b>
-        <hr class="horizontal-line">
-        <a href="about-us">
-            <p class="other-info-footer"><i>Get in touch</i></p>
-        </a>
+    <div class="footer">
+        <div class="bold-footer">
+            <b>About us</b>
+            <hr class="horizontal-line">
+            <a href="about-us">
+                <p class="other-info-footer"><i>Get in touch</i></p>
+            </a>
+        </div>
+        <div class="bold-footer">
+            <b>Terms</b>
+            <hr class="horizontal-line">
+            <a href="#">
+                <p class="other-info-footer">Terms & Conditions</p>
+            </a>
+            <a href="#">
+                <p class="other-info-footer">Privacy Policy</p>
+            </a>
+        </div>
+        <div class="icons">
+            <div><img src="../static/images/4logos.png" alt="social-media-logos" class="social-media-logos"></div>
+        </div>
     </div>
-    <div class="bold-footer">
-        <b>Terms</b>
-        <hr class="horizontal-line">
-        <a href="#">
-            <p class="other-info-footer">Terms & Conditions</p>
-        </a>
-        <a href="#">
-            <p class="other-info-footer">Privacy Policy</p>
-        </a>
-    </div>
-    <div class="icons">
-        <div><img src="../static/images/4logos.png" alt="social-media-logos"
-                  class="social-media-logos"></div>
-    </div>
-</div>
 
-<script src="../static/js/login.js"></script>
+    <script src="../static/js/login.js"></script>
 
 </body>
 

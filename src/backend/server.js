@@ -43,7 +43,7 @@ const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  Mapping(req, res); //
+  await Mapping(req, res); //
 });
 //-------------------------------------------------
 const port = 3000;
@@ -52,16 +52,14 @@ server.listen(port, () => {
 });
 //-----------------------------------------------
 async function Mapping(req, res) {
-    if (req.url.startsWith('/api')) {
+  if (req.url.startsWith('/api')) {
     await handleApiRequest(req, res, pool);
   } else if (req.url.startsWith('/view')) {
     handleViewRequest(req, res);
   } else {
-    console.log(req.url);
     const fileUrl = req.url;
     const filePath = path.resolve('..' + fileUrl);
     const fileExt = path.extname(filePath);
-    console.log(filePath);
     fs.readFile(filePath, (err, data) => {
       if (err) {
         res.writeHead(404, { 'Content-Type': 'text/plain' });

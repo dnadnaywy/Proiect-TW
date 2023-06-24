@@ -29,72 +29,17 @@ const handleApiRequest = async (req, res, pool) => {
         } finally {
             pool.end();
         }
-    } else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {
-        pieChartController.getCountAttackTypes(req, res, pool);
-    } else if (req.url === '/api/pie/country' && req.method === 'GET') {
-        const country = 'country';
-        pieChartController.getCountCountry(req, res, pool, country);
-    } else if (req.url === '/api/pie/region' && req.method === 'GET') {
-        const region = 'region';
-        pieChartController.getCountCountry(req, res, pool, region);
-    } else if (req.url === '/api/pie/target' && req.method === 'GET') {
-        const target = 'target';
-        pieChartController.getCountCountry(req, res, pool, target);
-    } else if (req.url === '/api/pie/group_name' && req.method === 'GET') {
-        const group_name = 'group_name';
-        pieChartController.getCountCountry(req, res, pool, group_name);
-    } else if (req.url === '/api/pie/weapon_type' && req.method === 'GET') {
-        const weapon_type = 'weapon_type';
-        pieChartController.getCountCountry(req, res, pool, weapon_type);
-    } else if (req.url === '/api/pie/weapon_subtype' && req.method === 'GET') {
-        const weapon_subtype = 'weapon_subtype';
-        pieChartController.getCountCountry(req, res, pool, weapon_subtype);
-    } else if (req.url === '/api/pie/nkill' && req.method === 'GET') {
-        const nkill = 'nkill';
-        pieChartController.getCountCountry(req, res, pool, nkill);
-    } else if (req.url === '/api/pie/nkill_us' && req.method === 'GET') {
-        const nkill_us = 'nkill_us';
-        pieChartController.getCountCountry(req, res, pool, nkill_us);
-    } else if (req.url === '/api/terrorist-cards' && req.method === 'GET') {
-        pieChartController.getAllRow(req, res, pool);
-    } else if (req.url.startsWith('/api/terrorist-card/') && req.method === 'GET') {
-        const id = req.url.substring(20);
-        pieChartController.getAllRowById(req, res, pool, id);
-    } else if (req.url.startsWith('/api/terrorist-cards') && req.method === 'GET') {
-        const queryParams = parsedUrl.query;
-        const countries = queryParams.countries;
-        const attackTypes = queryParams.attackTypes;
-        const page = queryParams.page;
-        if (page > 18170) {
-            page = 1; //any page over 18170 (the last calculated page will be assigned to the first page)
-        }
-        paginationModel.get10RowsAtOnce(req, res, pool, page, countries, attackTypes);
-    } else if (req.url === '/api/countries' && req.method === 'GET') {
-        searchController.getAllCountries(req, res, pool);
-    } //-------------------------------------sending emails-----------------------------------
-    else if (req.url === '/api/send-email' && req.method === 'POST') {
-        let email = "";
-        req.on("data", chunk => {
-            email += chunk;
-        });
-        req.on("end", () => {
-            sendEmail(email);
-            res.statusCode = 200;
-            res.end("Email sent successfully");
-        });
-    } //--------------------------------filters for search page ------------------------------
-    else if (req.url === '/api/filtering' && req.method === 'POST') {
-        filteringModel.getFiltering(req, res, pool);
-    }
+    } 
     // ----------------------------- PIE CHART ----------------------------------------------
-    else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {
-        pieChartController.getCountAttackTypes(req, res, pool);
-    } else if (req.url === '/api/pie/country' && req.method === 'GET') {
+    else if (req.url === '/api/pie/country' && req.method === 'GET') {
         const country = 'country';
         pieChartController.getCountCountry(req, res, pool, country);
     } else if (req.url === '/api/pie/region' && req.method === 'GET') {
         const region = 'region';
         pieChartController.getCountCountry(req, res, pool, region);
+    } else if (req.url === '/api/pie/attack_type' && req.method === 'GET') {
+        const attack_type = 'attack_type';
+        pieChartController.getCountCountry(req, res, pool, attack_type);
     } else if (req.url === '/api/pie/target' && req.method === 'GET') {
         const target = 'target';
         pieChartController.getCountCountry(req, res, pool, target);
@@ -120,6 +65,33 @@ const handleApiRequest = async (req, res, pool) => {
     } else if (req.url.startsWith('/api/terrorist-card/') && req.method === 'GET') {
         const id = req.url.substring(20);
         pieChartController.getAllRowById(req, res, pool, id);
+    } else if (req.url.startsWith('/api/terrorist-cards') && req.method === 'GET') {
+        const queryParams = parsedUrl.query;
+        const countries = queryParams.countries;
+        const attackTypes = queryParams.attackTypes;
+        const page = queryParams.page;
+        if (page > 18170) {
+            page = 1; //any page over 18170 (the last calculated page will be assigned to the first page)
+        }
+        paginationModel.get10RowsAtOnce(req, res, pool, page, countries, attackTypes);
+    } else if (req.url === '/api/countries' && req.method === 'GET') {
+        searchController.getAllCountries(req, res, pool);
+    } //-------------------------------------sending emails-----------------------------------
+    else if (req.url === '/api/send-email' && req.method === 'POST') {
+        let email = "";
+        req.on("data", chunk => {
+            email += chunk;
+        });
+        req.on("end", () => {
+            const message = "Hi there, your newsletter confirmation for subscribing at <b>bddsolutions</b> website is here.<br><br>Thank you,<br>BDDSolutions Team"
+            const subject= "Newsletter Confirmation";
+            sendEmail(email, message, subject);
+            res.statusCode = 200;
+            res.end("Email sent successfully");
+        });
+    } //--------------------------------filters for search page ------------------------------
+    else if (req.url === '/api/filtering' && req.method === 'POST') {
+        filteringModel.getFiltering(req, res, pool);
     }
     // ------------------------------ TREEMAP -----------------------------------------------
     else if (req.url === '/api/treemap/country' && req.method === 'GET') {

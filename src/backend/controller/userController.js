@@ -92,4 +92,6 @@ const getAllUsers = async (req, res, pool) => {
     res.end(JSON.stringify(users));
 }
 
+
+
 module.exports = {userController};
