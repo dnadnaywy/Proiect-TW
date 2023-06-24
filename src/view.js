@@ -19,7 +19,7 @@ const handleViewRequest = (req, res) => {
         registerView(req, res);
     } else if (URL === '/view/login') {
         loginView(req, res);
-    } else if (URL === '/view/forgot-password') {
+    } else if (URL === '/view/forgotPassword') {
         changePasswordView(req, res);
     } else if (URL === '/view/home') {
         homeView(req, res);
@@ -47,11 +47,10 @@ const handleViewRequest = (req, res) => {
     // else if (URL === '/view/attack') {
     //     attackView(req, res);
     // }
-    // --------------------- END ------------------    
+    // --------------------- END ------------------
     else if (URL === '/view/saved-cards') {
         savedCardsView(req, res);
-    }
-    else if (URL === '/view/search-page') {
+    } else if (URL === '/view/search-page') {
         searchView(req, res);
     } else if (URL === '/view/users') {
         usersView(req, res);
@@ -79,6 +78,7 @@ function homeView(req, res) {
 const registerView = (req, res) => {
     const filePath = '../view/register.html';
     readHTML(filePath, res);
+
 }
 
 const loginView = (req, res) => {
@@ -138,10 +138,12 @@ const deathsUSView = (req, res) => {
     readHTML(filePath, res);
 }
 
-const attackView = (req, res) => {
-    const filePath = '../view/attack.html';
-    readHTML(filePath, res);
-}
+// const attackView = (req, res) => {
+//     const filePath = '../view/attack.html';
+//     readHTML(filePath, res);
+// }
+
+// --------------------- END ------------------
 
 const savedCardsView = (req, res) => {
     const filePath = '../view/saved-cards-page.html';
@@ -152,10 +154,10 @@ const searchView = (req, res) => {
     const filePath = '../view/search-page.html';
     readHTML(filePath, res);
 }
+
 const usersView = (req, res) => {
     const filePath = '../view/users.html';
     readHTML(filePath, res);
 }
-
 
 module.exports = handleViewRequest;
