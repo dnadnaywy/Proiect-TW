@@ -52,7 +52,7 @@ server.listen(port, () => {
 });
 //-----------------------------------------------
 async function Mapping(req, res) {
-    if (req.url.startsWith('/api')) {
+  if (req.url.startsWith('/api')) {
     await handleApiRequest(req, res, pool);
   } else if (req.url.startsWith('/view')) {
     handleViewRequest(req, res);
