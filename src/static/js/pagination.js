@@ -52,7 +52,7 @@ function displayGivenPageContent(content) {
     });
 
     html += `<div class="pagination">
-    <button class="pagination-pages previous-button">Previous Page</button>
+    <button class="pagination-pages previous-button">Previous Page</button><div class="page-number-buttom">Page: ${currentPage}</div>
     <button class="pagination-pages next-button" current-page="${currentPage}">Next Page</button>
   </div>`;
 

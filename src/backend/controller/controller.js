@@ -8,7 +8,7 @@ const treemapController = require("./treemapController");
 const worldmapController = require("./worldmapController");
 const sendEmailModel = require("../utils/sendEmailNewsletter.js");
 const sendEmail = require('../utils/sendEmailNewsletter.js');
-
+const filteringModel = require('../model/filteringModel');
 
 const handleApiRequest = async (req, res, pool) => {
     const URL = req.url;
@@ -68,17 +68,20 @@ const handleApiRequest = async (req, res, pool) => {
         paginationController.get10RowsPagination(req, res, pool, page);
     } else if (req.url === '/api/countries' && req.method === 'GET') {
         searchController.getAllCountries(req, res, pool);
-    } else if (req.url === '/api/send-email' && req.method === 'POST') {
+    } //-------------------------------------sending emails-----------------------------------
+    else if (req.url === '/api/send-email' && req.method === 'POST') {
         let email = "";
         req.on("data", chunk => {
             email += chunk;
         });
-        console.log('am ajuns pe aici');
         req.on("end", () => {
             sendEmail(email);
             res.statusCode = 200;
             res.end("Email sent successfully");
         });
+    } //--------------------------------filters for search page ------------------------------
+    else if (req.url === '/api/filtering' && req.method === 'POST') {
+        filteringModel.getFiltering(req, res, pool);
     }
     // ----------------------------- PIE CHART ----------------------------------------------
     else if (req.url === '/api/countAttackTypes' && req.method === 'GET') {

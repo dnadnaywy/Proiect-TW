@@ -1,5 +1,5 @@
 const additionalCountries = ['India']; // Add more countries here
-const additionalAttackTypes = ['Armed Assault', 'Assassination', 'Bombing/Explosion', 'Facility/Infrastructure Attack', 'Hijacking', 'Hostage Taking (Barricade Incident)', 'Hostage Taking (Kidnapping)', 'Unarmed Assault', 'Unknown']; // Add more countries here
+const additionalAttackTypes = ['Armed Assault', 'Assassination', 'Bombing/Explosion', 'Facility/Infrastructure Attack', 'Hijacking', 'Hostage Taking (Barricade Incident)', 'Hostage Taking (Kidnapping)', 'Unarmed Assault', 'Unknown'];
 
 const countryFilterContainer = document.getElementById('countryFilterContainer');
 const countrySearchInput = document.getElementById('countrySearchInput');
@@ -23,22 +23,25 @@ async function getCountriesName() {
 
 // Function to add additional countries to the filter container
 async function addAdditionalCountries() {
-  await getCountriesName();
+    await getCountriesName();
 
-  additionalCountries.forEach((country) => {
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.className = 'filter-checkbox';
-    checkbox.dataset.filterCategory = 'country';
-    checkbox.dataset.filterValue = country.toLowerCase();
-
-    const label = document.createElement('label');
-    label.className = 'filters-options';
-    label.appendChild(checkbox);
-    label.appendChild(document.createTextNode(country));
-
-    countryFilterContainer.appendChild(label);
-  });
+    additionalCountries.forEach((country) => {
+      console.log('primul aici');
+  
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.className = 'filter-checkbox';
+      checkbox.dataset.filterCategory = 'country';
+      checkbox.dataset.filterValue = country.toLowerCase();
+  
+      const label = document.createElement('label');
+      label.className = 'filters-options';
+      label.appendChild(checkbox);
+      label.appendChild(document.createTextNode(country));
+  
+      countryFilterContainer.appendChild(label);
+    });
+    
 }
 
 function addAdditionalAttackTypes() {
@@ -59,8 +62,9 @@ function addAdditionalAttackTypes() {
 }
 
 // Add additional countries to the filter container
-addAdditionalCountries();
+
 addAdditionalAttackTypes();
+addAdditionalCountries();
 
 // Function to filter cards based on the selected filters and search input
 function filterCards() {
@@ -82,7 +86,6 @@ function filterCards() {
   const searchInput = countrySearchInput.value.trim().toLowerCase();
 
   Array.from(cards).forEach((card) => {
-    const countryName = card.getElementsByClassName('country-name')[0].textContent.toLowerCase();
     const regionName = card.getElementsByClassName('region-name')[0].textContent.toLowerCase();
     const attackTypeName = card.getElementsByClassName('attack-type-name')[0].textContent.toLowerCase();
 
@@ -90,7 +93,7 @@ function filterCards() {
 
     for (const filterCategory in selectedFilters) {
       const filterValues = selectedFilters[filterCategory];
-      const cardValue = filterCategory === 'country' ? countryName : filterCategory === 'attack-type' ? attackTypeName : regionName;
+      const cardValue = filterCategory === 'attack-type' ? attackTypeName : regionName;
 
       if (!filterValues.includes(cardValue)) {
         matchesFilter = false;
@@ -110,6 +113,7 @@ function filterCards() {
 
 // Event listeners
 Array.from(filterCheckboxes).forEach((checkbox) => {
+  console.log(checkbox);
   checkbox.addEventListener('change', filterCards);
 });
 
