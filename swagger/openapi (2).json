@@ -1,0 +1,766 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger GloT - OpenAPI 3.0",
+    "description": "„Colecția de date internaționale despre atacurile teroriste\" înglobează informații, după cum precizează și titlul, despre terorism. Pagină creată de echipa noastră are mai mult decât scop informativ asupra atacurilor teroriste, fenomen ce se răspândește tot mai des pe toate continentele. Ne dorim să atragem atenția a cât mai multor utilizatori asupra evenimentelor ce au loc în lume. Într-un mod atractiv vizual, proiectul web iși propune să evidențieze printr-o serie de grafice evoluția atacurilor teroriste: armele folosite, regiunile afectate, formele de atac, grupurile teroriste, grupurile țintă și pierderile cele mai mari, numărul de vieți luate.\n\nSome useful links:\n- [The repository](https://github.com/dnadnaywy/Proiect-TW)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
+    "contact": {
+      "email": "bddsolutions.tw@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "pie",
+      "description": "Pie Charts",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "treemap",
+      "description": "Treemap Charts",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "world map",
+      "description": "World Map"
+    },
+    {
+      "name": "search",
+      "description": "For search cards page"
+    }
+  ],
+  "paths": {
+    "/api/pie/country": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct countries",
+        "description": "Return top 10 countries and the number of times they appear in the database",
+        "operationId": "getCountCountry",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pie/region": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct regions",
+        "description": "Return top 10 regions and the number of times they appear in the database",
+        "operationId": "getCountRegion",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pie/target": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct targets",
+        "description": "Return top 10 targets and the number of times they appear in the database",
+        "operationId": "getCountTarget",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pie/group_name": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct terrorist groups",
+        "description": "Return top 10 terrorist groups and the number of times they appear in the database",
+        "operationId": "getCountGroupName",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pie/weapon_type": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct weapon types",
+        "description": "Return top 10 weapon types and the number of times they appear in the database",
+        "operationId": "getCountWeaponTypes",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pie/weapon_subtype": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct weapon_subtypes",
+        "description": "Return top 10 countries and the number of times they appear in the database",
+        "operationId": "getCountWeaponSubTypes",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pie/nkill": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct number of people killed in terrorist attacks",
+        "description": "Return top 10 people killed in terrorist attacks and the number of times they appear in the database",
+        "operationId": "getCountNKill",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/pie/nkill_us": {
+      "get": {
+        "tags": [
+          "pie"
+        ],
+        "summary": "Returns top 10 distinct number of people killed in terrorist attacks in US",
+        "description": "Return top 10 number of people killed in terrorist attacks in US and the number of times they appear in the database",
+        "operationId": "getCountNKill_us",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/country": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct countries in special format for treemap",
+        "description": "Return top 10 countries and the number of times they appear in the database",
+        "operationId": "getCountTreemapCountry",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/region": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct regions in special format for treemap",
+        "description": "Return top 10 regions and the number of times they appear in the database",
+        "operationId": "getCountTreemapRegion",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/target": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct targets in special format for treemap",
+        "description": "Return top 10 targets and the number of times they appear in the database",
+        "operationId": "getCountTreemapTargets",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/group_name": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct terrorist groups in special format for treemap",
+        "description": "Return top 10 terrorist groups and the number of times they appear in the database",
+        "operationId": "getCountTreemapTerroristGroups",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/weapon_type": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct weapons types in special format for treemap",
+        "description": "Return top 10 weapons types and the number of times they appear in the database",
+        "operationId": "getCountTreemapWeaponsTypes",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/weapon_subtype": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct weapons subtypes in special format for treemap",
+        "description": "Return top 10 weapons subtypes and the number of times they appear in the database",
+        "operationId": "getCountTreemapWeaponsSubtypes",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/nkill": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct number of people killed in a terrorist attack in special format for treemap",
+        "description": "Return top 10 number of people killed in a terrorist attack and the number of times they appear in the database",
+        "operationId": "getCountTreemapNKill",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/treemap/nkill_us": {
+      "get": {
+        "tags": [
+          "treemap"
+        ],
+        "summary": "Returns top 10 distinct number of people killed in a terrorist attack in the US in special format for treemap",
+        "description": "Return top 10 number of people killed in a terrorist attack in the US and the number of times they appear in the database",
+        "operationId": "getCountTreemapNKill_us",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/worldmap": {
+      "get": {
+        "tags": [
+          "world map"
+        ],
+        "summary": "Return the data necessary for the world map coloring",
+        "description": "desc",
+        "operationId": "getCountWorldMap",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Column"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/filtering": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Filters the cards in the searchPage",
+        "description": "Based on the chechboxes the user clicks in the page, his options are send using Ajax to the backend and then the server returns 10 cards that match his options.",
+        "operationId": "filtering",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Row"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error executing query"
+          }
+        }
+      }
+    },
+    "/api/terrorist-card/{id}": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Find card by ID",
+        "description": "Returns a single card.",
+        "operationId": "getCardById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id for searching",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Row"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "X-Rate-Limit": {
+                "description": "calls per hour allowed by the user",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "X-Expires-After": {
+                "description": "date in UTC when token expires",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/authentication/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 10
+          },
+          "username": {
+            "type": "string",
+            "example": "theUser"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "James"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          },
+          "phone": {
+            "type": "string",
+            "example": "12345"
+          },
+          "userStatus": {
+            "type": "integer",
+            "description": "User Status",
+            "format": "int32",
+            "example": 1
+          }
+        },
+        "xml": {
+          "name": "user"
+        }
+      },
+      "Column": {
+        "required": [
+          "column_name",
+          "count"
+        ],
+        "type": "object",
+        "properties": {
+          "column_name": {
+            "type": "string",
+            "example": "country"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "example": 82479
+          }
+        }
+      },
+      "Row": {
+        "required": [
+          "id",
+          "summary",
+          "country",
+          "region",
+          "attack_type",
+          "target",
+          "group_name",
+          "weapon_type",
+          "weapon_subtype",
+          "nkill",
+          "nkill_us"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 82479
+          },
+          "summary": {
+            "type": "string",
+            "example": "2/8/1970: In a series of related events, the Armed Revolutionary Independence Movement (MIRA) claimed credit for bombing the General Electric Service Center in Brooklyn, New York, United States.  There are no casualties but the building sustains minor damages."
+          },
+          "country": {
+            "type": "string",
+            "example": "United States"
+          },
+          "region": {
+            "type": "string",
+            "example": "North America"
+          },
+          "attack_type": {
+            "type": "string",
+            "example": "Assassination"
+          },
+          "target": {
+            "type": "string",
+            "example": "Private Citizens & Property"
+          },
+          "group_name": {
+            "type": "string",
+            "example": "Left-Wing Militants"
+          },
+          "weapon_type": {
+            "type": "string",
+            "example": "Firearms"
+          },
+          "weapon_subtype": {
+            "type": "string",
+            "example": "Automatic or Semi-Automatic Rifle"
+          },
+          "nkill": {
+            "type": "integer",
+            "format": "int64",
+            "example": 82479
+          },
+          "nkill_us": {
+            "type": "integer",
+            "format": "int64",
+            "example": 82479
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "petstore_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}
