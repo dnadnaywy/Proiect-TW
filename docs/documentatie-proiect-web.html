@@ -317,42 +317,66 @@
                 </p>
             </section>
 
-            <section id="treemapChartCountry" role="doc-treemapChartCountry">
-                <h3>4.2 Treemap Chart for Countries </h3>
+            <section id="chartPage" role="doc-chartPage">
+                <h3>4.2 Charts Page </h3>
                 <p>
-                    Pentru reprezentarea tarilor, am ales un chart de tip treemap, care ilustreaza foarte bine datele
-                    referitoare la numarul de incidente dintr-o anumita zona, pentru a ilustra gravitatea situatiei.
-                    De asemenea, am adaugat un buton de tip switch pentru a putea schimba intre tipul de chart dorit si
-                    mai jos, mai multe detalii si imagini despre acesta.
-                </p>
-            </section>
-
-            <section id="lineChartRegion" role="doc-lineChartRegion">
-                <h3>4.3 Line Chart for Regions </h3>
-                <p>
-                    Pentru reprezentarea regiunilor, am ales un linechart care ilustreaza evolutia numarului de
-                    incidente in timp pentru cele mai afectate regiuni ale lumii.
-                    De asemenea, am adaugat un buton de tip switch pentru a putea schimba intre tipul de chart dorit si
-                    mai jos, mai multe detalii si imagini despre acesta.
-                </p>
-            </section>
-
-            <section id="pieChartMOA" role="doc-pieChartMOA">
-                <h3>4.4 Pie Chart for Methods of Attack </h3>
-                <p>
-                    Pentru reprezentarea metodelor de atac, am ales pie chart-uri pentru a ilustra procentajul fiecarei
-                    metode, acestea fiind diverse.
-                    De asemenea, am adaugat un buton de tip switch pentru a putea schimba intre tipul de chart dorit si
-                    mai jos, mai multe detalii si imagini despre acesta.
+                    Pagina de chart-uri reprezintă o pagină ce conține 3 tipuri de chart-uri: treemap, line și pie, toate acestea 
+                    fiind aplicate pe datele din baza de date, pentru a putea vizualiza informații despre atacurile teroriste din
+                    lume. Chart-urile sunt reprezentate într-o manieră interactivă, cu posibilitatea de a da hover peste elemente pentru
+                    a afla mai multe detalii despre acestea.
+                    
+                    Utilizatorul ajunge pe pagina dedicată unui anumit criteriu de căutare, în funcție de butonul apăsat din meniu.
+                    Acesta are posibilitatea de a alege tipul de chart dorit, dintre cele 3 disponibile. În momentul în care unul dintre
+                    ele este selectat, se va afișa chart-ul respectiv, iar totodată, vor fi afișate și butoanele de download, pentru a putea
+                    exporta datele din chart în format PNG, CSV sau JSON. De asemenea, utilizatorul are posibilitatea de a schimba tipul
+                    de chart, fără a mai fi nevoie să se întoarcă pe pagina principală.
                 </p>
             </section>
 
             <section id="aboutUs" role="doc-aboutUs">
-                <h3>4.5 Pagina de About Us </h3>
+                <h3>4.3 Pagina de About Us </h3>
                 <p>
-                    Pagina de About Us cuprinde niste informatii despre autorii aplicatiei si experienta realizarii
+                    Pagina de About Us cuprinde niște informații despre autorii aplicației și experiența realizării
                     acesteia.
-                    De asemenea, include si o sectiune de inscriere la newsletter sau contact prin email.
+                    De asemenea, include și o secțiune de înscriere la newsletter sau contact prin email.
+                </p>
+            </section>
+
+            <section id="login" role="doc-login">
+                <h3>4.4 Pagina de Login</h3>
+                <p>
+                    Pagina de Login este o pagină ce conține un formular de login, cu posibilitatea de a introduce
+                    username-ul și parola pentru a se autentifica în aplicație. De asemenea, conține și un buton de
+                    register, pentru a putea crea un cont nou, dar și un buton de resetare a parolei, în cazul în care
+                    utilizatorul a uitat-o. În cazul în care utilizatorul introduce datele de login
+                    greșite, acesta va primi un mesaj de eroare pentru a încerca din nou.
+                </p>
+            </section>
+
+            <section id="register" role="doc-register">
+                <h3>4.4 Pagina de Register</h3>
+                <p>
+                    Pagina de Register este o pagină ce conține un formular de înregistrare, cu posibilitatea de a
+                    introduce numele, username-ul, parola, numarul de telefon si adresa de email pentru a crea un cont
+                    nou în aplicație. De asemenea, conține și un buton de login, pentru a putea accesa contul nou creat.
+                    În cazul în care utilizatorul introduce datele de înregistrare greșite, acesta va primi un mesaj de
+                    eroare pentru a încerca din nou.
+                </p>
+            </section>
+
+            <section id="search" role="doc-search">
+                <h3>4.4 Pagina de Search</h3>
+                <p>
+                    Pagina de Search este o pagină ce conține un formular de căutare, cu posibilitatea de a introduce
+                    criteriile de căutare pentru a afișa atacurile teroriste din baza de date care corespund acestora.
+                    Utilizatorul va putea alege criteriile de căutare dintr-o listă de opțiuni, iar în funcție de
+                    acestea, vor fi afișate rezultatele. De asemenea, utilizatorul are posibilitatea de a apăsa pe un buton 
+                    de pe card pentru a vedea mai multe detalii despre atacul terorist respectiv, inclusiv mai multe detalii
+                    despre tipul de armă folosită și un scurt rezumat al atacului. Cel de-al doilea buton de pe card permite
+                    utilizatorului să salveze atacul terorist într-o colecție, pentru a putea fi accesat mai târziu.
+
+                    Toate aceste carduri sunt afișate câte 10 pe pagină, iar utilizatorul are posibilitatea de a naviga printre
+                    pagini, pentru a vedea toate datele disponibile.
                 </p>
             </section>
         </section>
@@ -365,6 +389,12 @@
                 designul body-ului paginilor. Pe partea de charturi, fiecare a ales un tip de chart pe care l-a
                 implementat in javascript, iar apoi la final am facut impreuna integrarea tuturor elementelor si
                 organizarea paginilor.
+
+                Am adăugat în plus partea de backend a aplicației, care include partea de login/register/logout, partea de
+                newsletter, partea de search, partea de salvare a cardurilor. Am adăugat și partea de integrare a
+                charturilor cu baza de date, pentru a putea afișa datele din baza de date în charturi și pentru a putea
+                face filtrări pe baza de date.
+                Toate aceste modificări se regăsesc în README.md, secțiunea Worklog.
                 </p>
             </section>
         </section>
