@@ -22,7 +22,7 @@ async function fetchAllUsers() {
 
             usernameCell.innerHTML = user.username;
             emailCell.innerHTML = user.email;
-            deleteCell.innerHTML = '<button onclick="confirmDelete(\'' + user.username + '\')">Sterge</button>';
+            deleteCell.innerHTML = '<button id="bri" onclick="confirmDelete(\'' + user.username + '\')">Sterge</button>';
         }
     });
 }

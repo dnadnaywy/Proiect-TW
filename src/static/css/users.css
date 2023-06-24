@@ -17,4 +17,76 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    border-radius: 25px;
+
+}
+
+#userTable {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+#userTable th,
+#userTable td {
+    padding: 8px;
+    text-align: left;
+    color: white;
+}
+
+#userTable th {
+    background-color: #7048D5;
+
+}
+
+
+#userTable tr:nth-child(even) {
+    background-color: transparent;
+}
+
+#confirmDelete {
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 16px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+#confirmDelete:hover {    background-color: black;
+    color: white;
+}
+
+#cancelDelete {
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 16px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+#cancelDelete:hover {
+    background-color: black;
+    color: white;
+}
+
+#bri{
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: transparent;
+    color: white;
+    padding: 4px;
+    cursor: pointer;
+
+
+}
+#bri:focus{
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: white;
+    color: black;
+
 }
