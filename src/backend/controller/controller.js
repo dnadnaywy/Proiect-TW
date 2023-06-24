@@ -9,6 +9,7 @@ const worldmapController = require("./worldmapController");
 const sendEmailModel = require("../utils/sendEmailNewsletter.js");
 const sendEmail = require('../utils/sendEmailNewsletter.js');
 const filteringModel = require('../model/filteringModel');
+const paginationModel = require('../model/paginationModel');
 
 const handleApiRequest = async (req, res, pool) => {
     const URL = req.url;
@@ -61,11 +62,13 @@ const handleApiRequest = async (req, res, pool) => {
         pieChartController.getAllRowById(req, res, pool, id);
     } else if (req.url.startsWith('/api/terrorist-cards') && req.method === 'GET') {
         const queryParams = parsedUrl.query;
-        var page = parseInt(queryParams.page) || 1;
+        const countries = queryParams.countries;
+        const attackTypes = queryParams.attackTypes;
+        const page = queryParams.page;
         if (page > 18170) {
             page = 1; //any page over 18170 (the last calculated page will be assigned to the first page)
         }
-        paginationController.get10RowsPagination(req, res, pool, page);
+        paginationModel.get10RowsAtOnce(req, res, pool, page, countries, attackTypes);
     } else if (req.url === '/api/countries' && req.method === 'GET') {
         searchController.getAllCountries(req, res, pool);
     } //-------------------------------------sending emails-----------------------------------

@@ -2,6 +2,8 @@ var countries = []; // Sample array of countries
 var attackTypes = ['Armed Assault', 'Assassination', 'Bombing/Explosion', 'Facility/Infrastructure Attack', 'Hijacking', 'Hostage Taking (Barricade Incident)', 'Hostage Taking (Kidnapping)', 'Unarmed Assault', 'Unknown'];
 var checked = false;
 
+var selectedCountries;
+
 var countryFiltersDiv = document.getElementById('countryFilterContainer');
 var attackFiltersDiv = document.getElementById('attackTypeFilterContainer');
 
@@ -53,10 +55,8 @@ async function addCountries() {
   checked = true;
 }
 
-console.log('addCountries');
-
 function applyFilters() {
-  var selectedCountries = Array.from(document.querySelectorAll('input[name=country]:checked')).map(function (checkbox) {
+  selectedCountries = Array.from(document.querySelectorAll('input[name=country]:checked')).map(function (checkbox) {
     return checkbox.value;
   });
 

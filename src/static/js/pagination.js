@@ -1,6 +1,9 @@
 const cardsContainer = document.querySelector('#all-cards-content');
 var nextButton;
 
+// import { selectedCountries } from './filtering';
+// const selectedAttackTypes = require('./filtering');
+
 document.addEventListener('click', function(event) {
   if (event.target.matches('.next-button')) {
     nextButton = event.target;
@@ -9,7 +12,16 @@ document.addEventListener('click', function(event) {
 });
 
 function loadNextPage() {
-  console.log(nextButton);
+  // console.log(nextButton);
+
+  selectedCountries = Array.from(document.querySelectorAll('input[name=country]:checked')).map(function (checkbox) {
+    return checkbox.value;
+  });
+  // console.log(selectedCountries);
+
+  var selectedAttackTypes = Array.from(document.querySelectorAll('input[name=attack_type]:checked')).map(function (checkbox) {
+    return checkbox.value;
+  });
 
   const currentPage = nextButton.getAttribute('current-page');
   const nextPage = Number(currentPage) + 1;
@@ -18,7 +30,7 @@ function loadNextPage() {
   const xhr = new XMLHttpRequest();
 
   // Configure the request
-  xhr.open('GET', 'http://localhost:3000/api/terrorist-cards?page=' + nextPage, true);
+  xhr.open('GET', 'http://localhost:3000/api/terrorist-cards?countries=' + (selectedCountries || '') + '&attackTypes=' + (selectedAttackTypes || '') +'&page=' + nextPage, true);
 
   // Set up the callback for when the request completes
   xhr.onload = function () {
