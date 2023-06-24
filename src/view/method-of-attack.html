@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="../static/css/content-in-page.css">
     <link rel="stylesheet" href="../static/css/register.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
     <script src="../static/js/export.js"></script>
 </head>
 
@@ -92,7 +90,7 @@
                     <span class="tooltip">Method of Attack</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="target">
                         <i class='fa-solid fa-bullseye'></i>
                         <span class="links_name">Target</span>
                     </a>
@@ -106,25 +104,25 @@
                     <span class="tooltip">Terrorist Groups</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="weapons">
                         <i class='fa-solid fa-gun'></i>
                         <span class="links_name">Weapons</span>
                     </a>
                     <span class="tooltip">Weapons</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deaths">
                         <i class='fa-solid fa-cross'></i>
                         <span class="links_name">Deaths</span>
                     </a>
                     <span class="tooltip">Deaths</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deaths-us">
                         <i class='fa-solid fa-cross'></i>
-                        <span class="links_name">Deaths (U.S.)</span>
+                        <span class="links_name">Deaths (USA)</span>
                     </a>
-                    <span class="tooltip">Deaths (U.S.)</span>
+                    <span class="tooltip">Deaths (USA)</span>
                 </li>
             </ul>
             <script src="../static/js/sidebar.js"></script>
@@ -209,7 +207,7 @@
                         <script
                             src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.3.0/dist/chartjs-chart-treemap.min.js"></script>
 
-                        <canvas id="canvas2" style="width:100%; max-width:700px"></canvas>
+                        <canvas id="treemap" style="width:100%; max-width:700px"></canvas>
                         <script src="../static/js/treemap.js"></script>
                     </div>
                 </div>
@@ -260,7 +258,7 @@
                 <div class="main-content">
                     <div class="col-6">
                         <div class="image-info">
-                            <img src="photo-2.jpg" class="image-mask  image-mask-border">
+                            <img src="../static/images/photo-2.jpg" class="image-mask  image-mask-border">
                         </div>
                     </div>
                     <div class="col-6">

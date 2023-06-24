@@ -6,9 +6,9 @@ closeBtn.addEventListener("click", () => {
   sidebar.classList.toggle("open");
 });
 
-searchBtn.addEventListener("click", () => {
-  sidebar.classList.toggle("open");
-});
+// searchBtn.addEventListener("click", () => {
+//   sidebar.classList.toggle("open");
+// });
 
 // following are the code to change sidebar button(optional)
 /*function menuBtnChange() {

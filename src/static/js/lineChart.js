@@ -1,57 +1,64 @@
-function fetchDataXValues(title) {
-  if (title === 'Method of Attack') {
-    return new Promise((resolve, reject) => {
-      fetch('http://localhost:3000/api/countAttackTypes')
-        .then(response => response.json())
-        .then(data => {
-          const xValues = data.map(obj => obj.attack_type);
-          resolve(xValues);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
-  } else if (title === 'Terrorist Groups') {
-    return new Promise((resolve, reject) => {
-      fetch('http://localhost:3000/api/pie/group_name')
-        .then(response => response.json())
-        .then(data => {
-          const xValues = data.map(obj => obj.group_name);
-          resolve(xValues);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
+function getRouteByTitleLineChart(title) {
+  let route = 'http://localhost:3000';
+  switch (title) {
+    case 'Country':
+      route += '/api/pie/country';
+      break;
+    case 'Region':
+      route += '/api/pie/region';
+      break;
+    case 'Method of Attack':
+      route += '/api/pie/attack_type';
+      break;
+    case 'Target':
+      route += '/api/pie/target';
+      break;
+    case 'Terrorist Groups':
+      route += '/api/pie/group_name';
+      break;
+    case 'Weapons':
+      route += '/api/pie/weapon_type';
+      break;
+    case 'Deaths':
+      route += '/api/pie/nkill';
+      break;
+    case 'Deaths (USA)':
+      route += '/api/pie/nkill_us';
+      break;
+    default:
+      route += '/api/not-found';
+      break;
   }
+
+  return route;
 }
 
-function fetchDataYValues(title) {
-  if (title === 'Method of Attack') {
-    return new Promise((resolve, reject) => {
-      fetch('http://localhost:3000/api/countAttackTypes')
-        .then(response => response.json())
-        .then(data => {
-          const yValues = data.map(obj => obj.count);
-          resolve(yValues);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
-  } else if (title === 'Terrorist Groups') {
-    return new Promise((resolve, reject) => {
-      fetch('http://localhost:3000/api/pie/group_name')
-        .then(response => response.json())
-        .then(data => {
-          const yValues = data.map(obj => obj.count);
-          resolve(yValues);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
-  }
+function fetchDataXValuesLineChart(title) {
+  return new Promise((resolve, reject) => {
+    fetch(getRouteByTitlePieChart(title))
+      .then(response => response.json())
+      .then(data => {
+        const xValues = data.map(obj => obj.key);
+        resolve(xValues);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+}
+
+function fetchDataYValuesLineChart(title) {
+  return new Promise((resolve, reject) => {
+    fetch(getRouteByTitlePieChart(title))
+      .then(response => response.json())
+      .then(data => {
+        const yValues = data.map(obj => obj.value);
+        resolve(yValues);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 }
 
 function lineChartDisplayer(xValuesLineChart, yValuesLineChart, title) {
@@ -133,15 +140,16 @@ function lineChartDisplayer(xValuesLineChart, yValuesLineChart, title) {
     }
   });
 
-  activeChart = [lineChart];
+  return lineChart;
 }
 
 function makeActualLineChart(title) {
-  const promises = [fetchDataXValues(title), fetchDataYValues(title)];
+  const promises = [fetchDataXValuesLineChart(title), fetchDataYValuesLineChart(title)];
 
   Promise.all(promises)
     .then(([xValues, yValues]) => {
-      lineChartDisplayer(xValues, yValues, title);
+      const lineChart = lineChartDisplayer(xValues, yValues, title);
+      activeChart = [lineChart];
       activeChartId = 'lineChart';
     })
     .catch(error => {

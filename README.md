@@ -35,6 +35,7 @@ Componenta echipa:
 * Briana - backend pentru autentificare (18.06)
 * Briana - securitate
 * Briana - frontend + integrare
+* Diana Pantiru - creat restul paginilor + modificat controllere si modele pt charts ca sa functioneze pe toate paginile (23.06)
 
 # Instalare
 
