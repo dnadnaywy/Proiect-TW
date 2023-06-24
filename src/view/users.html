@@ -1,236 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terrorist Data</title>
-    <link rel="website icon" type="png" href="../static/images/logo.png">
-
-    <script src="https://kit.fontawesome.com/0668abd750.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="../static/css/responsive-page.css">
-    <link rel="stylesheet" href="../static/css/footer.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/sidebar.css">
-    <link rel="stylesheet" href="../static/css/responsive-text-box.css">
-    <link rel="stylesheet" href="../static/css/canvas.css">
-    <link rel="stylesheet" href="../static/css/content-in-page.css">
-    <link rel="stylesheet" href="../static/css/terrorist-cards.css">
-
-    <link rel="stylesheet" href="../static/css/users.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/users.css">
 </head>
+<body>
+<table id="userTable">
+    <tr>
+        <th>Nume de utilizator</th>
+        <th>Email</th>
+        <th>Actiuni</th>
+    </tr>
+</table>
 
-
-<body onload="displayDataFromDatabase()">
-<div class="d-flex flex-column justify-content-center w-100 h-100">
-
-    <div class="header">
-        <div class="title">
-            <div class="menu-bars">
-                <i class='fa-solid fa-bars' id="btn"></i>
-            </div>
-            <a href="home">
-                <img src="../static/images/logo.png" class="logo">
-            </a>
-            <a href="home" class="link-logo">
-                <p>International <b>Terrorism</b> Database</p>
-            </a>
-        </div>
-        <div class="header-board">
-            <nav>
-                <ul>
-                    <li>
-                        <button id="logout-button" class="header-button header-button-right">Logout</button>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-
-    <div class="sidebar">
-
-        <ul class="nav-list">
-            <li>
-                <a href="search-page">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span class="links_name">Search</span>
-                </a>
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="country">
-                    <i class="fa-solid fa-flag"></i>
-                    <span class="links_name">Country</span>
-                </a>
-                <span class="tooltip">Country</span>
-            </li>
-            <li>
-                <a href="region">
-                    <i class="fa-solid fa-earth-americas"></i>
-                    <span class="links_name">Region</span>
-                </a>
-                <span class="tooltip">Region</span>
-            </li>
-            <li>
-                <a href="method-of-attack">
-                    <i class='fa-solid fa-solid fa-bomb'></i>
-                    <span class="links_name">Method of Attack</span>
-                </a>
-                <span class="tooltip">Method of Attack</span>
-            </li>
-            <li>
-                <a href="target">
-                    <i class='fa-solid fa-bullseye'></i>
-                    <span class="links_name">Target</span>
-                </a>
-                <span class="tooltip">Target</span>
-            </li>
-            <li>
-                <a href="terrorist-groups">
-                    <i class='fa-solid fa-people-group'></i>
-                    <span class="links_name">Terrorist Groups</span>
-                </a>
-                <span class="tooltip">Terrorist Groups</span>
-            </li>
-            <li>
-                <a href="weapons">
-                    <i class='fa-solid fa-gun'></i>
-                    <span class="links_name">Weapons</span>
-                </a>
-                <span class="tooltip">Weapons</span>
-            </li>
-            <li>
-                <a href="deaths">
-                    <i class='fa-solid fa-cross'></i>
-                    <span class="links_name">Deaths</span>
-                </a>
-                <span class="tooltip">Deaths</span>
-            </li>
-            <li>
-                <a href="deaths-us">
-                    <i class='fa-solid fa-cross'></i>
-                    <span class="links_name">Deaths (USA)</span>
-                </a>
-                <span class="tooltip">Deaths (USA)</span>
-            </li>
-        </ul>
-        <script src="../static/js/sidebar.js"></script>
-    </div>
-
-
-    <div class="content-in-page">
-        <div class="row">
-            <div class="col-12">
-                <!-- am improvizat un spatiu deasupra titlului, nu stiu daca asa este si in alte coduri -->
-                <b style="color:transparent">space</b>
-
-                <div class="title-content">
-                    <htitle>Terrorist Data</htitle>
-                    <hr class="line">
-                </div>
-
-                <b style="color:transparent">space</b>
-
-                <div class="btns-bar" style="width: auto; color: aliceblue;">
-
-                    <div>
-                        <h3>Country</h3>
-                        <input type="text" id="countrySearchInput" placeholder="Search countries">
-                        <div id="countryFilterContainer">
-                            <label class="filters-options"><input type="checkbox" class="filter-checkbox"
-                                                                  data-filter-category="country"
-                                                                  data-filter-value="united states">United
-                                States</label>
-                            <label class="filters-options"><input type="checkbox" class="filter-checkbox"
-                                                                  data-filter-category="country"
-                                                                  data-filter-value="japan">Japan</label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3>Attack Type:</h3>
-                        <div id="attackTypeFilterContainer">
-                            <!-- <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="facility/infrastructure attack">Facility/Infrastructure Attack</label>
-                            <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="bombing/explosion">Bombing/Explosion</label> -->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="main-content reverse-column" style="height: auto;">
-            <div class="col-12" id="all-cards-content">
-                <div class="card" data-card-id="100">
-                    <p>Country:</p> <b>
-                    <p class="country-name">United States</p>
-                </b>
-                    <p>Region:</p> <b>
-                    <p class="region-name">North America</p>
-                </b>
-                    <p>Attack type:</p> <b>
-                    <div class="attack-type-name">Bombing/Explosives</div>
-                </b>
-                    <p>Weapon Type:</p> <b>
-                    <p class="weapon-type-name">Explosives</p>
-                </b>
-                    <div class="see-more-details" onclick="seeMoreDetails(event)">
-                        <i class="fa-regular fa-eye" title="Click to see more details!"></i>
-                    </div>
-                    <div class="open-lock"><i class="fa-solid fa-lock-open" onclick="saveCard(event)"></i></div>
-                </div>
-            </div>
-            <div class="col-12" id="see-more-details-container"></div>
-        </div>
-
-    </div>
-
-</div>
-
-<div class="row">
-    <div class="col-12">
-        <b style="color:transparent">you are awsome</b>
-    </div>
-    <div class="col-12">
-        <b style="color:transparent">you are the best :) if you read this</b>
-    </div>
-</div>
-</div>
-
-
-<div class="footer">
-    <div class="bold-footer">
-        <b>About us</b>
-        <hr class="horizontal-line">
-        <a href="about-us">
-            <p class="other-info-footer"><i>Get in touch</i></p>
-        </a>
-    </div>
-    <div class="bold-footer">
-        <b>Terms</b>
-        <hr class="horizontal-line">
-        <a href="#">
-            <p class="other-info-footer">Terms & Conditions</p>
-        </a>
-        <a href="#">
-            <p class="other-info-footer">Privacy Policy</p>
-        </a>
-    </div>
-    <div class="icons">
-        <div><img src="../static/images/4logos.png" alt="social-media-logos" class="social-media-logos"></div>
+<div id="confirmModal" class="modal">
+    <div class="modal-content">
+        <h2>Confirmare stergere</h2>
+        <p>Esti sigur ca vrei sa stergi acest utilizator?</p>
+        <button id="confirmDelete">Da</button>
+        <button id="cancelDelete">Nu</button>
     </div>
 </div>
 
-<script src="../static/js/searchPage.js"></script>
-<script src="../static/js/paginationUsers.js"></script>
-<script defer src="../static/js/users.js"></script>
-<script src="../static/js/logout.js"></script>
+<script src="../static/js/users.js"></script>
 </body>
-
 </html>
