@@ -56,7 +56,7 @@ const handleViewRequest = (req, res) => {
     } else if (URL === '/view/users') {
         usersView(req, res);
     } else if (URL === '/view/admin') {
-        if (!verifyJWTRole(res, req, config.adminRole)) {
+        if (!verifyJWTRole(res, req, config.userRole)) {
             return;
         }
         adminView(req, res);

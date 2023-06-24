@@ -43,12 +43,8 @@
         <div class="header-board">
             <nav>
                 <ul>
-                    <li><a href="login"><button class="header-button header-button-left">Login</button></a>
-                    </li>
                     <li>
-                        <a href="register">
-                            <button class="header-button header-button-right">Sign up</button>
-                        </a>
+                        <button id="logout-button" class="header-button header-button-right">Logout</button>
                     </li>
                 </ul>
             </nav>
@@ -125,7 +121,6 @@
         </ul>
         <script src="../static/js/sidebar.js"></script>
     </div>
-        
 
 
     <div class="content-in-page">
@@ -148,9 +143,12 @@
                         <input type="text" id="countrySearchInput" placeholder="Search countries">
                         <div id="countryFilterContainer">
                             <label class="filters-options"><input type="checkbox" class="filter-checkbox"
-                                                                  data-filter-category="country" data-filter-value="united states">United States</label>
+                                                                  data-filter-category="country"
+                                                                  data-filter-value="united states">United
+                                States</label>
                             <label class="filters-options"><input type="checkbox" class="filter-checkbox"
-                                                                  data-filter-category="country" data-filter-value="japan">Japan</label>
+                                                                  data-filter-category="country"
+                                                                  data-filter-value="japan">Japan</label>
                         </div>
                     </div>
 
@@ -165,9 +163,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
 
         <div class="main-content reverse-column" style="height: auto;">
@@ -235,7 +230,7 @@
 <script src="../static/js/searchPage.js"></script>
 <script src="../static/js/paginationUsers.js"></script>
 <script defer src="../static/js/users.js"></script>
-
+<script src="../static/js/logout.js"></script>
 </body>
 
 </html>
