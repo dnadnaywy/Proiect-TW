@@ -175,7 +175,6 @@ const validatePhonenumber = (phonenumber, res) => {
     return true;
 }
 
-
 module.exports = {
     registerMissingFields,
     validateUserDataStructure,

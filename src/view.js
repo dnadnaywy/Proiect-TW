@@ -1,6 +1,6 @@
-const security = require('./backend/security/jwtAccesProvider');
 const fs = require('fs');
-
+const {verifyJWTRole} = require("./backend/security/jwtAccesProvider");
+const config = require("./backend/utils/configuration");
 const readHTML = (filePath, res) => {
     res.setHeader('Content-Type', 'text/html');
     fs.readFile(filePath, (err, data) => {
@@ -23,33 +23,36 @@ const handleViewRequest = (req, res) => {
         changePasswordView(req, res);
     } else if (URL === '/view/home') {
         homeView(req, res);
-    }
-    else if (URL === '/view/method-of-attack') {
+    } else if (URL === '/view/method-of-attack') {
         methodOfAttackView(req, res);
-    }
-    else if (URL === '/view/about-us') {
+    } else if (URL === '/view/about-us') {
         aboutUsView(req, res);
     } else if (URL === '/view/country') {
         countryView(req, res);
     } else if (URL === '/view/region') {
         regionView(req, res);
-    }
-    else if (URL === '/view/attack') {
+    } else if (URL === '/view/attack') {
         attackView(req, res);
-    }
-    else if (URL === '/view/saved-cards') {
+    } else if (URL === '/view/saved-cards') {
         savedCardsView(req, res);
-    }
-    else if (URL === '/view/search-page') {
+    } else if (URL === '/view/search-page') {
         searchView(req, res);
-    }
-    else if (URL === '/view/users') {
+    } else if (URL === '/view/users') {
         usersView(req, res);
-    }
-    else {
+    } else if (URL === '/view/admin') {
+        if (verifyJWTRole(res, req, config.adminRole)) {
+            return;
+        }
+        adminView(req, res);
+    } else {
         res.statusCode = 404;
         res.end('Not Found');
     }
+}
+
+function adminView(req, res) {
+    const filePath = '../view/admin.html';
+    readHTML(filePath, res);
 }
 
 function homeView(req, res) {
@@ -60,13 +63,9 @@ function homeView(req, res) {
 const registerView = (req, res) => {
     const filePath = '../view/register.html';
     readHTML(filePath, res);
-
 }
 
 const loginView = (req, res) => {
-    //verify if the user is already log in
-
-
     const filePath = '../view/login.html';
     readHTML(filePath, res);
 }
@@ -102,7 +101,6 @@ const attackView = (req, res) => {
 }
 
 const savedCardsView = (req, res) => {
-
     const filePath = '../view/saved-cards-page.html';
     readHTML(filePath, res);
 }
@@ -115,7 +113,6 @@ const usersView = (req, res) => {
     const filePath = '../view/users.html';
     readHTML(filePath, res);
 }
-
 
 
 module.exports = handleViewRequest;
