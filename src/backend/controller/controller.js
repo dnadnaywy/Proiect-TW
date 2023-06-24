@@ -8,7 +8,8 @@ const treemapController = require("./treemapController");
 const worldmapController = require("./worldmapController");
 const sendEmailModel = require("../utils/sendEmailNewsletter.js");
 const sendEmail = require('../utils/sendEmailNewsletter.js');
-
+const filteringModel = require('../model/filteringModel');
+const paginationModel = require('../model/paginationModel');
 
 const handleApiRequest = async (req, res, pool) => {
     const URL = req.url;
@@ -66,19 +67,21 @@ const handleApiRequest = async (req, res, pool) => {
         pieChartController.getAllRowById(req, res, pool, id);
     } else if (req.url.startsWith('/api/terrorist-cards') && req.method === 'GET') {
         const queryParams = parsedUrl.query;
-        var page = parseInt(queryParams.page) || 1;
+        const countries = queryParams.countries;
+        const attackTypes = queryParams.attackTypes;
+        const page = queryParams.page;
         if (page > 18170) {
             page = 1; //any page over 18170 (the last calculated page will be assigned to the first page)
         }
-        paginationController.get10RowsPagination(req, res, pool, page);
+        paginationModel.get10RowsAtOnce(req, res, pool, page, countries, attackTypes);
     } else if (req.url === '/api/countries' && req.method === 'GET') {
         searchController.getAllCountries(req, res, pool);
-    } else if (req.url === '/api/send-email' && req.method === 'POST') {
+    } //-------------------------------------sending emails-----------------------------------
+    else if (req.url === '/api/send-email' && req.method === 'POST') {
         let email = "";
         req.on("data", chunk => {
             email += chunk;
         });
-        console.log('am ajuns pe aici');
         req.on("end", () => {
             const message = "Hi there, your newsletter confirmation for subscribing at <b>bddsolutions</b> website is here.<br><br>Thank you,<br>BDDSolutions Team"
             const subject= "Newsletter Confirmation";
@@ -86,6 +89,9 @@ const handleApiRequest = async (req, res, pool) => {
             res.statusCode = 200;
             res.end("Email sent successfully");
         });
+    } //--------------------------------filters for search page ------------------------------
+    else if (req.url === '/api/filtering' && req.method === 'POST') {
+        filteringModel.getFiltering(req, res, pool);
     }
     // ------------------------------ TREEMAP -----------------------------------------------
     else if (req.url === '/api/treemap/country' && req.method === 'GET') {

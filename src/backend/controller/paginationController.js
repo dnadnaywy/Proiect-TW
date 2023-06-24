@@ -2,8 +2,8 @@ const paginationModel = require('../model/paginationModel');
 
 const all10RowsPagination = {
 
-  get10RowsPagination: (req, res, pool, page) => {
-    paginationModel.get10RowsAtOnce(pool, page)
+  get10RowsPagination: (req, res, pool, page, countries, attackTypes) => {
+    paginationModel.get10RowsAtOnce(req, res, pool, page, countries, attackTypes)
       .then(data => {
         // console.log(data);
         res.writeHead(200, { 'Content-Type': 'application/json' });

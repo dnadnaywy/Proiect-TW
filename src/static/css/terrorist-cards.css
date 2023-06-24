@@ -72,6 +72,7 @@
 
   line-height: 20px;
 
+  transition: all 0.5s ease-in-out;
   box-shadow: -1px 1px 53px -5px rgba(0, 0, 0, 0.69);
   -webkit-box-shadow: -1px 1px 53px -5px rgba(0, 0, 0, 0.69);
   -moz-box-shadow: -1px 1px 53px -5px rgba(0, 0, 0, 0.69);
@@ -81,8 +82,14 @@
   text-align: center;
 
   justify-content: center;
-  /* Center the grid horizontally */
   align-items: center;
+}
+
+.card:hover {
+  transition: all 0.5s ease-in-out;
+  box-shadow: -1px 1px 53px -5px #7048D5;
+  -webkit-box-shadow: -1px 1px 53px -5px #7048D5;
+  -moz-box-shadow: -1px 1px 53px -5px #7048D5;
 }
 
 .save-card {

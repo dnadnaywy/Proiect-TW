@@ -1,0 +1,14 @@
+.filters-container {
+  border: 1px solid #454449;
+  border-radius: 29px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1vw;
+}
+
+.page-number-buttom {
+  color: aliceblue;
+  margin: 5px;
+}

@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="../static/css/canvas.css">
   <link rel="stylesheet" href="../static/css/content-in-page.css">
   <link rel="stylesheet" href="../static/css/terrorist-cards.css">
+  <link rel="stylesheet" href="../static/css/search-page.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
   </script>
@@ -139,9 +140,28 @@
 
           <b style="color:transparent">space</b>
 
-          <div class="btns-bar" style="width: auto; color: aliceblue;">
+          <div class="filters-container col-12" style="color:aliceblue">
+
+            <div style="text-align: center;">
+              <h3>Country</h3>
+              <!-- <input type="text" id="countrySearchInput" placeholder="Search countries"> -->
+              <div id="countryFilterContainer">
+                <!-- <label class="filters-options"><input type="checkbox" class="filter-checkbox"
+                    data-filter-category="country" data-filter-value="united states">United States</label>
+                <label class="filters-options"><input type="checkbox" class="filter-checkbox"
+                    data-filter-category="country" data-filter-value="japan">Japan</label> -->
+              </div>
+            </div>
 
             <div>
+              <h3>Attack Type:</h3>
+              <div id="attackTypeFilterContainer">
+                <!-- <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="facility/infrastructure attack">Facility/Infrastructure Attack</label>
+                <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="bombing/explosion">Bombing/Explosion</label> -->
+              </div>
+            </div>
+
+            <!-- <div>
               <h3>Country</h3>
               <input type="text" id="countrySearchInput" placeholder="Search countries">
               <div id="countryFilterContainer">
@@ -155,10 +175,11 @@
             <div>
               <h3>Attack Type:</h3>
               <div id="attackTypeFilterContainer">
-                <!-- <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="facility/infrastructure attack">Facility/Infrastructure Attack</label>
-                <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="bombing/explosion">Bombing/Explosion</label> -->
+                <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="facility/infrastructure attack">Facility/Infrastructure Attack</label>
+                <label><input type="checkbox" class="filter-checkbox" data-filter-category="attack-type" data-filter-value="bombing/explosion">Bombing/Explosion</label>
               </div>
-            </div>
+            </div> -->
+            <script src="../static/js/filtering.js"></script>
 
           </div>
         </div>
@@ -226,7 +247,7 @@
     </div>
   </div>
 
-  <script src="../static/js/searchPage.js"></script>
+  <!-- <script src="../static/js/searchPage.js"></script> -->
   <script src="../static/js/displayTerroristCardsSearchPage.js"></script>
   <script src="../static/js/pagination.js"></script>
   <script defer src="../static/js/saveCards.js"></script>
