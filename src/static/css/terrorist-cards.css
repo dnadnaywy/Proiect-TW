@@ -149,6 +149,7 @@
 
 .pagination-pages {
   padding: 10px;
+  border-radius: 14px;
 }
 
 .pagination-pages:hover {
