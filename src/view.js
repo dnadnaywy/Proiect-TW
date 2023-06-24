@@ -159,5 +159,5 @@ const usersView = (req, res) => {
     const filePath = '../view/users.html';
     readHTML(filePath, res);
 }
-
+ 
 module.exports = handleViewRequest;
