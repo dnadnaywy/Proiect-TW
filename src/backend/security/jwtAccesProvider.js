@@ -40,32 +40,35 @@ const deleteCookie = (res) => {
     };
     res.setHeader('Set-Cookie', serialize('token', '', options));
 }
+const getCookie = (cookieName, cookieString) => {
+    let cookies = cookieString.split('; ');
 
-const decodedJWT = (req) => {
-
-    const cookie = req.headers.cookie;
-
-    let token = null;
-    if (cookie) {
-        token = cookie.split('=')[1].trim();
+    for(let cookie of cookies) {
+        let [name, value] = cookie.split('=');
+        if (name === cookieName) {
+            return value;
+        }
     }
-
-    if (token) {
-        return jwt.verify(token, JWT_SECRETKEY);
-    }
-
     return null;
+}
+const decodedJWT = (req) => {
+    const cookieString = req.headers.cookie;
+
+    if (!cookieString) return null;
+
+    let token = getCookie('token', cookieString);
+
+    if (!token) return null;
+
+    return jwt.verify(token, JWT_SECRETKEY);
 }
 
 const verifyJWTRole = (res, req, role) => {
-
     const decoded = decodedJWT(req);
-
     if (!decoded) {
         sendMessage(res, {statusCode: 401, status: 'Unauthorized', message: 'No token provided, you need to login'});
         return false;
     }
-
 
     if (decoded['role'] !== role) {
         sendMessage(res, {
@@ -75,7 +78,6 @@ const verifyJWTRole = (res, req, role) => {
         });
         return false;
     }
-
     return true;
 }
 

@@ -56,7 +56,7 @@ const handleViewRequest = (req, res) => {
     } else if (URL === '/view/users') {
         usersView(req, res);
     } else if (URL === '/view/admin') {
-        if (verifyJWTRole(res, req, config.adminRole)) {
+        if (!verifyJWTRole(res, req, config.adminRole)) {
             return;
         }
         adminView(req, res);
@@ -67,7 +67,7 @@ const handleViewRequest = (req, res) => {
 }
 
 function adminView(req, res) {
-    const filePath = '../view/admin.html';
+    const filePath = '../view/users.html';
     readHTML(filePath, res);
 }
 
@@ -90,7 +90,7 @@ const forgotPasswordView = (req, res) => {
     const filePath = '../view/forgot-password.html';
     readHTML(filePath, res);
 }
-const resetPasswordView = (req, res, modifiedURL) => {
+const resetPasswordView = (req, res) => {
     const filePath = '../view/reset-password.html';
     readHTML(filePath, res);
 }
