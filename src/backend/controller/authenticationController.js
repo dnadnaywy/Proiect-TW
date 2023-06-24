@@ -1,5 +1,5 @@
 const users = require('../model/userModel');
-const {parseJSON, matchJSONProperties} = require('../utils/parseJSON');
+const { parseJSON, matchJSONProperties } = require('../utils/parseJSON');
 const sendMessage = require('../utils/sendMessage');
 const {
     registerMissingFields,
@@ -7,13 +7,14 @@ const {
     validateUserDataStructure,
     userNotFound
 } = require('../utils/authenticationUtils');
-const {existsUserData} = require('../utils/userUtil');
+const { existsUserData } = require('../utils/userUtil');
 const security = require('../security/jwtAccesProvider.js');
-const {encryptedPassword, matchPassword} = require('../security/passwordEncrypted.js');
+const { encryptedPassword, matchPassword } = require('../security/passwordEncrypted.js');
 const config = require('../utils/configuration');
 const userModel = require("../model/userModel");
 const jwt = require("jsonwebtoken");
-const {sendEmailNewsletter} = require("../utils/sendEmailNewsletter");
+const { sendEmailNewsletter } = require("../utils/sendEmailNewsletter");
+const { setLoggedIn, getLoggedIn } = require('../utils/auth');
 const authenticationController = async (req, res, pool) => {
     const method = req.method;
     const URL = req.url;
@@ -48,12 +49,12 @@ const authenticationController = async (req, res, pool) => {
             await forgotPassword(req, res, pool);
             await updatePassword(req, res, pool);
         } else {
-            res.writeHead(404, {'Content-Type': 'text/plain'});
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('Not found');
         }
 
     } else {
-        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('Not found');
     }
 }
@@ -95,7 +96,8 @@ const registerUser = async (req, res, pool) => {
 
     await users.createUser(user, res, pool);
 
-    sendMessage(res, {statusCode: 200, status: 'OK', message: 'User created successfully'});
+    sendMessage(res, { statusCode: 200, status: 'OK', message: 'User created successfully' });
+    setLoggedIn(true);
 }
 
 const loginUser = async (userFields, res, pool) => {
@@ -106,12 +108,12 @@ const loginUser = async (userFields, res, pool) => {
         const userDatabase = await users.getUser(userFields, res, pool);
 
         if (userDatabase === null) {
-            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User not found'})
+            sendMessage(res, { statusCode: 400, status: 'Bad Request', message: 'User not found' })
             return;
         }
 
         if (userDatabase.deleted === true) {
-            sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'User deleted'})
+            sendMessage(res, { statusCode: 400, status: 'Bad Request', message: 'User deleted' })
             return;
         }
 
@@ -122,7 +124,8 @@ const loginUser = async (userFields, res, pool) => {
         }
 
         security.handleSecurity(res, userDatabase);
-        sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged in successfully'});
+        sendMessage(res, { statusCode: 200, status: 'OK', message: 'User logged in successfully' });
+        setLoggedIn(true);
     }
     catch (e) {
         console.log(e);
@@ -131,7 +134,8 @@ const loginUser = async (userFields, res, pool) => {
 
 const logoutUser = async (res) => {
     security.deleteCookie(res);
-    sendMessage(res, {statusCode: 200, status: 'OK', message: 'User logged out successfully'});
+    sendMessage(res, { statusCode: 200, status: 'OK', message: 'User logged out successfully' });
+    setLoggedIn(false);
 }
 
 const forgotPassword = async (req, res, pool) => {
@@ -139,20 +143,20 @@ const forgotPassword = async (req, res, pool) => {
     //  const username = user.username;
     const userDetails = await userModel.getUser(user, pool);
     if (userDetails === null) {
-        sendMessage(res, {statusCode: 404, status: 'Not Found', message: 'enter your eamil username or phonenumber'});
+        sendMessage(res, { statusCode: 404, status: 'Not Found', message: 'enter your eamil username or phonenumber' });
         return;
     }
 
     const userDatabase = await users.getUser();
 
-    const token = jwt.sign(userDatabase.username, process.env.RESET_PASSWORD_KEY, {expiresIn: '20m'});
+    const token = jwt.sign(userDatabase.username, process.env.RESET_PASSWORD_KEY, { expiresIn: '20m' });
 
     const link = `http://localhost:3000/view/reset-password/${token}`;
     const message = "Hi there, your link to reset your password is here.<br><br><br>Thank you,<br>BDDSolutions Team"
 
 
     if (!await user.updateUserToken(userDatabase.username, token, pool)) {
-        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'reset password token not updated'})
+        sendMessage(res, { statusCode: 400, status: 'Bad Request', message: 'reset password token not updated' })
     } else {
         try {
             sendEmailNewsletter(userDatabase.email, "Reset Password", message);
@@ -173,34 +177,34 @@ const forgotPassword = async (req, res, pool) => {
 }
 
 async function updatePassword(req, res) {
-    const {token, password} = req.body;
+    const { token, password } = req.body;
 
     if (token) {
         jwt.verify(token, process.env.RESET_PASSWORD_KEY, async function (err, decodedToken) {
             if (err) {
-                sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Incorrect or expired link'});
+                sendMessage(res, { statusCode: 400, status: 'Bad Request', message: 'Incorrect or expired link' });
                 return;
             }
 
             const userDatabase = await userModel.getUserByResetLink(token, userpool)
             if (userDatabase === null) {
-                sendMessage(res, {statusCode: 404, status: 'Not Found', message: 'User not found'});
+                sendMessage(res, { statusCode: 404, status: 'Not Found', message: 'User not found' });
                 return;
             }
             const hashPassword = await encryptedPassword(password);
             userDatabase.password = hashPassword;
             if (!await user.updateUser(userDatabase, pool)) {
-                sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Password not updated'});
+                sendMessage(res, { statusCode: 400, status: 'Bad Request', message: 'Password not updated' });
                 return;
             }
-            sendMessage(res, {statusCode: 200, status: 'OK', message: 'Your password has been changed'});
+            sendMessage(res, { statusCode: 200, status: 'OK', message: 'Your password has been changed' });
         })
 
-        sendMessage(res, {statusCode: 400, status: 'Bad Request', message: 'Your reset link is not valid'});
+        sendMessage(res, { statusCode: 400, status: 'Bad Request', message: 'Your reset link is not valid' });
 
     }
 
 }
 
 
-module.exports = {authenticationController}
+module.exports = { authenticationController }
